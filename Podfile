@@ -7,6 +7,7 @@ target 'CarnivalWallet' do
 
   # Pods for CarnivalWallet
   pod 'web3swift'
+	pod 'KeychainSwift'
 
   target 'CarnivalWalletTests' do
     inherit! :search_paths

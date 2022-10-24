@@ -21,12 +21,13 @@
 		B647F9E9290327E800940C3B /* CreateWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9E8290327E800940C3B /* CreateWalletView.swift */; };
 		B647F9ED29032A2A00940C3B /* TextFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9EC29032A2A00940C3B /* TextFont.swift */; };
 		B647F9EF29033AA200940C3B /* TextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9EE29033AA200940C3B /* TextField+Extensions.swift */; };
-		B647F9F12903428000940C3B /* SaveUserSencitiveInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9F02903428000940C3B /* SaveUserSencitiveInfoUseCase.swift */; };
 		B647F9F329039CEC00940C3B /* GenerateSecretPhraseUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9F229039CEC00940C3B /* GenerateSecretPhraseUseCase.swift */; };
 		B647F9F529039DCF00940C3B /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9F429039DCF00940C3B /* String+Extensions.swift */; };
 		B647F9F929039F2800940C3B /* GenerateSecretPhraseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9F829039F2800940C3B /* GenerateSecretPhraseTest.swift */; };
 		B647F9FB2903BFE400940C3B /* DeriveEthereumAddressTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9FA2903BFE400940C3B /* DeriveEthereumAddressTest.swift */; };
 		B647F9FD2903C0B000940C3B /* Mock_HDWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9FC2903C0B000940C3B /* Mock_HDWallet.swift */; };
+		B647F9FF29066FB100940C3B /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9FE29066FB100940C3B /* UIFont+Extensions.swift */; };
+		B647FA01290674A600940C3B /* CreateWalletUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647FA00290674A600940C3B /* CreateWalletUseCase.swift */; };
 		B6F760C628FC256B006BEF79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F760C528FC256B006BEF79 /* AppDelegate.swift */; };
 		B6F760C828FC256B006BEF79 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F760C728FC256B006BEF79 /* SceneDelegate.swift */; };
 		B6F760CF28FC256C006BEF79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6F760CE28FC256C006BEF79 /* Assets.xcassets */; };
@@ -75,12 +76,13 @@
 		B647F9E8290327E800940C3B /* CreateWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWalletView.swift; sourceTree = "<group>"; };
 		B647F9EC29032A2A00940C3B /* TextFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFont.swift; sourceTree = "<group>"; };
 		B647F9EE29033AA200940C3B /* TextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+Extensions.swift"; sourceTree = "<group>"; };
-		B647F9F02903428000940C3B /* SaveUserSencitiveInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveUserSencitiveInfoUseCase.swift; sourceTree = "<group>"; };
 		B647F9F229039CEC00940C3B /* GenerateSecretPhraseUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateSecretPhraseUseCase.swift; sourceTree = "<group>"; };
 		B647F9F429039DCF00940C3B /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		B647F9F829039F2800940C3B /* GenerateSecretPhraseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateSecretPhraseTest.swift; sourceTree = "<group>"; };
 		B647F9FA2903BFE400940C3B /* DeriveEthereumAddressTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeriveEthereumAddressTest.swift; sourceTree = "<group>"; };
 		B647F9FC2903C0B000940C3B /* Mock_HDWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mock_HDWallet.swift; sourceTree = "<group>"; };
+		B647F9FE29066FB100940C3B /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
+		B647FA00290674A600940C3B /* CreateWalletUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWalletUseCase.swift; sourceTree = "<group>"; };
 		B6F760C228FC256B006BEF79 /* CarnivalWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarnivalWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F760C528FC256B006BEF79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6F760C728FC256B006BEF79 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -159,15 +161,9 @@
 				B647F9EC29032A2A00940C3B /* TextFont.swift */,
 				B647F9EE29033AA200940C3B /* TextField+Extensions.swift */,
 				B647F9F429039DCF00940C3B /* String+Extensions.swift */,
+				B647F9FE29066FB100940C3B /* UIFont+Extensions.swift */,
 			);
 			path = Extension;
-			sourceTree = "<group>";
-		};
-		B647F9D52903069600940C3B /* Component */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Component;
 			sourceTree = "<group>";
 		};
 		B647F9DA2903123600940C3B /* Tab */ = {
@@ -186,8 +182,8 @@
 				B647F9E4290327C700940C3B /* WelcomeView.swift */,
 				B647F9E6290327D800940C3B /* ImportPhraseView.swift */,
 				B647F9E8290327E800940C3B /* CreateWalletView.swift */,
-				B647F9F02903428000940C3B /* SaveUserSencitiveInfoUseCase.swift */,
 				B647F9F229039CEC00940C3B /* GenerateSecretPhraseUseCase.swift */,
+				B647FA00290674A600940C3B /* CreateWalletUseCase.swift */,
 			);
 			path = Setup;
 			sourceTree = "<group>";
@@ -219,10 +215,9 @@
 			children = (
 				B6F760C528FC256B006BEF79 /* AppDelegate.swift */,
 				B6F760C728FC256B006BEF79 /* SceneDelegate.swift */,
-				B647F9D52903069600940C3B /* Component */,
 				B6F7610628FC27A0006BEF79 /* Feature */,
-				B6F760CE28FC256C006BEF79 /* Assets.xcassets */,
 				B647F9CE2902FE7E00940C3B /* Extension */,
+				B6F760CE28FC256C006BEF79 /* Assets.xcassets */,
 				B6F760D028FC256C006BEF79 /* LaunchScreen.storyboard */,
 				B6F760D328FC256C006BEF79 /* Info.plist */,
 			);
@@ -546,7 +541,6 @@
 				B647F9DE2903125500940C3B /* SideMenuView.swift in Sources */,
 				B6F7610528FC278E006BEF79 /* WalletConnectView.swift in Sources */,
 				B647F9E229031E8D00940C3B /* MenuContentView.swift in Sources */,
-				B647F9F12903428000940C3B /* SaveUserSencitiveInfoUseCase.swift in Sources */,
 				B6F760C628FC256B006BEF79 /* AppDelegate.swift in Sources */,
 				B6F7610328FC2781006BEF79 /* BrowserView.swift in Sources */,
 				B647F9D42903056900940C3B /* HomeView.swift in Sources */,
@@ -560,6 +554,8 @@
 				B647F9E9290327E800940C3B /* CreateWalletView.swift in Sources */,
 				B647F9E0290315B900940C3B /* DeviceSize.swift in Sources */,
 				B647F9EF29033AA200940C3B /* TextField+Extensions.swift in Sources */,
+				B647F9FF29066FB100940C3B /* UIFont+Extensions.swift in Sources */,
+				B647FA01290674A600940C3B /* CreateWalletUseCase.swift in Sources */,
 				B6F7610128FC275C006BEF79 /* WalletView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

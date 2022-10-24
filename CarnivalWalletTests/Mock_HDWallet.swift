@@ -5,7 +5,6 @@
 //  Created by 陳翰霖 on 2022/10/22.
 //
 
-import WalletCore
 import web3swift
 
 class Mock_HDWallet {

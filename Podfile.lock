@@ -1,6 +1,7 @@
 PODS:
   - BigInt (5.2.0)
   - CryptoSwift (1.5.1)
+  - KeychainSwift (20.0.0)
   - PromiseKit (6.15.3):
     - PromiseKit/CorePromise (= 6.15.3)
     - PromiseKit/Foundation (= 6.15.3)
@@ -20,12 +21,14 @@ PODS:
     - Starscream (= 4.0.4)
 
 DEPENDENCIES:
+  - KeychainSwift
   - web3swift
 
 SPEC REPOS:
   trunk:
     - BigInt
     - CryptoSwift
+    - KeychainSwift
     - PromiseKit
     - secp256k1.c
     - Starscream
@@ -34,11 +37,12 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   BigInt: f668a80089607f521586bbe29513d708491ef2f7
   CryptoSwift: c4f2debceb38bf44c80659afe009f71e23e4a082
+  KeychainSwift: 0ce6a4d13f7228054d1a71bb1b500448fb2ab837
   PromiseKit: 3b2b6995e51a954c46dbc550ce3da44fbfb563c5
   secp256k1.c: db47b726585d80f027423682eb369729e61b3b20
   Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
   web3swift: bee1e0550e43f1369dc9f34d5a01f537284c9e9a
 
-PODFILE CHECKSUM: 5abe995d5a754b6bf95dda42c64fbea009496a69
+PODFILE CHECKSUM: ad4de13716d7f1d016fff6695a2a491932d80ef4
 
 COCOAPODS: 1.11.3
