@@ -14,7 +14,7 @@ struct ImportPhraseView: View {
 	@State var isFaceIdOn: Bool = true
 
 	init() {
-		UINavigationBar.appearance().titleTextAttributes = .courierNewPS24Bold
+		UINavigationBar.appearance().titleTextAttributes = .bold24
 	}
 	
 	var body: some View {
@@ -22,31 +22,31 @@ struct ImportPhraseView: View {
 			ScrollView() {
 				VStack(alignment: .leading) {
 					Text("Secret Recovery Phrase")
-						.medium16()
+						.AvenirNextMedium(size: 16)
 						.padding(.top, 24)
 					TextField("Enter your Secret Recovery Phrase", text: $phraseText)
 					.padding(.init(top: 12, leading: 12, bottom: 88, trailing: 12))
 					.roundedBorder(radius: 8, borderColor: .black, borderWidth: 1)
 					
 					Text("Password")
-						.medium16()
+						.AvenirNextMedium(size: 16)
 						.padding(.top, 24)
 					TextField("New Password", text: $phraseText)
 					.padding(.init(top: 12, leading: 12, bottom: 12, trailing: 12))
 					.roundedBorder(radius: 8, borderColor: .black, borderWidth: 1)
 					
 					Text("Confirm password")
-						.medium16()
+						.AvenirNextMedium(size: 16)
 						.padding(.top, 24)
 					TextField("Confirm password", text: $phraseText)
 					.padding(.init(top: 12, leading: 12, bottom: 12, trailing: 12))
 					.roundedBorder(radius: 8, borderColor: .black, borderWidth: 1)
 					Text("Must be at least 8 characters")
-						.medium14()
+						.AvenirNextMedium(size: 14)
 					
 					HStack {
 						Text("Unlock with FaceID?")
-							.medium16()
+							.AvenirNextMedium(size: 16)
 						Spacer()
 						
 						Toggle("", isOn: $isFaceIdOn)
@@ -55,7 +55,7 @@ struct ImportPhraseView: View {
 
 					} label: {
 						Text("Import")
-							.medium14()
+							.AvenirNextMedium(size: 14)
 							.foregroundColor(.white)
 							.padding()
 							.width(DeviceDimension.WIDTH - 80)

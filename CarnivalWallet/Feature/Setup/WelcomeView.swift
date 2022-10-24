@@ -13,12 +13,12 @@ struct WelcomeView: View {
 			ZStack {
 				VStack{
 					Text("Carnival")
-						.font(.custom("CourierNewPS-BoldMT", fixedSize: 24))
+						.AvenirNextBold(size: 32)
 					Text("Wallet setup")
-						.bold(size: 20)
+						.AvenirNextBold(size: 20)
 						.padding(.top, 44)
 					Text("Import an existing wallet or create a new one")
-						.medium16()
+						.AvenirNextMedium(size: 16)
 						.multilineTextAlignment(.center)
 						.padding(.top, 8)
 					
@@ -35,7 +35,8 @@ struct WelcomeView: View {
 			NavigationLink {
 				ImportPhraseView()
 			} label: {
-				Text("Import using Secret Recovery Phrase").medium14()
+				Text("Import using Secret Recovery Phrase")
+					.AvenirNextMedium(size: 14)
 			}
 			.foregroundColor(.black)
 			.padding()
@@ -49,7 +50,8 @@ struct WelcomeView: View {
 			NavigationLink {
 				CreateWalletView()
 			} label: {
-				Text("Create a new wallet").medium14()
+				Text("Create a new wallet")
+					.AvenirNextMedium(size: 14)
 			}
 			.foregroundColor(.white)
 			.padding()
