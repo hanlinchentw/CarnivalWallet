@@ -1,0 +1,906 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0C5DD8AD2EB6104E11464EF5 /* Pods_CarnivalWallet_CarnivalWalletUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5A7A1EAFF8415A0222AE361 /* Pods_CarnivalWallet_CarnivalWalletUITests.framework */; };
+		2F6E130875CF428352879C57 /* Pods_CarnivalWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B822DEB5DF43290C60FF4D7 /* Pods_CarnivalWallet.framework */; };
+		982F3385DB472A39D9D3210A /* Pods_CarnivalWalletTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61AA664BC39E44394134A810 /* Pods_CarnivalWalletTests.framework */; };
+		B647F9D02902FE9500940C3B /* AttributedString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9CF2902FE9500940C3B /* AttributedString+Extensions.swift */; };
+		B647F9D42903056900940C3B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9D32903056900940C3B /* HomeView.swift */; };
+		B647F9D9290310F900940C3B /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9D8290310F900940C3B /* View+Extensions.swift */; };
+		B647F9DE2903125500940C3B /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9DD2903125500940C3B /* SideMenuView.swift */; };
+		B647F9E0290315B900940C3B /* DeviceSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9DF290315B900940C3B /* DeviceSize.swift */; };
+		B647F9E229031E8D00940C3B /* MenuContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9E129031E8D00940C3B /* MenuContentView.swift */; };
+		B647F9E5290327C700940C3B /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9E4290327C700940C3B /* WelcomeView.swift */; };
+		B647F9E7290327D800940C3B /* ImportPhraseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9E6290327D800940C3B /* ImportPhraseView.swift */; };
+		B647F9E9290327E800940C3B /* CreateWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9E8290327E800940C3B /* CreateWalletView.swift */; };
+		B647F9ED29032A2A00940C3B /* TextFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9EC29032A2A00940C3B /* TextFont.swift */; };
+		B647F9EF29033AA200940C3B /* TextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9EE29033AA200940C3B /* TextField+Extensions.swift */; };
+		B647F9F12903428000940C3B /* SaveUserSencitiveInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9F02903428000940C3B /* SaveUserSencitiveInfoUseCase.swift */; };
+		B647F9F329039CEC00940C3B /* GenerateSecretPhraseUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9F229039CEC00940C3B /* GenerateSecretPhraseUseCase.swift */; };
+		B647F9F529039DCF00940C3B /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9F429039DCF00940C3B /* String+Extensions.swift */; };
+		B647F9F929039F2800940C3B /* GenerateSecretPhraseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9F829039F2800940C3B /* GenerateSecretPhraseTest.swift */; };
+		B647F9FB2903BFE400940C3B /* DeriveEthereumAddressTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9FA2903BFE400940C3B /* DeriveEthereumAddressTest.swift */; };
+		B647F9FD2903C0B000940C3B /* Mock_HDWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9FC2903C0B000940C3B /* Mock_HDWallet.swift */; };
+		B6F760C628FC256B006BEF79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F760C528FC256B006BEF79 /* AppDelegate.swift */; };
+		B6F760C828FC256B006BEF79 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F760C728FC256B006BEF79 /* SceneDelegate.swift */; };
+		B6F760CF28FC256C006BEF79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6F760CE28FC256C006BEF79 /* Assets.xcassets */; };
+		B6F760D228FC256C006BEF79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6F760D028FC256C006BEF79 /* LaunchScreen.storyboard */; };
+		B6F760DD28FC256C006BEF79 /* CarnivalWalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F760DC28FC256C006BEF79 /* CarnivalWalletTests.swift */; };
+		B6F760E728FC256C006BEF79 /* CarnivalWalletUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F760E628FC256C006BEF79 /* CarnivalWalletUITests.swift */; };
+		B6F760E928FC256C006BEF79 /* CarnivalWalletUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F760E828FC256C006BEF79 /* CarnivalWalletUITestsLaunchTests.swift */; };
+		B6F7610128FC275C006BEF79 /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F7610028FC275C006BEF79 /* WalletView.swift */; };
+		B6F7610328FC2781006BEF79 /* BrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F7610228FC2781006BEF79 /* BrowserView.swift */; };
+		B6F7610528FC278E006BEF79 /* WalletConnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F7610428FC278E006BEF79 /* WalletConnectView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B6F760D928FC256C006BEF79 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B6F760BA28FC256B006BEF79 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B6F760C128FC256B006BEF79;
+			remoteInfo = CarnivalWallet;
+		};
+		B6F760E328FC256C006BEF79 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B6F760BA28FC256B006BEF79 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B6F760C128FC256B006BEF79;
+			remoteInfo = CarnivalWallet;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0877E698CF081EFAA56E35AC /* Pods-CarnivalWalletTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarnivalWalletTests.debug.xcconfig"; path = "Target Support Files/Pods-CarnivalWalletTests/Pods-CarnivalWalletTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2B822DEB5DF43290C60FF4D7 /* Pods_CarnivalWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CarnivalWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		44E82EA0172E069042F2835A /* Pods-CarnivalWalletTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarnivalWalletTests.release.xcconfig"; path = "Target Support Files/Pods-CarnivalWalletTests/Pods-CarnivalWalletTests.release.xcconfig"; sourceTree = "<group>"; };
+		61AA664BC39E44394134A810 /* Pods_CarnivalWalletTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CarnivalWalletTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		896EBA476A691B7544CCDF74 /* Pods-CarnivalWallet-CarnivalWalletUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarnivalWallet-CarnivalWalletUITests.debug.xcconfig"; path = "Target Support Files/Pods-CarnivalWallet-CarnivalWalletUITests/Pods-CarnivalWallet-CarnivalWalletUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		929FAF3B8D6B7FB9526A69A9 /* Pods-CarnivalWallet-CarnivalWalletUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarnivalWallet-CarnivalWalletUITests.release.xcconfig"; path = "Target Support Files/Pods-CarnivalWallet-CarnivalWalletUITests/Pods-CarnivalWallet-CarnivalWalletUITests.release.xcconfig"; sourceTree = "<group>"; };
+		AC2F7F2F58EB14B89FB398B1 /* Pods-CarnivalWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarnivalWallet.debug.xcconfig"; path = "Target Support Files/Pods-CarnivalWallet/Pods-CarnivalWallet.debug.xcconfig"; sourceTree = "<group>"; };
+		B647F9CF2902FE9500940C3B /* AttributedString+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AttributedString+Extensions.swift"; sourceTree = "<group>"; };
+		B647F9D32903056900940C3B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		B647F9D8290310F900940C3B /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
+		B647F9DD2903125500940C3B /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
+		B647F9DF290315B900940C3B /* DeviceSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSize.swift; sourceTree = "<group>"; };
+		B647F9E129031E8D00940C3B /* MenuContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuContentView.swift; sourceTree = "<group>"; };
+		B647F9E4290327C700940C3B /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		B647F9E6290327D800940C3B /* ImportPhraseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportPhraseView.swift; sourceTree = "<group>"; };
+		B647F9E8290327E800940C3B /* CreateWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWalletView.swift; sourceTree = "<group>"; };
+		B647F9EC29032A2A00940C3B /* TextFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFont.swift; sourceTree = "<group>"; };
+		B647F9EE29033AA200940C3B /* TextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+Extensions.swift"; sourceTree = "<group>"; };
+		B647F9F02903428000940C3B /* SaveUserSencitiveInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveUserSencitiveInfoUseCase.swift; sourceTree = "<group>"; };
+		B647F9F229039CEC00940C3B /* GenerateSecretPhraseUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateSecretPhraseUseCase.swift; sourceTree = "<group>"; };
+		B647F9F429039DCF00940C3B /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		B647F9F829039F2800940C3B /* GenerateSecretPhraseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateSecretPhraseTest.swift; sourceTree = "<group>"; };
+		B647F9FA2903BFE400940C3B /* DeriveEthereumAddressTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeriveEthereumAddressTest.swift; sourceTree = "<group>"; };
+		B647F9FC2903C0B000940C3B /* Mock_HDWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mock_HDWallet.swift; sourceTree = "<group>"; };
+		B6F760C228FC256B006BEF79 /* CarnivalWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarnivalWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6F760C528FC256B006BEF79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B6F760C728FC256B006BEF79 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		B6F760CE28FC256C006BEF79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B6F760D128FC256C006BEF79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B6F760D328FC256C006BEF79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B6F760D828FC256C006BEF79 /* CarnivalWalletTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CarnivalWalletTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6F760DC28FC256C006BEF79 /* CarnivalWalletTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarnivalWalletTests.swift; sourceTree = "<group>"; };
+		B6F760E228FC256C006BEF79 /* CarnivalWalletUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CarnivalWalletUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6F760E628FC256C006BEF79 /* CarnivalWalletUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarnivalWalletUITests.swift; sourceTree = "<group>"; };
+		B6F760E828FC256C006BEF79 /* CarnivalWalletUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarnivalWalletUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B6F7610028FC275C006BEF79 /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
+		B6F7610228FC2781006BEF79 /* BrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserView.swift; sourceTree = "<group>"; };
+		B6F7610428FC278E006BEF79 /* WalletConnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectView.swift; sourceTree = "<group>"; };
+		D5A7A1EAFF8415A0222AE361 /* Pods_CarnivalWallet_CarnivalWalletUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CarnivalWallet_CarnivalWalletUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1A453C7A633783EB56D7E83 /* Pods-CarnivalWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarnivalWallet.release.xcconfig"; path = "Target Support Files/Pods-CarnivalWallet/Pods-CarnivalWallet.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B6F760BF28FC256B006BEF79 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F6E130875CF428352879C57 /* Pods_CarnivalWallet.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6F760D528FC256C006BEF79 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				982F3385DB472A39D9D3210A /* Pods_CarnivalWalletTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6F760DF28FC256C006BEF79 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C5DD8AD2EB6104E11464EF5 /* Pods_CarnivalWallet_CarnivalWalletUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		64B4238B59881C5E45CEDC56 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AC2F7F2F58EB14B89FB398B1 /* Pods-CarnivalWallet.debug.xcconfig */,
+				F1A453C7A633783EB56D7E83 /* Pods-CarnivalWallet.release.xcconfig */,
+				896EBA476A691B7544CCDF74 /* Pods-CarnivalWallet-CarnivalWalletUITests.debug.xcconfig */,
+				929FAF3B8D6B7FB9526A69A9 /* Pods-CarnivalWallet-CarnivalWalletUITests.release.xcconfig */,
+				0877E698CF081EFAA56E35AC /* Pods-CarnivalWalletTests.debug.xcconfig */,
+				44E82EA0172E069042F2835A /* Pods-CarnivalWalletTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		A7E24EF6E393BDBBEE5FED83 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2B822DEB5DF43290C60FF4D7 /* Pods_CarnivalWallet.framework */,
+				D5A7A1EAFF8415A0222AE361 /* Pods_CarnivalWallet_CarnivalWalletUITests.framework */,
+				61AA664BC39E44394134A810 /* Pods_CarnivalWalletTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B647F9CE2902FE7E00940C3B /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B647F9CF2902FE9500940C3B /* AttributedString+Extensions.swift */,
+				B647F9D8290310F900940C3B /* View+Extensions.swift */,
+				B647F9DF290315B900940C3B /* DeviceSize.swift */,
+				B647F9EC29032A2A00940C3B /* TextFont.swift */,
+				B647F9EE29033AA200940C3B /* TextField+Extensions.swift */,
+				B647F9F429039DCF00940C3B /* String+Extensions.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		B647F9D52903069600940C3B /* Component */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		B647F9DA2903123600940C3B /* Tab */ = {
+			isa = PBXGroup;
+			children = (
+				B647F9D32903056900940C3B /* HomeView.swift */,
+				B647F9DD2903125500940C3B /* SideMenuView.swift */,
+				B647F9E129031E8D00940C3B /* MenuContentView.swift */,
+			);
+			path = Tab;
+			sourceTree = "<group>";
+		};
+		B647F9E3290327B100940C3B /* Setup */ = {
+			isa = PBXGroup;
+			children = (
+				B647F9E4290327C700940C3B /* WelcomeView.swift */,
+				B647F9E6290327D800940C3B /* ImportPhraseView.swift */,
+				B647F9E8290327E800940C3B /* CreateWalletView.swift */,
+				B647F9F02903428000940C3B /* SaveUserSencitiveInfoUseCase.swift */,
+				B647F9F229039CEC00940C3B /* GenerateSecretPhraseUseCase.swift */,
+			);
+			path = Setup;
+			sourceTree = "<group>";
+		};
+		B6F760B928FC256B006BEF79 = {
+			isa = PBXGroup;
+			children = (
+				B6F760C428FC256B006BEF79 /* CarnivalWallet */,
+				B6F760DB28FC256C006BEF79 /* CarnivalWalletTests */,
+				B6F760E528FC256C006BEF79 /* CarnivalWalletUITests */,
+				B6F760C328FC256B006BEF79 /* Products */,
+				64B4238B59881C5E45CEDC56 /* Pods */,
+				A7E24EF6E393BDBBEE5FED83 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		B6F760C328FC256B006BEF79 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B6F760C228FC256B006BEF79 /* CarnivalWallet.app */,
+				B6F760D828FC256C006BEF79 /* CarnivalWalletTests.xctest */,
+				B6F760E228FC256C006BEF79 /* CarnivalWalletUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B6F760C428FC256B006BEF79 /* CarnivalWallet */ = {
+			isa = PBXGroup;
+			children = (
+				B6F760C528FC256B006BEF79 /* AppDelegate.swift */,
+				B6F760C728FC256B006BEF79 /* SceneDelegate.swift */,
+				B647F9D52903069600940C3B /* Component */,
+				B6F7610628FC27A0006BEF79 /* Feature */,
+				B6F760CE28FC256C006BEF79 /* Assets.xcassets */,
+				B647F9CE2902FE7E00940C3B /* Extension */,
+				B6F760D028FC256C006BEF79 /* LaunchScreen.storyboard */,
+				B6F760D328FC256C006BEF79 /* Info.plist */,
+			);
+			path = CarnivalWallet;
+			sourceTree = "<group>";
+		};
+		B6F760DB28FC256C006BEF79 /* CarnivalWalletTests */ = {
+			isa = PBXGroup;
+			children = (
+				B6F760DC28FC256C006BEF79 /* CarnivalWalletTests.swift */,
+				B647F9F829039F2800940C3B /* GenerateSecretPhraseTest.swift */,
+				B647F9FA2903BFE400940C3B /* DeriveEthereumAddressTest.swift */,
+				B647F9FC2903C0B000940C3B /* Mock_HDWallet.swift */,
+			);
+			path = CarnivalWalletTests;
+			sourceTree = "<group>";
+		};
+		B6F760E528FC256C006BEF79 /* CarnivalWalletUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B6F760E628FC256C006BEF79 /* CarnivalWalletUITests.swift */,
+				B6F760E828FC256C006BEF79 /* CarnivalWalletUITestsLaunchTests.swift */,
+			);
+			path = CarnivalWalletUITests;
+			sourceTree = "<group>";
+		};
+		B6F7610628FC27A0006BEF79 /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+				B647F9E3290327B100940C3B /* Setup */,
+				B647F9DA2903123600940C3B /* Tab */,
+				B6F7610728FC27A8006BEF79 /* Wallet */,
+				B6F7610828FC27AA006BEF79 /* Browser */,
+				B6F7610928FC27B5006BEF79 /* WalletConnect */,
+			);
+			path = Feature;
+			sourceTree = "<group>";
+		};
+		B6F7610728FC27A8006BEF79 /* Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				B6F7610028FC275C006BEF79 /* WalletView.swift */,
+			);
+			path = Wallet;
+			sourceTree = "<group>";
+		};
+		B6F7610828FC27AA006BEF79 /* Browser */ = {
+			isa = PBXGroup;
+			children = (
+				B6F7610228FC2781006BEF79 /* BrowserView.swift */,
+			);
+			path = Browser;
+			sourceTree = "<group>";
+		};
+		B6F7610928FC27B5006BEF79 /* WalletConnect */ = {
+			isa = PBXGroup;
+			children = (
+				B6F7610428FC278E006BEF79 /* WalletConnectView.swift */,
+			);
+			path = WalletConnect;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B6F760C128FC256B006BEF79 /* CarnivalWallet */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B6F760EC28FC256C006BEF79 /* Build configuration list for PBXNativeTarget "CarnivalWallet" */;
+			buildPhases = (
+				BFB7EA0E338CF19CF59B026B /* [CP] Check Pods Manifest.lock */,
+				B6F2687C2900E0A200733380 /* Run Script */,
+				B6F760BE28FC256B006BEF79 /* Sources */,
+				B6F760BF28FC256B006BEF79 /* Frameworks */,
+				B6F760C028FC256B006BEF79 /* Resources */,
+				D66AEB964567CD6B2E5B7A8B /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CarnivalWallet;
+			productName = CarnivalWallet;
+			productReference = B6F760C228FC256B006BEF79 /* CarnivalWallet.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B6F760D728FC256C006BEF79 /* CarnivalWalletTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B6F760EF28FC256C006BEF79 /* Build configuration list for PBXNativeTarget "CarnivalWalletTests" */;
+			buildPhases = (
+				D9032336EA236D34DE8A5D12 /* [CP] Check Pods Manifest.lock */,
+				B6F760D428FC256C006BEF79 /* Sources */,
+				B6F760D528FC256C006BEF79 /* Frameworks */,
+				B6F760D628FC256C006BEF79 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B6F760DA28FC256C006BEF79 /* PBXTargetDependency */,
+			);
+			name = CarnivalWalletTests;
+			productName = CarnivalWalletTests;
+			productReference = B6F760D828FC256C006BEF79 /* CarnivalWalletTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B6F760E128FC256C006BEF79 /* CarnivalWalletUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B6F760F228FC256C006BEF79 /* Build configuration list for PBXNativeTarget "CarnivalWalletUITests" */;
+			buildPhases = (
+				29F5B9A0CFBD8F7EC257CEC8 /* [CP] Check Pods Manifest.lock */,
+				B6F760DE28FC256C006BEF79 /* Sources */,
+				B6F760DF28FC256C006BEF79 /* Frameworks */,
+				B6F760E028FC256C006BEF79 /* Resources */,
+				4CAD50D465066E1344B97D2D /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B6F760E428FC256C006BEF79 /* PBXTargetDependency */,
+			);
+			name = CarnivalWalletUITests;
+			productName = CarnivalWalletUITests;
+			productReference = B6F760E228FC256C006BEF79 /* CarnivalWalletUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B6F760BA28FC256B006BEF79 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1400;
+				LastUpgradeCheck = 1400;
+				TargetAttributes = {
+					B6F760C128FC256B006BEF79 = {
+						CreatedOnToolsVersion = 14.0;
+					};
+					B6F760D728FC256C006BEF79 = {
+						CreatedOnToolsVersion = 14.0;
+						TestTargetID = B6F760C128FC256B006BEF79;
+					};
+					B6F760E128FC256C006BEF79 = {
+						CreatedOnToolsVersion = 14.0;
+						TestTargetID = B6F760C128FC256B006BEF79;
+					};
+				};
+			};
+			buildConfigurationList = B6F760BD28FC256B006BEF79 /* Build configuration list for PBXProject "CarnivalWallet" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B6F760B928FC256B006BEF79;
+			productRefGroup = B6F760C328FC256B006BEF79 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B6F760C128FC256B006BEF79 /* CarnivalWallet */,
+				B6F760D728FC256C006BEF79 /* CarnivalWalletTests */,
+				B6F760E128FC256C006BEF79 /* CarnivalWalletUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B6F760C028FC256B006BEF79 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6F760D228FC256C006BEF79 /* LaunchScreen.storyboard in Resources */,
+				B6F760CF28FC256C006BEF79 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6F760D628FC256C006BEF79 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6F760E028FC256C006BEF79 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		29F5B9A0CFBD8F7EC257CEC8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CarnivalWallet-CarnivalWalletUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4CAD50D465066E1344B97D2D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CarnivalWallet-CarnivalWalletUITests/Pods-CarnivalWallet-CarnivalWalletUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CarnivalWallet-CarnivalWalletUITests/Pods-CarnivalWallet-CarnivalWalletUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CarnivalWallet-CarnivalWalletUITests/Pods-CarnivalWallet-CarnivalWalletUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B6F2687C2900E0A200733380 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		BFB7EA0E338CF19CF59B026B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CarnivalWallet-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D66AEB964567CD6B2E5B7A8B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CarnivalWallet/Pods-CarnivalWallet-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CarnivalWallet/Pods-CarnivalWallet-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CarnivalWallet/Pods-CarnivalWallet-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D9032336EA236D34DE8A5D12 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CarnivalWalletTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B6F760BE28FC256B006BEF79 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B647F9D02902FE9500940C3B /* AttributedString+Extensions.swift in Sources */,
+				B647F9DE2903125500940C3B /* SideMenuView.swift in Sources */,
+				B6F7610528FC278E006BEF79 /* WalletConnectView.swift in Sources */,
+				B647F9E229031E8D00940C3B /* MenuContentView.swift in Sources */,
+				B647F9F12903428000940C3B /* SaveUserSencitiveInfoUseCase.swift in Sources */,
+				B6F760C628FC256B006BEF79 /* AppDelegate.swift in Sources */,
+				B6F7610328FC2781006BEF79 /* BrowserView.swift in Sources */,
+				B647F9D42903056900940C3B /* HomeView.swift in Sources */,
+				B647F9E5290327C700940C3B /* WelcomeView.swift in Sources */,
+				B647F9E7290327D800940C3B /* ImportPhraseView.swift in Sources */,
+				B647F9ED29032A2A00940C3B /* TextFont.swift in Sources */,
+				B647F9F329039CEC00940C3B /* GenerateSecretPhraseUseCase.swift in Sources */,
+				B6F760C828FC256B006BEF79 /* SceneDelegate.swift in Sources */,
+				B647F9F529039DCF00940C3B /* String+Extensions.swift in Sources */,
+				B647F9D9290310F900940C3B /* View+Extensions.swift in Sources */,
+				B647F9E9290327E800940C3B /* CreateWalletView.swift in Sources */,
+				B647F9E0290315B900940C3B /* DeviceSize.swift in Sources */,
+				B647F9EF29033AA200940C3B /* TextField+Extensions.swift in Sources */,
+				B6F7610128FC275C006BEF79 /* WalletView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6F760D428FC256C006BEF79 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B647F9FD2903C0B000940C3B /* Mock_HDWallet.swift in Sources */,
+				B6F760DD28FC256C006BEF79 /* CarnivalWalletTests.swift in Sources */,
+				B647F9F929039F2800940C3B /* GenerateSecretPhraseTest.swift in Sources */,
+				B647F9FB2903BFE400940C3B /* DeriveEthereumAddressTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6F760DE28FC256C006BEF79 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6F760E728FC256C006BEF79 /* CarnivalWalletUITests.swift in Sources */,
+				B6F760E928FC256C006BEF79 /* CarnivalWalletUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B6F760DA28FC256C006BEF79 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B6F760C128FC256B006BEF79 /* CarnivalWallet */;
+			targetProxy = B6F760D928FC256C006BEF79 /* PBXContainerItemProxy */;
+		};
+		B6F760E428FC256C006BEF79 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B6F760C128FC256B006BEF79 /* CarnivalWallet */;
+			targetProxy = B6F760E328FC256C006BEF79 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B6F760D028FC256C006BEF79 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B6F760D128FC256C006BEF79 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B6F760EA28FC256C006BEF79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B6F760EB28FC256C006BEF79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B6F760ED28FC256C006BEF79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC2F7F2F58EB14B89FB398B1 /* Pods-CarnivalWallet.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 83AH7T8DV5;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CarnivalWallet/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Carnival.CarnivalWallet;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B6F760EE28FC256C006BEF79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F1A453C7A633783EB56D7E83 /* Pods-CarnivalWallet.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 83AH7T8DV5;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CarnivalWallet/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Carnival.CarnivalWallet;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B6F760F028FC256C006BEF79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0877E698CF081EFAA56E35AC /* Pods-CarnivalWalletTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 83AH7T8DV5;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Carnival.CarnivalWalletTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CarnivalWallet.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CarnivalWallet";
+			};
+			name = Debug;
+		};
+		B6F760F128FC256C006BEF79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 44E82EA0172E069042F2835A /* Pods-CarnivalWalletTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 83AH7T8DV5;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Carnival.CarnivalWalletTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CarnivalWallet.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CarnivalWallet";
+			};
+			name = Release;
+		};
+		B6F760F328FC256C006BEF79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 896EBA476A691B7544CCDF74 /* Pods-CarnivalWallet-CarnivalWalletUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 83AH7T8DV5;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Carnival.CarnivalWalletUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CarnivalWallet;
+			};
+			name = Debug;
+		};
+		B6F760F428FC256C006BEF79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 929FAF3B8D6B7FB9526A69A9 /* Pods-CarnivalWallet-CarnivalWalletUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 83AH7T8DV5;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Carnival.CarnivalWalletUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CarnivalWallet;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B6F760BD28FC256B006BEF79 /* Build configuration list for PBXProject "CarnivalWallet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B6F760EA28FC256C006BEF79 /* Debug */,
+				B6F760EB28FC256C006BEF79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B6F760EC28FC256C006BEF79 /* Build configuration list for PBXNativeTarget "CarnivalWallet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B6F760ED28FC256C006BEF79 /* Debug */,
+				B6F760EE28FC256C006BEF79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B6F760EF28FC256C006BEF79 /* Build configuration list for PBXNativeTarget "CarnivalWalletTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B6F760F028FC256C006BEF79 /* Debug */,
+				B6F760F128FC256C006BEF79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B6F760F228FC256C006BEF79 /* Build configuration list for PBXNativeTarget "CarnivalWalletUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B6F760F328FC256C006BEF79 /* Debug */,
+				B6F760F428FC256C006BEF79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B6F760BA28FC256B006BEF79 /* Project object */;
+}
