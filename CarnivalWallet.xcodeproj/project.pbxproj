@@ -10,6 +10,18 @@
 		0C5DD8AD2EB6104E11464EF5 /* Pods_CarnivalWallet_CarnivalWalletUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5A7A1EAFF8415A0222AE361 /* Pods_CarnivalWallet_CarnivalWalletUITests.framework */; };
 		2F6E130875CF428352879C57 /* Pods_CarnivalWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B822DEB5DF43290C60FF4D7 /* Pods_CarnivalWallet.framework */; };
 		982F3385DB472A39D9D3210A /* Pods_CarnivalWalletTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61AA664BC39E44394134A810 /* Pods_CarnivalWalletTests.framework */; };
+		B639AE042906E051008F4C72 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B639AE032906E051008F4C72 /* Defaults.swift */; };
+		B639AE08290829CE008F4C72 /* KeyStoreTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B639AE07290829CE008F4C72 /* KeyStoreTest.swift */; };
+		B639AE0A2908B68E008F4C72 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B639AE092908B68E008F4C72 /* Utilities.swift */; };
+		B639AE0C29098326008F4C72 /* UIScreen+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B639AE0B29098326008F4C72 /* UIScreen+Extension.swift */; };
+		B639AE0E2909869D008F4C72 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B639AE0D2909869D008F4C72 /* Color+Extension.swift */; };
+		B639AE13290CCB96008F4C72 /* TextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B639AE12290CCB96008F4C72 /* TextButton.swift */; };
+		B639AE17290CF5B1008F4C72 /* ImportPhraseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B639AE16290CF5B1008F4C72 /* ImportPhraseViewModel.swift */; };
+		B639AE1A290CFB10008F4C72 /* PasswordInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B639AE19290CFB10008F4C72 /* PasswordInputView.swift */; };
+		B639AE1C290CFB75008F4C72 /* PhraseInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B639AE1B290CFB75008F4C72 /* PhraseInputView.swift */; };
+		B639AE1E290D01A2008F4C72 /* PasswordStrengthTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B639AE1D290D01A2008F4C72 /* PasswordStrengthTest.swift */; };
+		B639AE20290D0A13008F4C72 /* PasswordStrengthUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B639AE1F290D0A13008F4C72 /* PasswordStrengthUtils.swift */; };
+		B639AE22290D0E1F008F4C72 /* SencitiveTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B639AE21290D0E1F008F4C72 /* SencitiveTextField.swift */; };
 		B647F9D02902FE9500940C3B /* AttributedString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9CF2902FE9500940C3B /* AttributedString+Extensions.swift */; };
 		B647F9D42903056900940C3B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9D32903056900940C3B /* HomeView.swift */; };
 		B647F9D9290310F900940C3B /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9D8290310F900940C3B /* View+Extensions.swift */; };
@@ -25,9 +37,10 @@
 		B647F9F529039DCF00940C3B /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9F429039DCF00940C3B /* String+Extensions.swift */; };
 		B647F9F929039F2800940C3B /* GenerateSecretPhraseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9F829039F2800940C3B /* GenerateSecretPhraseTest.swift */; };
 		B647F9FB2903BFE400940C3B /* DeriveEthereumAddressTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9FA2903BFE400940C3B /* DeriveEthereumAddressTest.swift */; };
-		B647F9FD2903C0B000940C3B /* Mock_HDWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9FC2903C0B000940C3B /* Mock_HDWallet.swift */; };
 		B647F9FF29066FB100940C3B /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9FE29066FB100940C3B /* UIFont+Extensions.swift */; };
-		B647FA01290674A600940C3B /* CreateWalletUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647FA00290674A600940C3B /* CreateWalletUseCase.swift */; };
+		B647FA042906D23200940C3B /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647FA032906D23200940C3B /* KeychainManager.swift */; };
+		B647FA082906DB8800940C3B /* SecureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647FA072906DB8800940C3B /* SecureManager.swift */; };
+		B647FA0B2906DF0E00940C3B /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = B647FA0A2906DF0E00940C3B /* Defaults */; };
 		B6F760C628FC256B006BEF79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F760C528FC256B006BEF79 /* AppDelegate.swift */; };
 		B6F760C828FC256B006BEF79 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F760C728FC256B006BEF79 /* SceneDelegate.swift */; };
 		B6F760CF28FC256C006BEF79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6F760CE28FC256C006BEF79 /* Assets.xcassets */; };
@@ -65,6 +78,18 @@
 		896EBA476A691B7544CCDF74 /* Pods-CarnivalWallet-CarnivalWalletUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarnivalWallet-CarnivalWalletUITests.debug.xcconfig"; path = "Target Support Files/Pods-CarnivalWallet-CarnivalWalletUITests/Pods-CarnivalWallet-CarnivalWalletUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		929FAF3B8D6B7FB9526A69A9 /* Pods-CarnivalWallet-CarnivalWalletUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarnivalWallet-CarnivalWalletUITests.release.xcconfig"; path = "Target Support Files/Pods-CarnivalWallet-CarnivalWalletUITests/Pods-CarnivalWallet-CarnivalWalletUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AC2F7F2F58EB14B89FB398B1 /* Pods-CarnivalWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarnivalWallet.debug.xcconfig"; path = "Target Support Files/Pods-CarnivalWallet/Pods-CarnivalWallet.debug.xcconfig"; sourceTree = "<group>"; };
+		B639AE032906E051008F4C72 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		B639AE07290829CE008F4C72 /* KeyStoreTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyStoreTest.swift; sourceTree = "<group>"; };
+		B639AE092908B68E008F4C72 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		B639AE0B29098326008F4C72 /* UIScreen+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extension.swift"; sourceTree = "<group>"; };
+		B639AE0D2909869D008F4C72 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
+		B639AE12290CCB96008F4C72 /* TextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextButton.swift; sourceTree = "<group>"; };
+		B639AE16290CF5B1008F4C72 /* ImportPhraseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportPhraseViewModel.swift; sourceTree = "<group>"; };
+		B639AE19290CFB10008F4C72 /* PasswordInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordInputView.swift; sourceTree = "<group>"; };
+		B639AE1B290CFB75008F4C72 /* PhraseInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhraseInputView.swift; sourceTree = "<group>"; };
+		B639AE1D290D01A2008F4C72 /* PasswordStrengthTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordStrengthTest.swift; sourceTree = "<group>"; };
+		B639AE1F290D0A13008F4C72 /* PasswordStrengthUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordStrengthUtils.swift; sourceTree = "<group>"; };
+		B639AE21290D0E1F008F4C72 /* SencitiveTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SencitiveTextField.swift; sourceTree = "<group>"; };
 		B647F9CF2902FE9500940C3B /* AttributedString+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AttributedString+Extensions.swift"; sourceTree = "<group>"; };
 		B647F9D32903056900940C3B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B647F9D8290310F900940C3B /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
@@ -80,9 +105,9 @@
 		B647F9F429039DCF00940C3B /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		B647F9F829039F2800940C3B /* GenerateSecretPhraseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateSecretPhraseTest.swift; sourceTree = "<group>"; };
 		B647F9FA2903BFE400940C3B /* DeriveEthereumAddressTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeriveEthereumAddressTest.swift; sourceTree = "<group>"; };
-		B647F9FC2903C0B000940C3B /* Mock_HDWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mock_HDWallet.swift; sourceTree = "<group>"; };
 		B647F9FE29066FB100940C3B /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
-		B647FA00290674A600940C3B /* CreateWalletUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWalletUseCase.swift; sourceTree = "<group>"; };
+		B647FA032906D23200940C3B /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		B647FA072906DB8800940C3B /* SecureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureManager.swift; sourceTree = "<group>"; };
 		B6F760C228FC256B006BEF79 /* CarnivalWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarnivalWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F760C528FC256B006BEF79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6F760C728FC256B006BEF79 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +131,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B647FA0B2906DF0E00940C3B /* Defaults in Frameworks */,
 				2F6E130875CF428352879C57 /* Pods_CarnivalWallet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -152,6 +178,32 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B639AE022906E045008F4C72 /* UserDefault */ = {
+			isa = PBXGroup;
+			children = (
+				B639AE032906E051008F4C72 /* Defaults.swift */,
+			);
+			path = UserDefault;
+			sourceTree = "<group>";
+		};
+		B639AE0F290CCB77008F4C72 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				B639AE12290CCB96008F4C72 /* TextButton.swift */,
+				B639AE21290D0E1F008F4C72 /* SencitiveTextField.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		B639AE18290CFB01008F4C72 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				B639AE19290CFB10008F4C72 /* PasswordInputView.swift */,
+				B639AE1B290CFB75008F4C72 /* PhraseInputView.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
 		B647F9CE2902FE7E00940C3B /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +214,8 @@
 				B647F9EE29033AA200940C3B /* TextField+Extensions.swift */,
 				B647F9F429039DCF00940C3B /* String+Extensions.swift */,
 				B647F9FE29066FB100940C3B /* UIFont+Extensions.swift */,
+				B639AE0B29098326008F4C72 /* UIScreen+Extension.swift */,
+				B639AE0D2909869D008F4C72 /* Color+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -179,13 +233,31 @@
 		B647F9E3290327B100940C3B /* Setup */ = {
 			isa = PBXGroup;
 			children = (
+				B639AE18290CFB01008F4C72 /* Component */,
 				B647F9E4290327C700940C3B /* WelcomeView.swift */,
 				B647F9E6290327D800940C3B /* ImportPhraseView.swift */,
+				B639AE16290CF5B1008F4C72 /* ImportPhraseViewModel.swift */,
 				B647F9E8290327E800940C3B /* CreateWalletView.swift */,
 				B647F9F229039CEC00940C3B /* GenerateSecretPhraseUseCase.swift */,
-				B647FA00290674A600940C3B /* CreateWalletUseCase.swift */,
+				B639AE1F290D0A13008F4C72 /* PasswordStrengthUtils.swift */,
 			);
 			path = Setup;
+			sourceTree = "<group>";
+		};
+		B647FA022906D22400940C3B /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				B647FA032906D23200940C3B /* KeychainManager.swift */,
+			);
+			path = Keychain;
+			sourceTree = "<group>";
+		};
+		B647FA062906DB7100940C3B /* Secure */ = {
+			isa = PBXGroup;
+			children = (
+				B647FA072906DB8800940C3B /* SecureManager.swift */,
+			);
+			path = Secure;
 			sourceTree = "<group>";
 		};
 		B6F760B928FC256B006BEF79 = {
@@ -215,6 +287,8 @@
 			children = (
 				B6F760C528FC256B006BEF79 /* AppDelegate.swift */,
 				B6F760C728FC256B006BEF79 /* SceneDelegate.swift */,
+				B639AE092908B68E008F4C72 /* Utilities.swift */,
+				B639AE0F290CCB77008F4C72 /* Component */,
 				B6F7610628FC27A0006BEF79 /* Feature */,
 				B647F9CE2902FE7E00940C3B /* Extension */,
 				B6F760CE28FC256C006BEF79 /* Assets.xcassets */,
@@ -230,7 +304,8 @@
 				B6F760DC28FC256C006BEF79 /* CarnivalWalletTests.swift */,
 				B647F9F829039F2800940C3B /* GenerateSecretPhraseTest.swift */,
 				B647F9FA2903BFE400940C3B /* DeriveEthereumAddressTest.swift */,
-				B647F9FC2903C0B000940C3B /* Mock_HDWallet.swift */,
+				B639AE07290829CE008F4C72 /* KeyStoreTest.swift */,
+				B639AE1D290D01A2008F4C72 /* PasswordStrengthTest.swift */,
 			);
 			path = CarnivalWalletTests;
 			sourceTree = "<group>";
@@ -247,10 +322,13 @@
 		B6F7610628FC27A0006BEF79 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				B6F7610828FC27AA006BEF79 /* Browser */,
+				B647FA022906D22400940C3B /* Keychain */,
+				B647FA062906DB7100940C3B /* Secure */,
 				B647F9E3290327B100940C3B /* Setup */,
 				B647F9DA2903123600940C3B /* Tab */,
+				B639AE022906E045008F4C72 /* UserDefault */,
 				B6F7610728FC27A8006BEF79 /* Wallet */,
-				B6F7610828FC27AA006BEF79 /* Browser */,
 				B6F7610928FC27B5006BEF79 /* WalletConnect */,
 			);
 			path = Feature;
@@ -299,6 +377,9 @@
 			dependencies = (
 			);
 			name = CarnivalWallet;
+			packageProductDependencies = (
+				B647FA0A2906DF0E00940C3B /* Defaults */,
+			);
 			productName = CarnivalWallet;
 			productReference = B6F760C228FC256B006BEF79 /* CarnivalWallet.app */;
 			productType = "com.apple.product-type.application";
@@ -374,6 +455,9 @@
 				Base,
 			);
 			mainGroup = B6F760B928FC256B006BEF79;
+			packageReferences = (
+				B647FA092906DF0E00940C3B /* XCRemoteSwiftPackageReference "Defaults" */,
+			);
 			productRefGroup = B6F760C328FC256B006BEF79 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -543,20 +627,31 @@
 				B647F9E229031E8D00940C3B /* MenuContentView.swift in Sources */,
 				B6F760C628FC256B006BEF79 /* AppDelegate.swift in Sources */,
 				B6F7610328FC2781006BEF79 /* BrowserView.swift in Sources */,
+				B639AE0A2908B68E008F4C72 /* Utilities.swift in Sources */,
+				B639AE22290D0E1F008F4C72 /* SencitiveTextField.swift in Sources */,
 				B647F9D42903056900940C3B /* HomeView.swift in Sources */,
 				B647F9E5290327C700940C3B /* WelcomeView.swift in Sources */,
 				B647F9E7290327D800940C3B /* ImportPhraseView.swift in Sources */,
 				B647F9ED29032A2A00940C3B /* TextFont.swift in Sources */,
 				B647F9F329039CEC00940C3B /* GenerateSecretPhraseUseCase.swift in Sources */,
+				B639AE1A290CFB10008F4C72 /* PasswordInputView.swift in Sources */,
 				B6F760C828FC256B006BEF79 /* SceneDelegate.swift in Sources */,
 				B647F9F529039DCF00940C3B /* String+Extensions.swift in Sources */,
 				B647F9D9290310F900940C3B /* View+Extensions.swift in Sources */,
+				B639AE13290CCB96008F4C72 /* TextButton.swift in Sources */,
 				B647F9E9290327E800940C3B /* CreateWalletView.swift in Sources */,
+				B639AE0C29098326008F4C72 /* UIScreen+Extension.swift in Sources */,
 				B647F9E0290315B900940C3B /* DeviceSize.swift in Sources */,
+				B647FA042906D23200940C3B /* KeychainManager.swift in Sources */,
+				B639AE17290CF5B1008F4C72 /* ImportPhraseViewModel.swift in Sources */,
 				B647F9EF29033AA200940C3B /* TextField+Extensions.swift in Sources */,
+				B639AE1C290CFB75008F4C72 /* PhraseInputView.swift in Sources */,
+				B639AE042906E051008F4C72 /* Defaults.swift in Sources */,
+				B639AE20290D0A13008F4C72 /* PasswordStrengthUtils.swift in Sources */,
+				B647FA082906DB8800940C3B /* SecureManager.swift in Sources */,
 				B647F9FF29066FB100940C3B /* UIFont+Extensions.swift in Sources */,
-				B647FA01290674A600940C3B /* CreateWalletUseCase.swift in Sources */,
 				B6F7610128FC275C006BEF79 /* WalletView.swift in Sources */,
+				B639AE0E2909869D008F4C72 /* Color+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -564,9 +659,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B647F9FD2903C0B000940C3B /* Mock_HDWallet.swift in Sources */,
 				B6F760DD28FC256C006BEF79 /* CarnivalWalletTests.swift in Sources */,
 				B647F9F929039F2800940C3B /* GenerateSecretPhraseTest.swift in Sources */,
+				B639AE08290829CE008F4C72 /* KeyStoreTest.swift in Sources */,
+				B639AE1E290D01A2008F4C72 /* PasswordStrengthTest.swift in Sources */,
 				B647F9FB2903BFE400940C3B /* DeriveEthereumAddressTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -897,6 +993,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B647FA092906DF0E00940C3B /* XCRemoteSwiftPackageReference "Defaults" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/Defaults";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B647FA0A2906DF0E00940C3B /* Defaults */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B647FA092906DF0E00940C3B /* XCRemoteSwiftPackageReference "Defaults" */;
+			productName = Defaults;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B6F760BA28FC256B006BEF79 /* Project object */;
 }

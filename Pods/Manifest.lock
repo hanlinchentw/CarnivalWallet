@@ -1,48 +1,24 @@
 PODS:
-  - BigInt (5.2.0)
-  - CryptoSwift (1.5.1)
-  - KeychainSwift (20.0.0)
-  - PromiseKit (6.15.3):
-    - PromiseKit/CorePromise (= 6.15.3)
-    - PromiseKit/Foundation (= 6.15.3)
-    - PromiseKit/UIKit (= 6.15.3)
-  - PromiseKit/CorePromise (6.15.3)
-  - PromiseKit/Foundation (6.15.3):
-    - PromiseKit/CorePromise
-  - PromiseKit/UIKit (6.15.3):
-    - PromiseKit/CorePromise
-  - secp256k1.c (0.1.2)
-  - Starscream (4.0.4)
-  - web3swift (2.6.6):
-    - BigInt (= 5.2.0)
-    - CryptoSwift (= 1.5.1)
-    - PromiseKit (= 6.15.3)
-    - secp256k1.c (= 0.1.2)
-    - Starscream (= 4.0.4)
+  - SwiftProtobuf (1.20.2)
+  - TrustWalletCore (3.0.8):
+    - TrustWalletCore/Core (= 3.0.8)
+  - TrustWalletCore/Core (3.0.8):
+    - TrustWalletCore/Types
+  - TrustWalletCore/Types (3.0.8):
+    - SwiftProtobuf
 
 DEPENDENCIES:
-  - KeychainSwift
-  - web3swift
+  - TrustWalletCore
 
 SPEC REPOS:
   trunk:
-    - BigInt
-    - CryptoSwift
-    - KeychainSwift
-    - PromiseKit
-    - secp256k1.c
-    - Starscream
-    - web3swift
+    - SwiftProtobuf
+    - TrustWalletCore
 
 SPEC CHECKSUMS:
-  BigInt: f668a80089607f521586bbe29513d708491ef2f7
-  CryptoSwift: c4f2debceb38bf44c80659afe009f71e23e4a082
-  KeychainSwift: 0ce6a4d13f7228054d1a71bb1b500448fb2ab837
-  PromiseKit: 3b2b6995e51a954c46dbc550ce3da44fbfb563c5
-  secp256k1.c: db47b726585d80f027423682eb369729e61b3b20
-  Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
-  web3swift: bee1e0550e43f1369dc9f34d5a01f537284c9e9a
+  SwiftProtobuf: 9f458aaa7844a2fc0b910053e66578bc4e2da9c1
+  TrustWalletCore: 85f7af84eb077b3d6dd7791714062e0dd6534475
 
-PODFILE CHECKSUM: ad4de13716d7f1d016fff6695a2a491932d80ef4
+PODFILE CHECKSUM: 11e9a74333189dc4c76e248d5778067803a0f893
 
 COCOAPODS: 1.11.3

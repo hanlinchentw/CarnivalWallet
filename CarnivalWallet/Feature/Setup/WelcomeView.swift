@@ -28,6 +28,7 @@ struct WelcomeView: View {
 				}
 			}
 		}
+		.accentColor(.black)
 	}
 	
 	var bottomButtons: some View {

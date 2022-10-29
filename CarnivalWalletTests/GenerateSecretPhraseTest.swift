@@ -6,22 +6,24 @@
 //
 
 import XCTest
-import web3swift
+import WalletCore
 
 final class GenerateSecretPhraseTest: XCTestCase {
 	func testCreateFromMnemonicInvalid() {
 		let invalidMneomonic = "THIS IS AN INVALID MNEMONIC"
-		XCTAssertNil(try? BIP32Keystore(mnemonics: invalidMneomonic))
+		XCTAssertFalse(Mnemonic.isValid(mnemonic: invalidMneomonic))
+		XCTAssertNil(HDWallet(mnemonic: invalidMneomonic, passphrase: ""))
 	}
 	
 	func test_generateMnemonic_withDifferentLength_12_18_24() {
-		let strengthVsLength: [(Int, Int)] = [
+		let strengthVsLength: [(Int32, Int)] = [
 			(128, 12),
 			(192, 18),
 			(256 , 24)
 		]
 		for (strength, length) in strengthVsLength {
-			let nullableMnemonic = try? BIP39.generateMnemonics(bitsOfEntropy: strength, language: .english)
+			let wallet = HDWallet(strength: strength, passphrase: "")
+			let nullableMnemonic = wallet?.mnemonic
 			guard let mnemonic = nullableMnemonic else {
 				return
 			}

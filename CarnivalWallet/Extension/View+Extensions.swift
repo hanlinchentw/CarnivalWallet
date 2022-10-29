@@ -105,3 +105,9 @@ extension View {
 		)
 	}
 }
+
+extension View {
+	func `safeAreaInset`(_ edge: VerticalEdge, inset: CGFloat) -> some View {
+		return self.safeAreaInset(edge: edge) { Spacer().height(inset) }
+	}
+}

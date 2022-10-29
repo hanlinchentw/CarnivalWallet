@@ -20,3 +20,31 @@ extension Text {
 		return self.font(.custom("AvenirNext-Bold", fixedSize: size))
 	}
 }
+
+extension TextField {
+	func AvenirNextRegular(size: CGFloat) -> some View {
+		return self.font(.custom("AvenirNext-Regular", fixedSize: size))
+	}
+
+	func AvenirNextMedium(size: CGFloat) -> some View {
+		return self.font(.custom("AvenirNext-Medium", fixedSize: size))
+	}
+
+	func AvenirNextBold(size: CGFloat) -> some View {
+		return self.font(.custom("AvenirNext-Bold", fixedSize: size))
+	}
+}
+
+extension SecureField {
+	func AvenirNextRegular(size: CGFloat) -> some View {
+		return self.font(.custom("AvenirNext-Regular", fixedSize: size))
+	}
+
+	func AvenirNextMedium(size: CGFloat) -> some View {
+		return self.font(.custom("AvenirNext-Medium", fixedSize: size))
+	}
+
+	func AvenirNextBold(size: CGFloat) -> some View {
+		return self.font(.custom("AvenirNext-Bold", fixedSize: size))
+	}
+}

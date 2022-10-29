@@ -6,8 +6,7 @@ target 'CarnivalWallet' do
   use_frameworks!
 
   # Pods for CarnivalWallet
-  pod 'web3swift'
-	pod 'KeychainSwift'
+	pod 'TrustWalletCore'
 
   target 'CarnivalWalletTests' do
     inherit! :search_paths

@@ -9,10 +9,8 @@ import SwiftUI
 
 struct ImportPhraseView: View {
 	@Environment(\.presentationMode) var presentationMode
-
-	@State var phraseText: String = ""
-	@State var isFaceIdOn: Bool = true
-
+	@StateObject var vm = ImportPhraseViewModelImpl()
+	
 	init() {
 		UINavigationBar.appearance().titleTextAttributes = .bold24
 	}
@@ -20,70 +18,32 @@ struct ImportPhraseView: View {
 	var body: some View {
 		ZStack {
 			ScrollView() {
-				VStack(alignment: .leading) {
-					Text("Secret Recovery Phrase")
-						.AvenirNextMedium(size: 16)
-						.padding(.top, 24)
-					TextField("Enter your Secret Recovery Phrase", text: $phraseText)
-					.padding(.init(top: 12, leading: 12, bottom: 88, trailing: 12))
-					.roundedBorder(radius: 8, borderColor: .black, borderWidth: 1)
+				VStack(alignment: .center) {
+					PhraseInputView(phrase: $vm.phrase, phraseValid: vm.isPhraseValid)
 					
-					Text("Password")
-						.AvenirNextMedium(size: 16)
-						.padding(.top, 24)
-					TextField("New Password", text: $phraseText)
-					.padding(.init(top: 12, leading: 12, bottom: 12, trailing: 12))
-					.roundedBorder(radius: 8, borderColor: .black, borderWidth: 1)
-					
-					Text("Confirm password")
-						.AvenirNextMedium(size: 16)
-						.padding(.top, 24)
-					TextField("Confirm password", text: $phraseText)
-					.padding(.init(top: 12, leading: 12, bottom: 12, trailing: 12))
-					.roundedBorder(radius: 8, borderColor: .black, borderWidth: 1)
-					Text("Must be at least 8 characters")
-						.AvenirNextMedium(size: 14)
-					
-					HStack {
-						Text("Unlock with FaceID?")
-							.AvenirNextMedium(size: 16)
-						Spacer()
-						
-						Toggle("", isOn: $isFaceIdOn)
-					}
-					Button {
+					PasswordInputView(
+						password: $vm.passwordText,
+						confirmPassword: $vm.confirmPasswordText,
+						isBioAuthOn: $vm.isBioAuthOn,
+						passwordStrength: vm.passwordStrength
+					)
 
-					} label: {
-						Text("Import")
-							.AvenirNextMedium(size: 14)
-							.foregroundColor(.white)
-							.padding()
-							.width(DeviceDimension.WIDTH - 80)
-							.background(.black)
-							.clipShape(Capsule())
-					}
-					.buttonStyle(.plain)
-					.padding(.top, 40)
-
+					TextButton(
+						text: "Import",
+						width: DeviceDimension.WIDTH - 80,
+						height: 56,
+						disabled: vm.importBtnDisabled,
+						style: .capsule) {
+							vm.create()
+						}
+						.padding(.top, 32)
 				}
 				.padding(.horizontal, 32)
-	
 			}
+			.safeAreaInset(.top, inset: UIScreen.height * 0.03)
 		}
-		.navigationBarBackButtonHidden()
 		.navigationTitle("Import from seed")
 		.navigationBarTitleDisplayMode(.inline)
-		.toolbar {
-			ToolbarItem(placement: .navigationBarLeading) {
-				Button {
-					presentationMode.wrappedValue.dismiss()
-				} label: {
-					Image(systemName: "chevron.left")
-						.foregroundColor(.black)
-				}
-				
-			}
-		}
 	}
 }
 
