@@ -9,24 +9,24 @@ import SwiftUI
 
 extension View {
 	/**
-	Conditionally modify the view. For example, apply modifiers, wrap the view, etc.
-	```
-	Text("Foo")
-		.padding()
-		.if(someCondition) {
-			$0.foregroundColor(.pink)
-		}
-	```
-	```
-	VStack() {
-		Text("Line 1")
-		Text("Line 2")
-	}
-		.if(someCondition) { content in
-			ScrollView(.vertical) { content }
-		}
-	```
-	*/
+	 Conditionally modify the view. For example, apply modifiers, wrap the view, etc.
+	 ```
+	 Text("Foo")
+	 .padding()
+	 .if(someCondition) {
+	 $0.foregroundColor(.pink)
+	 }
+	 ```
+	 ```
+	 VStack() {
+	 Text("Line 1")
+	 Text("Line 2")
+	 }
+	 .if(someCondition) { content in
+	 ScrollView(.vertical) { content }
+	 }
+	 ```
+	 */
 	@ViewBuilder
 	func `if`(
 		_ condition: @autoclosure () -> Bool,
@@ -38,17 +38,17 @@ extension View {
 			self
 		}
 	}
-
+	
 	/**
-	This overload makes it possible to preserve the type. For example, doing an `if` in a chain of `Text`-only modifiers.
-	```
-	Text("🦄")
-		.if(isOn) {
-			$0.fontWeight(.bold)
-		}
-		.kerning(10)
-	```
-	*/
+	 This overload makes it possible to preserve the type. For example, doing an `if` in a chain of `Text`-only modifiers.
+	 ```
+	 Text("🦄")
+	 .if(isOn) {
+	 $0.fontWeight(.bold)
+	 }
+	 .kerning(10)
+	 ```
+	 */
 	func `if`(
 		_ condition: @autoclosure () -> Bool,
 		modify: (Self) -> Self
@@ -59,8 +59,8 @@ extension View {
 
 extension View {
 	/**
-	Conditionally modify the view. For example, apply modifiers, wrap the view, etc.
-	*/
+	 Conditionally modify the view. For example, apply modifiers, wrap the view, etc.
+	 */
 	@ViewBuilder
 	func `if`(
 		_ condition: @autoclosure () -> Bool,
@@ -73,11 +73,11 @@ extension View {
 			modifyElse(self)
 		}
 	}
-
+	
 	/**
-	Conditionally modify the view. For example, apply modifiers, wrap the view, etc.
-	This overload makes it possible to preserve the type. For example, doing an `if` in a chain of `Text`-only modifiers.
-	*/
+	 Conditionally modify the view. For example, apply modifiers, wrap the view, etc.
+	 This overload makes it possible to preserve the type. For example, doing an `if` in a chain of `Text`-only modifiers.
+	 */
 	func `if`(
 		_ condition: @autoclosure () -> Bool,
 		if modifyIf: (Self) -> Self,
@@ -107,7 +107,29 @@ extension View {
 }
 
 extension View {
+	func `capsuleBorder`(style: RoundedCornerStyle = .continuous, borderColor: Color, borderWidth: CGFloat) -> some View {
+		return self.overlay(Capsule(style: style).stroke(borderColor, lineWidth: borderWidth))
+	}
+	
+	func `capsuleWithDashBorder`(style: RoundedCornerStyle = .continuous, borderColor: Color, borderWidth: CGFloat) -> some View {
+		return self.overlay(
+			Capsule(style: style)
+				.strokeBorder(borderColor, style: .init(lineWidth: borderWidth, dash: [5]))
+		)
+	}
+}
+
+extension View {
 	func `safeAreaInset`(_ edge: VerticalEdge, inset: CGFloat) -> some View {
 		return self.safeAreaInset(edge: edge) { Spacer().height(inset) }
+	}
+}
+
+extension View {
+	func `navbarLeftItem`<Content: View>(item: () -> Content) -> some View {
+		return self.navigationBarBackButtonHidden()
+			.toolbar {
+				ToolbarItem(placement: .navigationBarLeading, content: item)
+			}
 	}
 }

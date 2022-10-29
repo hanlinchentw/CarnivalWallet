@@ -15,13 +15,20 @@
 		B639AE0A2908B68E008F4C72 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B639AE092908B68E008F4C72 /* Utilities.swift */; };
 		B639AE0C29098326008F4C72 /* UIScreen+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B639AE0B29098326008F4C72 /* UIScreen+Extension.swift */; };
 		B639AE0E2909869D008F4C72 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B639AE0D2909869D008F4C72 /* Color+Extension.swift */; };
-		B639AE13290CCB96008F4C72 /* TextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B639AE12290CCB96008F4C72 /* TextButton.swift */; };
-		B639AE17290CF5B1008F4C72 /* ImportPhraseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B639AE16290CF5B1008F4C72 /* ImportPhraseViewModel.swift */; };
+		B639AE13290CCB96008F4C72 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B639AE12290CCB96008F4C72 /* BaseButton.swift */; };
+		B639AE17290CF5B1008F4C72 /* InitializeWalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B639AE16290CF5B1008F4C72 /* InitializeWalletViewModel.swift */; };
 		B639AE1A290CFB10008F4C72 /* PasswordInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B639AE19290CFB10008F4C72 /* PasswordInputView.swift */; };
 		B639AE1C290CFB75008F4C72 /* PhraseInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B639AE1B290CFB75008F4C72 /* PhraseInputView.swift */; };
 		B639AE1E290D01A2008F4C72 /* PasswordStrengthTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B639AE1D290D01A2008F4C72 /* PasswordStrengthTest.swift */; };
 		B639AE20290D0A13008F4C72 /* PasswordStrengthUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B639AE1F290D0A13008F4C72 /* PasswordStrengthUtils.swift */; };
 		B639AE22290D0E1F008F4C72 /* SencitiveTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B639AE21290D0E1F008F4C72 /* SencitiveTextField.swift */; };
+		B639AE24290D11FB008F4C72 /* CreateWalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B639AE23290D11FB008F4C72 /* CreateWalletViewModel.swift */; };
+		B639AE2A290D252B008F4C72 /* SecurePhraseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B639AE29290D252B008F4C72 /* SecurePhraseView.swift */; };
+		B639AE2C290D4EB2008F4C72 /* TextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B639AE2B290D4EB2008F4C72 /* TextButton.swift */; };
+		B639AE2E290D6050008F4C72 /* ValidatePhraseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B639AE2D290D6050008F4C72 /* ValidatePhraseView.swift */; };
+		B639AE30290D6A0F008F4C72 /* ValidatePhraseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B639AE2F290D6A0F008F4C72 /* ValidatePhraseViewModel.swift */; };
+		B639AE32290D77C4008F4C72 /* SetupCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B639AE31290D77C4008F4C72 /* SetupCoordinator.swift */; };
+		B639AE35290D7806008F4C72 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B639AE34290D7806008F4C72 /* Coordinator.swift */; };
 		B647F9D02902FE9500940C3B /* AttributedString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9CF2902FE9500940C3B /* AttributedString+Extensions.swift */; };
 		B647F9D42903056900940C3B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9D32903056900940C3B /* HomeView.swift */; };
 		B647F9D9290310F900940C3B /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9D8290310F900940C3B /* View+Extensions.swift */; };
@@ -83,13 +90,20 @@
 		B639AE092908B68E008F4C72 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		B639AE0B29098326008F4C72 /* UIScreen+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extension.swift"; sourceTree = "<group>"; };
 		B639AE0D2909869D008F4C72 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
-		B639AE12290CCB96008F4C72 /* TextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextButton.swift; sourceTree = "<group>"; };
-		B639AE16290CF5B1008F4C72 /* ImportPhraseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportPhraseViewModel.swift; sourceTree = "<group>"; };
+		B639AE12290CCB96008F4C72 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
+		B639AE16290CF5B1008F4C72 /* InitializeWalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitializeWalletViewModel.swift; sourceTree = "<group>"; };
 		B639AE19290CFB10008F4C72 /* PasswordInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordInputView.swift; sourceTree = "<group>"; };
 		B639AE1B290CFB75008F4C72 /* PhraseInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhraseInputView.swift; sourceTree = "<group>"; };
 		B639AE1D290D01A2008F4C72 /* PasswordStrengthTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordStrengthTest.swift; sourceTree = "<group>"; };
 		B639AE1F290D0A13008F4C72 /* PasswordStrengthUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordStrengthUtils.swift; sourceTree = "<group>"; };
 		B639AE21290D0E1F008F4C72 /* SencitiveTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SencitiveTextField.swift; sourceTree = "<group>"; };
+		B639AE23290D11FB008F4C72 /* CreateWalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWalletViewModel.swift; sourceTree = "<group>"; };
+		B639AE29290D252B008F4C72 /* SecurePhraseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurePhraseView.swift; sourceTree = "<group>"; };
+		B639AE2B290D4EB2008F4C72 /* TextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextButton.swift; sourceTree = "<group>"; };
+		B639AE2D290D6050008F4C72 /* ValidatePhraseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatePhraseView.swift; sourceTree = "<group>"; };
+		B639AE2F290D6A0F008F4C72 /* ValidatePhraseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatePhraseViewModel.swift; sourceTree = "<group>"; };
+		B639AE31290D77C4008F4C72 /* SetupCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupCoordinator.swift; sourceTree = "<group>"; };
+		B639AE34290D7806008F4C72 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		B647F9CF2902FE9500940C3B /* AttributedString+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AttributedString+Extensions.swift"; sourceTree = "<group>"; };
 		B647F9D32903056900940C3B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B647F9D8290310F900940C3B /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
@@ -189,8 +203,9 @@
 		B639AE0F290CCB77008F4C72 /* Component */ = {
 			isa = PBXGroup;
 			children = (
-				B639AE12290CCB96008F4C72 /* TextButton.swift */,
+				B639AE12290CCB96008F4C72 /* BaseButton.swift */,
 				B639AE21290D0E1F008F4C72 /* SencitiveTextField.swift */,
+				B639AE2B290D4EB2008F4C72 /* TextButton.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -202,6 +217,14 @@
 				B639AE1B290CFB75008F4C72 /* PhraseInputView.swift */,
 			);
 			path = Component;
+			sourceTree = "<group>";
+		};
+		B639AE33290D77FD008F4C72 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				B639AE34290D7806008F4C72 /* Coordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 		B647F9CE2902FE7E00940C3B /* Extension */ = {
@@ -236,10 +259,15 @@
 				B639AE18290CFB01008F4C72 /* Component */,
 				B647F9E4290327C700940C3B /* WelcomeView.swift */,
 				B647F9E6290327D800940C3B /* ImportPhraseView.swift */,
-				B639AE16290CF5B1008F4C72 /* ImportPhraseViewModel.swift */,
+				B639AE16290CF5B1008F4C72 /* InitializeWalletViewModel.swift */,
 				B647F9E8290327E800940C3B /* CreateWalletView.swift */,
 				B647F9F229039CEC00940C3B /* GenerateSecretPhraseUseCase.swift */,
 				B639AE1F290D0A13008F4C72 /* PasswordStrengthUtils.swift */,
+				B639AE23290D11FB008F4C72 /* CreateWalletViewModel.swift */,
+				B639AE29290D252B008F4C72 /* SecurePhraseView.swift */,
+				B639AE2D290D6050008F4C72 /* ValidatePhraseView.swift */,
+				B639AE2F290D6A0F008F4C72 /* ValidatePhraseViewModel.swift */,
+				B639AE31290D77C4008F4C72 /* SetupCoordinator.swift */,
 			);
 			path = Setup;
 			sourceTree = "<group>";
@@ -322,6 +350,7 @@
 		B6F7610628FC27A0006BEF79 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				B639AE33290D77FD008F4C72 /* Coordinator */,
 				B6F7610828FC27AA006BEF79 /* Browser */,
 				B647FA022906D22400940C3B /* Keychain */,
 				B647FA062906DB7100940C3B /* Secure */,
@@ -626,7 +655,10 @@
 				B6F7610528FC278E006BEF79 /* WalletConnectView.swift in Sources */,
 				B647F9E229031E8D00940C3B /* MenuContentView.swift in Sources */,
 				B6F760C628FC256B006BEF79 /* AppDelegate.swift in Sources */,
+				B639AE30290D6A0F008F4C72 /* ValidatePhraseViewModel.swift in Sources */,
+				B639AE35290D7806008F4C72 /* Coordinator.swift in Sources */,
 				B6F7610328FC2781006BEF79 /* BrowserView.swift in Sources */,
+				B639AE2A290D252B008F4C72 /* SecurePhraseView.swift in Sources */,
 				B639AE0A2908B68E008F4C72 /* Utilities.swift in Sources */,
 				B639AE22290D0E1F008F4C72 /* SencitiveTextField.swift in Sources */,
 				B647F9D42903056900940C3B /* HomeView.swift in Sources */,
@@ -635,23 +667,27 @@
 				B647F9ED29032A2A00940C3B /* TextFont.swift in Sources */,
 				B647F9F329039CEC00940C3B /* GenerateSecretPhraseUseCase.swift in Sources */,
 				B639AE1A290CFB10008F4C72 /* PasswordInputView.swift in Sources */,
+				B639AE32290D77C4008F4C72 /* SetupCoordinator.swift in Sources */,
 				B6F760C828FC256B006BEF79 /* SceneDelegate.swift in Sources */,
+				B639AE2C290D4EB2008F4C72 /* TextButton.swift in Sources */,
 				B647F9F529039DCF00940C3B /* String+Extensions.swift in Sources */,
 				B647F9D9290310F900940C3B /* View+Extensions.swift in Sources */,
-				B639AE13290CCB96008F4C72 /* TextButton.swift in Sources */,
+				B639AE13290CCB96008F4C72 /* BaseButton.swift in Sources */,
 				B647F9E9290327E800940C3B /* CreateWalletView.swift in Sources */,
 				B639AE0C29098326008F4C72 /* UIScreen+Extension.swift in Sources */,
 				B647F9E0290315B900940C3B /* DeviceSize.swift in Sources */,
 				B647FA042906D23200940C3B /* KeychainManager.swift in Sources */,
-				B639AE17290CF5B1008F4C72 /* ImportPhraseViewModel.swift in Sources */,
+				B639AE17290CF5B1008F4C72 /* InitializeWalletViewModel.swift in Sources */,
 				B647F9EF29033AA200940C3B /* TextField+Extensions.swift in Sources */,
 				B639AE1C290CFB75008F4C72 /* PhraseInputView.swift in Sources */,
+				B639AE2E290D6050008F4C72 /* ValidatePhraseView.swift in Sources */,
 				B639AE042906E051008F4C72 /* Defaults.swift in Sources */,
 				B639AE20290D0A13008F4C72 /* PasswordStrengthUtils.swift in Sources */,
 				B647FA082906DB8800940C3B /* SecureManager.swift in Sources */,
 				B647F9FF29066FB100940C3B /* UIFont+Extensions.swift in Sources */,
 				B6F7610128FC275C006BEF79 /* WalletView.swift in Sources */,
 				B639AE0E2909869D008F4C72 /* Color+Extension.swift in Sources */,
+				B639AE24290D11FB008F4C72 /* CreateWalletViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

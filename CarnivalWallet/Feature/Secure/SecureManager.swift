@@ -36,7 +36,7 @@ class SecureManager {
 		}
 	}
 
-	static func setGenericPassword(password: String, mnemonic: String, useBioAuth: Bool) throws {
+	static func setGenericPassword(password: String, useBioAuth: Bool) throws {
 		if useBioAuth {
 			Task {
 				try await Self.useBioAuth()

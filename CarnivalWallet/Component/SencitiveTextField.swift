@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SencitiveTextField: View {
 	@Binding var text: String
-	@State var isSecure: Bool = true
+	var isSecure: Bool
 	var placeholder: String
 	
 	var body: some View {
@@ -24,19 +24,15 @@ struct SencitiveTextField: View {
 				}
 			}
 			
-			Button(action: {
-				isSecure.toggle()
-			}, label: {
-				Image(systemName: !isSecure ? "eye.slash" : "eye" ).frame(width: 28, height: 28)
-			})
 		}
 		.padding(.init(top: 12, leading: 12, bottom: 12, trailing: 12))
+		.height(44)
 		.roundedBorder(radius: 8, borderColor: .black, borderWidth: 1)
 	}
 }
 
 struct SencitiveTextField_Previews: PreviewProvider {
 	static var previews: some View {
-		SencitiveTextField(text: .constant(""), placeholder: "")
+		SencitiveTextField(text: .constant(""), isSecure: true, placeholder: "")
 	}
 }

@@ -20,7 +20,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		guard let scene = (scene as? UIWindowScene) else { return }
 		window = UIWindow(windowScene: scene)
 		window?.makeKeyAndVisible()
-		window?.rootViewController = UIHostingController(rootView: WelcomeView())
+
+		if SecureManager.keystore.wallets.count == 0 {
+			let nav = UINavigationController()
+			let coordinator = SetupCoordinator(navigationController: nav)
+			coordinator.start()
+			window?.rootViewController = nav
+		} else {
+			window?.rootViewController = UIHostingController(rootView: HomeView())
+		}
 	}
 
 	func sceneDidDisconnect(_ scene: UIScene) {

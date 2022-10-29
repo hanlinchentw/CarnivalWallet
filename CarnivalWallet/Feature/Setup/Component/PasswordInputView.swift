@@ -24,15 +24,25 @@ enum PasswordStrength: String {
 struct PasswordInputView: View {
 	@Binding var password: String
 	@Binding var confirmPassword: String
+	@State var isSecure: Bool = true
 	@Binding var isBioAuthOn: Bool
 	var passwordStrength: PasswordStrength?
 	
 	var body: some View {
 		VStack {
 			VStack(alignment: .leading) {
-				Text("Password")
-					.AvenirNextMedium(size: 16)
-				SencitiveTextField(text: $password, placeholder: "New Password")
+				HStack {
+					Text("Password")
+						.AvenirNextMedium(size: 16)
+					Spacer()
+					TextButton(
+						text: isSecure ? "Show" : "Hide",
+						onPress: {
+						isSecure.toggle()
+					})
+				}
+				
+				SencitiveTextField(text: $password, isSecure: isSecure, placeholder: "New Password")
 				
 				HStack(spacing: 2) {
 					Text("Password strength: ")
@@ -48,7 +58,7 @@ struct PasswordInputView: View {
 				Text("Confirm password")
 					.AvenirNextMedium(size: 16)
 					.padding(.top, 4)
-				SencitiveTextField(text: $confirmPassword, placeholder: "Confirm password")
+				SencitiveTextField(text: $confirmPassword, isSecure: isSecure, placeholder: "Confirm password")
 				
 				Text("Must be at least 8 characters").AvenirNextMedium(size: 14)
 			}

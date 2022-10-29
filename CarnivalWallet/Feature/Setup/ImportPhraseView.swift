@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct ImportPhraseView: View {
+	@EnvironmentObject var coordinator: SetupCoordinator
 	@Environment(\.presentationMode) var presentationMode
-	@StateObject var vm = ImportPhraseViewModelImpl()
+	@StateObject var vm = InitializeWalletViewModelImpl()
 	
 	init() {
 		UINavigationBar.appearance().titleTextAttributes = .bold24
@@ -28,13 +29,14 @@ struct ImportPhraseView: View {
 						passwordStrength: vm.passwordStrength
 					)
 
-					TextButton(
+					BaseButton(
 						text: "Import",
 						width: DeviceDimension.WIDTH - 80,
 						height: 56,
 						disabled: vm.importBtnDisabled,
 						style: .capsule) {
-							vm.create()
+							vm.importWallet()
+							coordinator.finishSetup()
 						}
 						.padding(.top, 32)
 				}

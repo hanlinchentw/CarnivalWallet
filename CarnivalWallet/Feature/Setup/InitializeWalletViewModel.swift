@@ -15,11 +15,12 @@ import RegexBuilder
 
 class MnemonicInvalidError: Error {}
 
-protocol ImportPhraseViewModel {
-	func create()
+protocol InitializeWalletViewModel: ObservableObject {
+	func importWallet()
+	func createWallet()
 }
 
-final class ImportPhraseViewModelImpl: ObservableObject, ImportPhraseViewModel {
+final class InitializeWalletViewModelImpl: InitializeWalletViewModel {
 	@Published var error: Error?
 	@Published var phrase: String = ""
 	@Published var passwordText: String = ""
@@ -40,27 +41,52 @@ final class ImportPhraseViewModelImpl: ObservableObject, ImportPhraseViewModel {
 		PasswordStrengthUtils.findPasswordStrength(password: passwordText)
 	}
 	
+	var wordList: Array<String> {
+		let space = " "
+		return phrase.components(separatedBy: space)
+	}
+	
 	init() {
 		onPhraseTextFieldEditing()
 	}
 }
 
-extension ImportPhraseViewModelImpl {
-	func create() {
+extension InitializeWalletViewModelImpl {
+	func importWallet() {
 		if !Mnemonic.isValid(mnemonic: phrase) {
 			error = MnemonicInvalidError.init()
 			return
 		}
 		do {
-			try SecureManager.setGenericPassword(password: passwordText, mnemonic: phrase, useBioAuth: isBioAuthOn)
+			try SecureManager.setGenericPassword(password: passwordText, useBioAuth: isBioAuthOn)
 			let _ = try SecureManager.keystore.import(mnemonic: phrase, name: "Wallet 1", encryptPassword: passwordText, coins: [.ethereum])
 		} catch {
 			self.error = error
 		}
 	}
+
+	func createWallet() {
+		do {
+			try SecureManager.setGenericPassword(password: passwordText, useBioAuth: isBioAuthOn)
+			let wallet = try SecureManager.keystore.createWallet(name: "Wallet 1", password: passwordText, coins: [.ethereum])
+			self.phrase = try ObjectUtils.checkNotNil(wallet.key.decryptMnemonic(password: Data(passwordText.utf8)), message: "Mnemonic is nil.")
+		} catch {
+			self.error = error
+		}
+	}
+	
+	func deleteWallet() {
+		do {
+			try SecureManager.keystore.wallets.forEach { wallet in
+				try SecureManager.keystore.delete(wallet: wallet, password: passwordText)
+			}
+		} catch {
+			
+		}
+	}
 }
 
-extension ImportPhraseViewModelImpl {
+extension InitializeWalletViewModelImpl {
 	func onPhraseTextFieldEditing() {
 		$phrase.sink { phraseText in
 			self.error = nil

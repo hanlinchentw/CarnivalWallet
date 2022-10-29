@@ -15,12 +15,14 @@ struct PhraseInputView: View {
 		VStack(alignment: .leading) {
 			Text("Secret Recovery Phrase")
 				.AvenirNextMedium(size: 16)
-				.padding(.top, 24)
+			.padding(.top, 24)
 
-			TextField("Enter your Secret Recovery Phrase", text: $phrase)
+			TextField("Enter your Secret Recovery Phrase", text: $phrase, axis: .vertical)
 				.AvenirNextMedium(size: 16)
+				.autocapitalization(.none)
 				.autocorrectionDisabled()
-				.padding(.init(top: 12, leading: 12, bottom: 88, trailing: 12))
+				.lineLimit(nil)
+				.padding(.init(top: 12, leading: 12, bottom: 12, trailing: 12))
 				.roundedBorder(
 					radius: 8,
 					borderColor: phraseValid ? .black : .red,
