@@ -17,6 +17,8 @@ struct SecurePhraseView: View {
 
 	var body: some View {
 		ZStack {
+			Color.white
+				.ignoresSafeArea()
 			VStack {
 				Group {
 					Text("Write down your Secret Recovery Phrase")

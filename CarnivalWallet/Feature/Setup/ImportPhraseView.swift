@@ -18,6 +18,9 @@ struct ImportPhraseView: View {
 	
 	var body: some View {
 		ZStack {
+			Color.white
+				.ignoresSafeArea()
+
 			ScrollView() {
 				VStack(alignment: .center) {
 					PhraseInputView(phrase: $vm.phrase, phraseValid: vm.isPhraseValid)
@@ -44,6 +47,7 @@ struct ImportPhraseView: View {
 			}
 			.safeAreaInset(.top, inset: UIScreen.height * 0.03)
 		}
+		.tapToResign()
 		.navigationTitle("Import from seed")
 		.navigationBarTitleDisplayMode(.inline)
 	}

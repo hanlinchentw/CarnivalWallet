@@ -11,11 +11,16 @@ struct TextButton: View {
 	var text: String
 	var onPress: () -> Void
 
+	init(_ text: String, onPress: @escaping () -> Void) {
+		self.text = text
+		self.onPress = onPress
+	}
+	
 	var body: some View {
 		Button(action: onPress) {
 			Text(text)
 				.AvenirNextMedium(size: 14)
-				.foregroundColor(.black)
+//				.foregroundColor(.black)
 		}
 		.buttonStyle(.plain)
 	}
@@ -23,7 +28,7 @@ struct TextButton: View {
 
 struct TextButton_Previews: PreviewProvider {
     static var previews: some View {
-			TextButton(text: "", onPress: {
+			TextButton("", onPress: {
 				
 			})
     }

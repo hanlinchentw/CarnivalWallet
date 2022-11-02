@@ -11,6 +11,9 @@ struct WelcomeView: View {
 	var body: some View {
 		NavigationView {
 			ZStack {
+				Color.white
+					.ignoresSafeArea()
+
 				VStack{
 					Text("Carnival")
 						.AvenirNextBold(size: 32)

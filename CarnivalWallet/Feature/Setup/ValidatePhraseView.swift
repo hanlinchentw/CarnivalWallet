@@ -25,36 +25,40 @@ struct ValidatePhraseView: View {
 	}
 	
 	var body: some View {
-		VStack {
-			Group {
-				Text("Confirm Secret Recovery Phrase")
-					.AvenirNextMedium(size: 20)
+		ZStack {
+			Color.white
+				.ignoresSafeArea()
+
+			VStack {
+				Group {
+					Text("Confirm Secret Recovery Phrase")
+						.AvenirNextMedium(size: 20)
+					
+					Text("Select each word in the order it was presented to you.")
+						.AvenirNextRegular(size: 16)
+						.padding(.top, 4)
+				}
+				.multilineTextAlignment(.center)
 				
-				Text("Select each word in the order it was presented to you.")
-					.AvenirNextRegular(size: 16)
-					.padding(.top, 4)
+				phraseSheet
+				
+				unfilledPhraseList
+				
+				BaseButton(
+					text: "Continue",
+					width: DeviceDimension.WIDTH - 80,
+					height: 56,
+					disabled: vm.isContinueBtnDisabled,
+					style: .capsule
+				) {
+					coordinator.finishSetup()
+				}
+				.padding(.top, 24)
 			}
-			.multilineTextAlignment(.center)
-			
-			phraseSheet
-			
-			unfilledPhraseList
-			
-			BaseButton(
-				text: "Continue",
-				width: DeviceDimension.WIDTH - 80,
-				height: 56,
-				disabled: vm.isContinueBtnDisabled,
-				style: .capsule
-			) {
-				coordinator.finishSetup()
-			}
-			.padding(.top, 24)
+			.padding(.horizontal, 32)
 		}
-		.padding(.horizontal, 32)
 		.onAppear {
 			self.vm.trueAnswer = wordList
-			print("wordList >>> \(wordList)")
 		}
 	}
 	

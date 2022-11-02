@@ -21,6 +21,7 @@ class SetupCoordinator: ObservableObject, Coordinator {
 	func start() {
 		let welcomeView = WelcomeView().environmentObject(self)
 		let welcomeVC = UIHostingController(rootView: welcomeView)
+		navigationController.navigationBar.isHidden = true
 		navigationController.pushViewController(welcomeVC, animated: true)
 	}
 	

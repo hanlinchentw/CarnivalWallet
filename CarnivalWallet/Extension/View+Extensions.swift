@@ -95,6 +95,10 @@ extension View {
 	func `height`(_ height: CGFloat) -> some View {
 		return self.frame(height: height)
 	}
+	
+	func `size`(_ size: CGFloat) -> some View {
+		return self.frame(width: size, height: size)
+	}
 }
 
 extension View {
@@ -107,6 +111,9 @@ extension View {
 }
 
 extension View {
+	func `capsule`(color: Color) -> some View {
+		return self.overlay(Capsule().background(color))
+	}
 	func `capsuleBorder`(style: RoundedCornerStyle = .continuous, borderColor: Color, borderWidth: CGFloat) -> some View {
 		return self.overlay(Capsule(style: style).stroke(borderColor, lineWidth: borderWidth))
 	}
@@ -131,5 +138,13 @@ extension View {
 			.toolbar {
 				ToolbarItem(placement: .navigationBarLeading, content: item)
 			}
+	}
+}
+
+extension View {
+	func `tapToResign`() -> some View {
+		return self.onTapGesture {
+			UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+		}
 	}
 }

@@ -36,10 +36,11 @@ struct PasswordInputView: View {
 						.AvenirNextMedium(size: 16)
 					Spacer()
 					TextButton(
-						text: isSecure ? "Show" : "Hide",
+						isSecure ? "Show" : "Hide",
 						onPress: {
 						isSecure.toggle()
 					})
+					.foregroundColor(.black)
 				}
 				
 				SencitiveTextField(text: $password, isSecure: isSecure, placeholder: "New Password")

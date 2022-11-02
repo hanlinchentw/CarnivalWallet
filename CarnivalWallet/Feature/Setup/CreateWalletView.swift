@@ -46,6 +46,7 @@ struct CreateWalletView: View {
 			}
 			.safeAreaInset(.top, inset: UIScreen.height * 0.03)
 		}
+		.tapToResign()
 		.navigationTitle("Create password")
 		.navigationBarTitleDisplayMode(.inline)
 	}

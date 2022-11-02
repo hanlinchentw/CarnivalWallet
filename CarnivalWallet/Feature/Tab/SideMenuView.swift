@@ -52,7 +52,7 @@ struct SideMenuView: View {
 				.onTapGesture {
 					toggleMenu()
 				}
-			
+
 			HStack {
 				MenuContentView(menuItems: MenuItem.allCases, itemOnPress: tapItem)
 					.width(MENU_WIDTH)
