@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 enum Screen: Int, CaseIterable {
 	case Wallet
@@ -29,7 +30,7 @@ struct HomeView: View {
 	@State private var selection: Int = 0
 	@State private var sideBarVisible = false
 	@StateObject var accountVM = AccountViewModel()
-	
+
 	init() {
 		let titleColor = UIColor.black
 		let coloredAppearance = UINavigationBarAppearance()
@@ -64,27 +65,15 @@ struct HomeView: View {
 			SideMenuView(
 				visible: $sideBarVisible,
 				toggleMenu: toggleMenu,
-				tapItem: tapItem,
-				onLogout: onLogout
+				tapItem: tapItem
 			)
-		}
-	}
-	
-	var onLogout: VoidClosure {
-		{
-			try? SecureManager.keystore.wallets.forEach { wallet in
-				if let password = try SecureManager.getGenericPassowrd() {
-					try SecureManager.keystore.delete(wallet: wallet, password: password)
-					try SecureManager.reset()
-					coordinator.setup()
-				}
-			}
+			.environmentObject(accountVM)
 		}
 	}
 	
 	var toggleMenu: () -> Void {
 		{
-			withAnimation(.easeInOut(duration: 0.4)) {
+			withAnimation(.easeIn(duration: 0.4)) {
 				sideBarVisible.toggle()
 			}
 		}
@@ -99,6 +88,16 @@ struct HomeView: View {
 				selection = 1
 			case .WalletConnect:
 				selection = 2
+			case .Etherscan:
+				return
+			case .Logout:
+				try? SecureManager.keystore.wallets.forEach { wallet in
+					if let password = try SecureManager.getGenericPassowrd() {
+						try SecureManager.keystore.delete(wallet: wallet, password: password)
+						try SecureManager.reset()
+						coordinator.setup()
+					}
+				}
 			}
 			toggleMenu()
 		}
@@ -108,5 +107,8 @@ struct HomeView: View {
 struct TabView_Previews: PreviewProvider {
 	static var previews: some View {
 		HomeView()
+			.environmentObject({() -> AccountViewModel in
+				return Mock_AccountViewModel()
+			}())
 	}
 }

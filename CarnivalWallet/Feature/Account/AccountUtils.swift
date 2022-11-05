@@ -38,12 +38,9 @@ final class AccountManager {
 		}
 		
 		let eth = CoinType.ethereum
-		
 		let path = DerivationPath(purpose: .bip44, coin: eth.slip44Id, account: 0, change: 0, address: UInt32(numOfAccount))
-		
 		let pubkey = HDWallet.getPublicKeyFromExtended(extended: defaultExtendedKey!, coin: eth, derivationPath: path.description)!
 		let address = eth.deriveAddressFromPublicKey(publicKey: pubkey)
-		print("getAddressFromExtendedKey.address >>> \(address)")
 		return address
 	}
 }

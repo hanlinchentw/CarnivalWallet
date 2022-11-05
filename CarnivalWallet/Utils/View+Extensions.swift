@@ -148,3 +148,11 @@ extension View {
 		}
 	}
 }
+
+extension View {
+	func `tapToClip`(string: String?) -> some View {
+		return self.onTapGesture {
+			UIPasteboard.general.string = string
+		}
+	}
+}

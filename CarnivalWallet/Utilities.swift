@@ -29,8 +29,23 @@ extension NSManagedObjectContext {
 
 extension Text {
 	init(_ text: String?) {
-		
 		self.init(verbatim: text ?? "")
+	}
+}
+
+extension Image {
+	init(name: String?) {
+		let uiImage = UIImage(named: name ?? "")
+		if let uiImage {
+			self.init(uiImage: uiImage)
+			return
+		}
+		let systemUIImage = UIImage(systemName: name ?? "")
+		if let systemUIImage {
+			self.init(uiImage: systemUIImage)
+			return
+		}
+		self.init("")
 	}
 }
 

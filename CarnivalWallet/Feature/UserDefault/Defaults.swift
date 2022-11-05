@@ -11,4 +11,5 @@ import Defaults
 extension Defaults.Keys {
 	static let isBioAuth = Key<Bool>("isBioAuth", default: false)
 	static let ethExtendedKey = Key<String?>("ethExtendedKey")
+	static let accountIndex = Key<Int>("accountIndex", default: 0)
 }

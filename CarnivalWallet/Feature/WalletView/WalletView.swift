@@ -7,11 +7,19 @@
 
 import SwiftUI
 
+enum WalletCTAType: String {
+	case Receive = "Receive"
+	case Send = "Send"
+	
+	var icon: String {
+		switch self {
+		case .Receive: return "arrow.down.to.line"
+		case .Send: return "arrow.up.right"
+		}
+	}
+}
 struct WalletView: View {
 	var account: AccountEntity? = nil
-	
-	
-	
 	var coins: Array<Coin> {
 		account?.coin?.allObjects as? Array<Coin> ?? []
 	}
@@ -31,9 +39,31 @@ struct WalletView: View {
 					WalletFiatBalanceView(balance: "170.56")
 					
 					HStack(spacing: 32) {
-						WalletCTAButton(type: .Receive)
-						WalletCTAButton(type: .Send)
+						BaseButton(
+							text: WalletCTAType.Receive.rawValue,
+							icon: WalletCTAType.Receive.icon,
+							fillColor: .blue,
+							height: 48,
+							style: .capsule,
+							onPress: {
+								
+							}
+						)
+						.foregroundColor(.white)
+
+						BaseButton(
+							text: WalletCTAType.Send.rawValue,
+							icon: WalletCTAType.Send.icon,
+							fillColor: .blue,
+							height: 48,
+							style: .capsule,
+							onPress: {
+								
+							}
+						)
+						.foregroundColor(.white)
 					}
+					.padding(.horizontal, 32)
 					
 					Divider()
 						.padding(.top, 16)
