@@ -25,8 +25,10 @@ enum Screen: Int, CaseIterable {
 }
 
 struct HomeView: View {
+	@EnvironmentObject var coordinator: MainCoordinator
 	@State private var selection: Int = 0
 	@State private var sideBarVisible = false
+	@StateObject var accountVM = AccountViewModel()
 	
 	init() {
 		let titleColor = UIColor.black
@@ -46,7 +48,7 @@ struct HomeView: View {
 			
 			NavigationView {
 				TabView(selection: $selection) {
-					WalletView(account: .testEthAccountEntity).tag(0)
+					WalletView(account: accountVM.currentAccount).tag(0)
 					BrowserView().tag(1)
 					WalletConnectView().tag(2)
 				}
@@ -59,7 +61,27 @@ struct HomeView: View {
 					})
 				})
 			}
-			SideMenuView(visible: $sideBarVisible, toggleMenu: toggleMenu, tapItem: tapItem)
+			SideMenuView(
+				visible: $sideBarVisible,
+				toggleMenu: toggleMenu,
+				tapItem: tapItem,
+				onLogout: onLogout
+			)
+		}
+	}
+	
+	var onLogout: VoidClosure {
+		{
+			try? SecureManager.keystore.wallets.forEach { wallet in
+				
+				if let password = try SecureManager.getGenericPassowrd() {
+					print("password >>> \(password)")
+					try SecureManager.keystore.delete(wallet: wallet, password: password)
+					try SecureManager.reset()
+					coordinator.setup()
+				}
+			}
+			
 		}
 	}
 	

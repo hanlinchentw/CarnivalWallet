@@ -44,6 +44,7 @@ struct SideMenuView: View {
 	@Binding var visible: Bool
 	var toggleMenu: () -> Void
 	var tapItem: (_ item: MenuItem) -> Void
+	var onLogout: () -> Void
 
 	var body: some View {
 		ZStack {
@@ -54,7 +55,7 @@ struct SideMenuView: View {
 				}
 
 			HStack {
-				MenuContentView(menuItems: MenuItem.allCases, itemOnPress: tapItem)
+				MenuContentView(menuItems: MenuItem.allCases, itemOnPress: tapItem, onLogout: onLogout)
 					.width(MENU_WIDTH)
 					.height(DeviceDimension.HEIGHT)
 					.background(.white)
@@ -72,6 +73,8 @@ struct SIdeMenuView_Previews: PreviewProvider {
 		SideMenuView(visible: .constant(true), toggleMenu: {
 			
 		}, tapItem: { item in
+			
+		}, onLogout: {
 			
 		})
 	}

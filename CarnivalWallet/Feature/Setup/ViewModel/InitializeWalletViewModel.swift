@@ -11,7 +11,7 @@ import Defaults
 import WalletCore
 import SwiftUI
 import Combine
-import RegexBuilder
+import CoreData
 
 class MnemonicInvalidError: Error {}
 
@@ -53,13 +53,10 @@ final class InitializeWalletViewModelImpl: InitializeWalletViewModel {
 
 extension InitializeWalletViewModelImpl {
 	func importWallet() {
-		if !Mnemonic.isValid(mnemonic: phrase) {
-			error = MnemonicInvalidError.init()
-			return
-		}
 		do {
 			try SecureManager.setGenericPassword(password: passwordText, useBioAuth: isBioAuthOn)
-			let _ = try SecureManager.keystore.import(mnemonic: phrase, name: "Wallet 1", encryptPassword: passwordText, coins: [.ethereum])
+			try WalletManager.initWallet(phrase: phrase, password: passwordText, useBioAuth: isBioAuthOn)
+			try AccountManager.addAccount(password: passwordText)
 		} catch {
 			self.error = error
 		}
@@ -68,8 +65,9 @@ extension InitializeWalletViewModelImpl {
 	func createWallet() {
 		do {
 			try SecureManager.setGenericPassword(password: passwordText, useBioAuth: isBioAuthOn)
-			let wallet = try SecureManager.keystore.createWallet(name: "Wallet 1", password: passwordText, coins: [.ethereum])
+			let wallet = try WalletManager.initWallet(password: passwordText, useBioAuth: isBioAuthOn)
 			self.phrase = try ObjectUtils.checkNotNil(wallet.key.decryptMnemonic(password: Data(passwordText.utf8)), message: "Mnemonic is nil.")
+			try AccountManager.addAccount(password: passwordText)
 		} catch {
 			self.error = error
 		}
@@ -79,9 +77,10 @@ extension InitializeWalletViewModelImpl {
 		do {
 			try SecureManager.keystore.wallets.forEach { wallet in
 				try SecureManager.keystore.delete(wallet: wallet, password: passwordText)
+				try SecureManager.reset()
 			}
 		} catch {
-			
+			self.error = error
 		}
 	}
 }

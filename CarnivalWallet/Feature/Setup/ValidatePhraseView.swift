@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct ValidatePhraseView: View {
-	@EnvironmentObject var coordinator: SetupCoordinator
+	@EnvironmentObject var coordinator: MainCoordinator
 	@Environment(\.presentationMode) var presentationMode
 	
 	let filledPhraseItems: [GridItem] = .init(repeating: .init(.flexible(), spacing: 32), count: 6)
 	let bottomPhraseItems: [GridItem] = .init(repeating: .init(), count: 3)
 	
 	@StateObject var vm = ValidatePhraseViewModel()
-	
+	@State var showAlert: Bool = false
+
 	var wordList: Array<String>
 	var randomWordList: Array<String>
 	
@@ -59,6 +60,26 @@ struct ValidatePhraseView: View {
 		}
 		.onAppear {
 			self.vm.trueAnswer = wordList
+		}
+		.alert("Skip", isPresented: $showAlert, actions: {
+			HStack {
+				Button("Skip") {
+					coordinator.finishSetup()
+				}
+				Button("Cancel", role: .cancel) {
+					showAlert = false
+				}
+			}
+		}, message: {
+				Text("Write down secret phrase later")
+		})
+		.toolbar {
+			ToolbarItem(placement: .navigationBarTrailing) {
+				TextButton("skip") {
+					showAlert = true
+				}
+				.foregroundColor(.blue)
+			}
 		}
 	}
 	

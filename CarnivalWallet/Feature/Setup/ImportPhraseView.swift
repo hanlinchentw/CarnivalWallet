@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ImportPhraseView: View {
-	@EnvironmentObject var coordinator: SetupCoordinator
+	@EnvironmentObject var coordinator: MainCoordinator
 	@Environment(\.presentationMode) var presentationMode
 	@StateObject var vm = InitializeWalletViewModelImpl()
 	

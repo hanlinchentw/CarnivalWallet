@@ -21,14 +21,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		window = UIWindow(windowScene: scene)
 		window?.makeKeyAndVisible()
 
-		if SecureManager.keystore.wallets.count == 0 {
-			let nav = UINavigationController()
-			let coordinator = SetupCoordinator(navigationController: nav)
-			coordinator.start()
-			window?.rootViewController = nav
-		} else {
-			window?.rootViewController = UIHostingController(rootView: HomeView())
-		}
+//		if SecureManager.keystore.wallets.isEmpty {
+//			let nav = UINavigationController()
+//			let coordinator = SetupCoordinator(navigationController: nav)
+//			coordinator.start()
+//			window?.rootViewController = nav
+//		} else {
+//			let nav = UINavigationController()
+//			let coordinator = MainCoordinator(navigationController: nav)
+//			coordinator.start()
+//			window?.rootViewController = nav
+//		}
+		let nav = UINavigationController()
+		let coordinator = MainCoordinator(navigationController: nav)
+		coordinator.start()
+		window?.rootViewController = nav
 	}
 
 	func sceneDidDisconnect(_ scene: UIScene) {

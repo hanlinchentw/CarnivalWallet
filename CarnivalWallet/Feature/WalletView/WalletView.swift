@@ -40,8 +40,8 @@ struct WalletView: View {
 					
 					WalletCoinList(coins: coins)
 					
-					VStack {
-						Text("Don't see your tokens?")
+					VStack(spacing: 6) {
+						Text("Don't see your token?")
 							.AvenirNextMedium(size: 16)
 						TextButton("Import Tokens") {
 							// TODO: 添加 Token
@@ -51,7 +51,7 @@ struct WalletView: View {
 					.padding(.top, 16)
 				}
 			}
-			.padding(.top, 32)
+			.safeAreaInset(.top, inset: 32)
 		}
 	}
 }

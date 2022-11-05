@@ -25,20 +25,28 @@ struct WalletCTAButton: View {
 		Button {
 			//TODO: receive page
 		} label: {
-			HStack {
+			Rectangle().background(.blue)
+		}
+		.height(56)
+		.width(150)
+		.clipShape(Capsule())
+		.overlay {
+			HStack(spacing: 12) {
 				Image(systemName: type.icon)
 					.resizable()
 					.aspectRatio(contentMode: .fit)
-					.frame(height: 18)
+					.frame(width: 18, height: 18)
 				Text(type.rawValue)
 					.AvenirNextMedium(size: 14)
 			}
 			.foregroundColor(.white)
 		}
-		.padding(.vertical, 16)
-		.width(150)
-		.background(.blue)
-		.cornerRadius(28)
+		
+//		.capsule(color: .blue)
+//		.padding(.vertical, 16)
+		
+//		.background(.blue)
+//		.cornerRadius(28)
 	}
 }
 

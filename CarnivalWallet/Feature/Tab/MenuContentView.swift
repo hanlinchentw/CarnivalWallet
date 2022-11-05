@@ -10,6 +10,8 @@ import SwiftUI
 struct MenuContentView: View {
 	var menuItems: Array<MenuItem>
 	var itemOnPress: (_ item: MenuItem) -> Void
+	var onLogout: () -> Void
+	
 	var body: some View {
 		VStack {
 			List {
@@ -33,7 +35,7 @@ struct MenuContentView: View {
 				HStack {
 					Spacer()
 					Button {
-						deleteWallet()
+						onLogout()
 					} label: {
 						Image(systemName: "rectangle.portrait.and.arrow.right")
 							.resizable()
@@ -50,23 +52,15 @@ struct MenuContentView: View {
 			.listStyle(.grouped)
 		}
 	}
-	
-	func deleteWallet() {
-		try? SecureManager.keystore.wallets.forEach { wallet in
-			print("wallet: \(wallet)")
-			if let password = try SecureManager.getGenericPassowrd() {
-				print("password: \(password)")
-				try SecureManager.reset()
-			}
-		}
-	}
 }
 
 struct MenuContentView_Previews: PreviewProvider {
 	static var previews: some View {
 		let menuItems = MenuItem.allCases
-		MenuContentView(menuItems: menuItems) { item in
+		MenuContentView(menuItems: menuItems, itemOnPress: { item in
 			
-		}
+		}, onLogout: {
+			
+		})
 	}
 }

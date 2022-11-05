@@ -13,7 +13,7 @@ final class DeriveEthereumAddressTest: XCTestCase {
 	let testMneomonic = "ripple scissors kick mammal hire column oak again sun offer wealth tomorrow wagon turn fatal"
 
 	override func setUp() {
-		self.testWallet = HDWallet(mnemonic: testMneomonic, passphrase: "")!
+		self.testWallet =  HDWallet(mnemonic: testMneomonic, passphrase: "")!
 	}
 	
 	func test_DeriveEthereumAddress_fromWallet() {
@@ -30,7 +30,7 @@ final class DeriveEthereumAddressTest: XCTestCase {
 	func test_DeriveEthereumAddress_fromPubKey() {
 		let eth = CoinType.ethereum
 		let zpub = "zpub6qXwnusRFJk3csMsfXkgdi3Qe29TD6YQ6cVxKKDEGYjmRkdTiSnrCNFo6K6gHks4pWE1osATNUQnLC3C2e9h8qa9pHw3i13ovXrtjk3AWE9"
-		
+
 		let path = DerivationPath(purpose: eth.purpose, coin: eth.slip44Id, account: 0, change: 0, address: 0)
 		let pubkey = HDWallet.getPublicKeyFromExtended(extended: zpub, coin: eth, derivationPath: path.description)!
 		let address = eth.deriveAddressFromPublicKey(publicKey: pubkey)

@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct SecurePhraseView: View {
+	@EnvironmentObject var coordinator: MainCoordinator
 	@Environment(\.presentationMode) var presentationMode
 	@ObservedObject var vm: InitializeWalletViewModelImpl
 	
-	@State var viewPhrase: Bool = true
+	@State var showAlert: Bool = false
+	@State var viewPhrase: Bool = false
 
 	let gridItems: [GridItem] = .init(repeating: .init(.flexible(), spacing: 32), count: 6)
 
@@ -54,6 +56,26 @@ struct SecurePhraseView: View {
 		.navbarLeftItem { backButton }
 		.onAppear {
 			vm.createWallet()
+		}
+		.alert("Skip", isPresented: $showAlert, actions: {
+			HStack {
+				Button("Skip") {
+					coordinator.finishSetup()
+				}
+				Button("Cancel", role: .cancel) {
+					showAlert = false
+				}
+			}
+		}, message: {
+				Text("Write down secret phrase later")
+		})
+		.toolbar {
+			ToolbarItem(placement: .navigationBarTrailing) {
+				TextButton("skip") {
+					showAlert = true
+				}
+				.foregroundColor(.blue)
+			}
 		}
 	}
 	

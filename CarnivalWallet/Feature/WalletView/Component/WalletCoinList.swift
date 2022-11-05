@@ -42,6 +42,6 @@ struct WalletCoinList: View {
 
 struct WalletCoinList_Previews: PreviewProvider {
 	static var previews: some View {
-		WalletCoinList(coins: [.testETH, .testUSDT])
+		WalletCoinList(coins: [.testETH, .testETH])
 	}
 }

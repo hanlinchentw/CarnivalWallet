@@ -12,7 +12,7 @@ struct WalletFiatBalanceView: View {
     var body: some View {
 			HStack {
 				VStack(alignment: .leading) {
-					Text("your total balance")
+					Text("total balance")
 						.AvenirNextRegular(size: 16)
 					Text("$\(balance)")
 						.AvenirNextBold(size: 48)

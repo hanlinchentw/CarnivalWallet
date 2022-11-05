@@ -16,6 +16,7 @@ final class KeyStoreTest: XCTestCase {
 		let fileManager = FileManager.default
 		
 		keyDirectory = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("KeyStoreTest")
+		print("keyDirectory >>> \(keyDirectory)")
 		try? fileManager.removeItem(at: keyDirectory)
 		try? fileManager.createDirectory(at: keyDirectory, withIntermediateDirectories: true, attributes: nil)
 	}
@@ -54,8 +55,6 @@ final class KeyStoreTest: XCTestCase {
 	
 	func test_importWallet() throws {
 		let password = "testpassword"
-		print("keyDirectory >>> \(keyDirectory)")
-		print("home >>> \(NSHomeDirectory())")
 		let keyStore = try KeyStore(keyDirectory: keyDirectory)
 		let wallet = try keyStore.import(mnemonic: testMneomonic, name: "Test Wallet", encryptPassword: password, coins: [.ethereum])
 		XCTAssertFalse(keyStore.wallets.isEmpty)
