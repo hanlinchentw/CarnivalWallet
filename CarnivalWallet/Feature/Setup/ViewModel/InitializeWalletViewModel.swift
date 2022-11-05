@@ -54,6 +54,7 @@ final class InitializeWalletViewModelImpl: InitializeWalletViewModel {
 extension InitializeWalletViewModelImpl {
 	func importWallet() {
 		do {
+			print("phrase >>> \(phrase)")
 			try SecureManager.setGenericPassword(password: passwordText, useBioAuth: isBioAuthOn)
 			try WalletManager.initWallet(phrase: phrase, password: passwordText, useBioAuth: isBioAuthOn)
 			try AccountManager.addAccount(password: passwordText)

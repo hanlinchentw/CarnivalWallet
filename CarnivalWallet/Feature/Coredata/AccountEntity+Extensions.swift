@@ -9,6 +9,7 @@ import Foundation
 import CoreData
 
 extension AccountEntity {
+	@discardableResult
 	convenience init(index: Int, name: String, address: String) {
 		let entity = NSEntityDescription.entity(forEntityName: "AccountEntity", in: .defaultContext)!
 		self.init(entity: entity, insertInto: .defaultContext)

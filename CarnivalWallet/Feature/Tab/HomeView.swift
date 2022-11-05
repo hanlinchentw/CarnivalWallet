@@ -73,15 +73,12 @@ struct HomeView: View {
 	var onLogout: VoidClosure {
 		{
 			try? SecureManager.keystore.wallets.forEach { wallet in
-				
 				if let password = try SecureManager.getGenericPassowrd() {
-					print("password >>> \(password)")
 					try SecureManager.keystore.delete(wallet: wallet, password: password)
 					try SecureManager.reset()
 					coordinator.setup()
 				}
 			}
-			
 		}
 	}
 	
