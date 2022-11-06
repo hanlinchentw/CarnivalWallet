@@ -23,11 +23,12 @@ struct GetTokenBalanceProvider: TokenBalanceProvider {
 	var contractAddress: String
 
 	func getBalance() async throws -> String {
+		let data = ERC20Encoder.encodeBalanceOf(address: address)
 		let request = EtherServiceRequest(
 			rpcURL: "https://rpc.ankr.com/eth",
 			request: CallRequest(
 				to: contractAddress,
-				data: "0x70a08231000000000000000000000000\(address.drop0x)"
+				data: data.hexEncoded
 			)
 		)
 		return try await Session.send(request)
