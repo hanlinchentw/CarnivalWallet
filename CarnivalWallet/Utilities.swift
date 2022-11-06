@@ -79,6 +79,16 @@ extension String {
 	}
 }
 
+extension String {
+	func deletePrefix(_ prefix: String) -> String {
+		guard self.hasPrefix(prefix) else { return self }
+		return String(self.dropFirst(prefix.count))
+	}
+	
+	var drop0x: String {
+		self.deletePrefix("0x")
+	}
+}
 extension NSManagedObject {
 	static func first<T: NSManagedObject>(_ context: NSManagedObjectContext) throws -> T? {
 		return try self.allIn(context).first
@@ -125,5 +135,53 @@ extension Task where Success == Never, Failure == Never {
 	static func sleep(seconds: Double) async throws {
 		let duration = UInt64(seconds * 1_000_000_000)
 		try await Task.sleep(nanoseconds: duration)
+	}
+}
+
+extension Data {
+	var hex: String {
+		return map { String(format: "%02hhx", $0) }.joined()
+	}
+	
+	var hexEncoded: String {
+		return "0x" + self.hex
+	}
+	
+	func toString() -> String? {
+		return String(data: self, encoding: .utf8)
+	}
+}
+
+extension String {
+	var hex: String {
+		let data = self.data(using: .utf8)!
+		return data.map { String(format: "%02x", $0) }.joined()
+	}
+	
+	var hexEncoded: String {
+		let data = self.data(using: .utf8)!
+		return data.hexEncoded
+	}
+}
+
+extension String {
+	func index(from: Int) -> Index {
+		return self.index(startIndex, offsetBy: from)
+	}
+	
+	func substring(from: Int) -> String {
+		let fromIndex = index(from: from)
+		return String(self[fromIndex...])
+	}
+	
+	func substring(to: Int) -> String {
+		let toIndex = index(from: to)
+		return String(self[..<toIndex])
+	}
+	
+	func substring(with r: Range<Int>) -> String {
+		let startIndex = index(from: r.lowerBound)
+		let endIndex = index(from: r.upperBound)
+		return String(self[startIndex..<endIndex])
 	}
 }

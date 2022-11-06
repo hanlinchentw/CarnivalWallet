@@ -1,4 +1,7 @@
 PODS:
+  - APIKit (5.4.0)
+  - BigInt (5.2.0)
+  - Defaults (4.2.2)
   - SwiftProtobuf (1.20.2)
   - TrustWalletCore (3.0.8):
     - TrustWalletCore/Core (= 3.0.8)
@@ -8,17 +11,26 @@ PODS:
     - SwiftProtobuf
 
 DEPENDENCIES:
+  - APIKit (~> 5.0)
+  - BigInt
+  - Defaults
   - TrustWalletCore
 
 SPEC REPOS:
   trunk:
+    - APIKit
+    - BigInt
+    - Defaults
     - SwiftProtobuf
     - TrustWalletCore
 
 SPEC CHECKSUMS:
+  APIKit: 0680e86d2e8abd5bc42e64963f5f89d209eb9271
+  BigInt: f668a80089607f521586bbe29513d708491ef2f7
+  Defaults: d785e56c0fb8890dc40351603f05c8e1df1bdd45
   SwiftProtobuf: 9f458aaa7844a2fc0b910053e66578bc4e2da9c1
   TrustWalletCore: 85f7af84eb077b3d6dd7791714062e0dd6534475
 
-PODFILE CHECKSUM: 11e9a74333189dc4c76e248d5778067803a0f893
+PODFILE CHECKSUM: 344ec9a80acb41e95724f52e949bc6c6d3b946a4
 
 COCOAPODS: 1.11.3

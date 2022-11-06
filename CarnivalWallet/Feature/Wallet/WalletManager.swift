@@ -21,4 +21,14 @@ final class WalletManager {
 			return try SecureManager.keystore.createWallet(name: "Wallet", password: password, coins: [.ethereum])
 		}
 	}
+	
+	static func getHDWallet(defaultPassword: String? = nil) throws  -> HDWallet {
+		var password = defaultPassword
+		if password == nil {
+			password = try SecureManager.getGenericPassowrd()
+		}
+		let phrase = try SecureManager.getGenericMnemonic(password: try ObjectUtils.checkNotNil(password, message: "Password is nil"))
+		let hdWallet = HDWallet(mnemonic: phrase, passphrase: "")
+		return hdWallet!
+	}
 }

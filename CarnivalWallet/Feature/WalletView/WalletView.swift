@@ -19,11 +19,9 @@ enum WalletCTAType: String {
 	}
 }
 struct WalletView: View {
-	var account: AccountEntity? = nil
-	var coins: Array<Coin> {
-		account?.coin?.allObjects as? Array<Coin> ?? []
-	}
-	
+	@EnvironmentObject var accountVM: AccountViewModel
+	@StateObject var vm = WalletViewModel()
+
 	var body: some View {
 		ZStack {
 			Color.white
@@ -32,8 +30,8 @@ struct WalletView: View {
 			ScrollView {
 				VStack(spacing: 0) {
 					WalletInfoView(
-						address: account?.address,
-						name: account?.name
+						address: accountVM.currentAccount?.address,
+						name: accountVM.currentAccount?.name
 					)
 					
 					WalletFiatBalanceView(balance: "170.56")
@@ -50,7 +48,7 @@ struct WalletView: View {
 							}
 						)
 						.foregroundColor(.white)
-
+						
 						BaseButton(
 							text: WalletCTAType.Send.rawValue,
 							icon: WalletCTAType.Send.icon,
@@ -68,7 +66,7 @@ struct WalletView: View {
 					Divider()
 						.padding(.top, 16)
 					
-					WalletCoinList(coins: coins)
+					WalletCoinList(coins: accountVM.coins)
 					
 					VStack(spacing: 6) {
 						Text("Don't see your token?")
@@ -83,11 +81,16 @@ struct WalletView: View {
 			}
 			.safeAreaInset(.top, inset: 32)
 		}
+		.onAppear {
+			if let address = accountVM.currentAccount?.address {
+				vm.fetchBalance(address: address)
+			}
+		}
 	}
 }
 
 struct WalletView_Previews: PreviewProvider {
 	static var previews: some View {
-		WalletView(account: .testEthAccountEntity)
+		WalletView()
 	}
 }

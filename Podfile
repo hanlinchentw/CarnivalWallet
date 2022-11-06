@@ -7,7 +7,10 @@ target 'CarnivalWallet' do
 
   # Pods for CarnivalWallet
 	pod 'TrustWalletCore'
-
+	pod 'Defaults'
+	pod 'APIKit', '~> 5.0'
+	pod 'BigInt'
+	
   target 'CarnivalWalletTests' do
     inherit! :search_paths
     # Pods for testing

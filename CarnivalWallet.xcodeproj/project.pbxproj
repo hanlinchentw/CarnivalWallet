@@ -46,7 +46,6 @@
 		B647F9FF29066FB100940C3B /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9FE29066FB100940C3B /* UIFont+Extensions.swift */; };
 		B647FA042906D23200940C3B /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647FA032906D23200940C3B /* KeychainManager.swift */; };
 		B647FA082906DB8800940C3B /* SecureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647FA072906DB8800940C3B /* SecureManager.swift */; };
-		B647FA0B2906DF0E00940C3B /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = B647FA0A2906DF0E00940C3B /* Defaults */; };
 		B6B11D6D29101DA5006F0591 /* AccountEntity+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B11D6C29101DA5006F0591 /* AccountEntity+Extensions.swift */; };
 		B6B11D6F2911704E006F0591 /* CoinIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B11D6E2911704E006F0591 /* CoinIconView.swift */; };
 		B6B11D71291176B7006F0591 /* NetworkMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B11D70291176B7006F0591 /* NetworkMapper.swift */; };
@@ -64,6 +63,16 @@
 		B6C204B6291637E400B11E72 /* Text+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C204B5291637E400B11E72 /* Text+Extensions.swift */; };
 		B6C204B9291640C600B11E72 /* AccountInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C204B8291640C600B11E72 /* AccountInfoView.swift */; };
 		B6C204BB2916415F00B11E72 /* MenuListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C204BA2916415F00B11E72 /* MenuListView.swift */; };
+		B6C204BD2916468900B11E72 /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C204BC2916468900B11E72 /* WalletViewModel.swift */; };
+		B6C204C029164EDB00B11E72 /* EtherServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C204BF29164EDB00B11E72 /* EtherServiceRequest.swift */; };
+		B6C204C32916510300B11E72 /* BalanceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C204C22916510300B11E72 /* BalanceRequest.swift */; };
+		B6C204C52916532D00B11E72 /* BalanceRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C204C42916532D00B11E72 /* BalanceRequestTests.swift */; };
+		B6C204CA2917993600B11E72 /* CastError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C204C92917993600B11E72 /* CastError.swift */; };
+		B6C204CC29179A7E00B11E72 /* JsonRpcRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C204CB29179A7E00B11E72 /* JsonRpcRequest.swift */; };
+		B6C204D029179E9600B11E72 /* BalanceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C204CF29179E9600B11E72 /* BalanceProvider.swift */; };
+		B6C204D22917A5BE00B11E72 /* Session+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C204D12917A5BE00B11E72 /* Session+Extension.swift */; };
+		B6C204D42917AECD00B11E72 /* CallRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C204D32917AECD00B11E72 /* CallRequest.swift */; };
+		B6C204D62917AF1F00B11E72 /* TokenBalanceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C204D52917AF1F00B11E72 /* TokenBalanceProvider.swift */; };
 		B6F760C628FC256B006BEF79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F760C528FC256B006BEF79 /* AppDelegate.swift */; };
 		B6F760C828FC256B006BEF79 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F760C728FC256B006BEF79 /* SceneDelegate.swift */; };
 		B6F760CF28FC256C006BEF79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6F760CE28FC256C006BEF79 /* Assets.xcassets */; };
@@ -154,6 +163,16 @@
 		B6C204B5291637E400B11E72 /* Text+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+Extensions.swift"; sourceTree = "<group>"; };
 		B6C204B8291640C600B11E72 /* AccountInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoView.swift; sourceTree = "<group>"; };
 		B6C204BA2916415F00B11E72 /* MenuListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuListView.swift; sourceTree = "<group>"; };
+		B6C204BC2916468900B11E72 /* WalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewModel.swift; sourceTree = "<group>"; };
+		B6C204BF29164EDB00B11E72 /* EtherServiceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EtherServiceRequest.swift; sourceTree = "<group>"; };
+		B6C204C22916510300B11E72 /* BalanceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceRequest.swift; sourceTree = "<group>"; };
+		B6C204C42916532D00B11E72 /* BalanceRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceRequestTests.swift; sourceTree = "<group>"; };
+		B6C204C92917993600B11E72 /* CastError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastError.swift; sourceTree = "<group>"; };
+		B6C204CB29179A7E00B11E72 /* JsonRpcRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonRpcRequest.swift; sourceTree = "<group>"; };
+		B6C204CF29179E9600B11E72 /* BalanceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceProvider.swift; sourceTree = "<group>"; };
+		B6C204D12917A5BE00B11E72 /* Session+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+Extension.swift"; sourceTree = "<group>"; };
+		B6C204D32917AECD00B11E72 /* CallRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallRequest.swift; sourceTree = "<group>"; };
+		B6C204D52917AF1F00B11E72 /* TokenBalanceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenBalanceProvider.swift; sourceTree = "<group>"; };
 		B6F760C228FC256B006BEF79 /* CarnivalWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarnivalWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F760C528FC256B006BEF79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6F760C728FC256B006BEF79 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -177,7 +196,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B647FA0B2906DF0E00940C3B /* Defaults in Frameworks */,
 				2F6E130875CF428352879C57 /* Pods_CarnivalWallet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,6 +304,7 @@
 				B639AE0D2909869D008F4C72 /* Color+Extension.swift */,
 				B6B11D70291176B7006F0591 /* NetworkMapper.swift */,
 				B6C204B5291637E400B11E72 /* Text+Extensions.swift */,
+				B6C204D12917A5BE00B11E72 /* Session+Extension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -386,6 +405,36 @@
 			path = Component;
 			sourceTree = "<group>";
 		};
+		B6C204BE29164ED200B11E72 /* Ethers */ = {
+			isa = PBXGroup;
+			children = (
+				B6C204CE29179E8A00B11E72 /* Provider */,
+				B6C204CD29179E7C00B11E72 /* Request */,
+				B6C204C92917993600B11E72 /* CastError.swift */,
+			);
+			path = Ethers;
+			sourceTree = "<group>";
+		};
+		B6C204CD29179E7C00B11E72 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				B6C204CB29179A7E00B11E72 /* JsonRpcRequest.swift */,
+				B6C204BF29164EDB00B11E72 /* EtherServiceRequest.swift */,
+				B6C204C22916510300B11E72 /* BalanceRequest.swift */,
+				B6C204D32917AECD00B11E72 /* CallRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		B6C204CE29179E8A00B11E72 /* Provider */ = {
+			isa = PBXGroup;
+			children = (
+				B6C204CF29179E9600B11E72 /* BalanceProvider.swift */,
+				B6C204D52917AF1F00B11E72 /* TokenBalanceProvider.swift */,
+			);
+			path = Provider;
+			sourceTree = "<group>";
+		};
 		B6F760B928FC256B006BEF79 = {
 			isa = PBXGroup;
 			children = (
@@ -433,6 +482,7 @@
 				B647F9FA2903BFE400940C3B /* DeriveEthereumAddressTest.swift */,
 				B639AE07290829CE008F4C72 /* KeyStoreTest.swift */,
 				B639AE1D290D01A2008F4C72 /* PasswordStrengthTest.swift */,
+				B6C204C42916532D00B11E72 /* BalanceRequestTests.swift */,
 			);
 			path = CarnivalWalletTests;
 			sourceTree = "<group>";
@@ -449,6 +499,7 @@
 		B6F7610628FC27A0006BEF79 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				B6C204BE29164ED200B11E72 /* Ethers */,
 				B6C204B029162A8700B11E72 /* SideMenu */,
 				B6C204A32915576700B11E72 /* Wallet */,
 				B6B11D7D2913DEBE006F0591 /* Account */,
@@ -471,6 +522,7 @@
 			children = (
 				B6B11D742912BF67006F0591 /* Component */,
 				B6F7610028FC275C006BEF79 /* WalletView.swift */,
+				B6C204BC2916468900B11E72 /* WalletViewModel.swift */,
 			);
 			path = WalletView;
 			sourceTree = "<group>";
@@ -511,7 +563,6 @@
 			);
 			name = CarnivalWallet;
 			packageProductDependencies = (
-				B647FA0A2906DF0E00940C3B /* Defaults */,
 			);
 			productName = CarnivalWallet;
 			productReference = B6F760C228FC256B006BEF79 /* CarnivalWallet.app */;
@@ -589,7 +640,6 @@
 			);
 			mainGroup = B6F760B928FC256B006BEF79;
 			packageReferences = (
-				B647FA092906DF0E00940C3B /* XCRemoteSwiftPackageReference "Defaults" */,
 			);
 			productRefGroup = B6F760C328FC256B006BEF79 /* Products */;
 			projectDirPath = "";
@@ -767,10 +817,13 @@
 				B6B11D7F2913DEC7006F0591 /* AccountViewModel.swift in Sources */,
 				B6C204B6291637E400B11E72 /* Text+Extensions.swift in Sources */,
 				B6B11D812913FD9C006F0591 /* AccountUtils.swift in Sources */,
+				B6C204D029179E9600B11E72 /* BalanceProvider.swift in Sources */,
 				B639AE2A290D252B008F4C72 /* SecurePhraseView.swift in Sources */,
 				B639AE0A2908B68E008F4C72 /* Utilities.swift in Sources */,
 				B639AE22290D0E1F008F4C72 /* SencitiveTextField.swift in Sources */,
 				B647F9D42903056900940C3B /* HomeView.swift in Sources */,
+				B6C204C32916510300B11E72 /* BalanceRequest.swift in Sources */,
+				B6C204BD2916468900B11E72 /* WalletViewModel.swift in Sources */,
 				B647F9E5290327C700940C3B /* WelcomeView.swift in Sources */,
 				B647F9E7290327D800940C3B /* ImportPhraseView.swift in Sources */,
 				B647F9ED29032A2A00940C3B /* TextFont.swift in Sources */,
@@ -782,8 +835,12 @@
 				B647F9D9290310F900940C3B /* View+Extensions.swift in Sources */,
 				B639AE13290CCB96008F4C72 /* BaseButton.swift in Sources */,
 				B647F9E9290327E800940C3B /* CreateWalletView.swift in Sources */,
+				B6C204C029164EDB00B11E72 /* EtherServiceRequest.swift in Sources */,
+				B6C204D62917AF1F00B11E72 /* TokenBalanceProvider.swift in Sources */,
+				B6C204CA2917993600B11E72 /* CastError.swift in Sources */,
 				B639AE0C29098326008F4C72 /* UIScreen+Extension.swift in Sources */,
 				B6B11D71291176B7006F0591 /* NetworkMapper.swift in Sources */,
+				B6C204D42917AECD00B11E72 /* CallRequest.swift in Sources */,
 				B6B11D732912B6BB006F0591 /* IconButton.swift in Sources */,
 				B647F9E0290315B900940C3B /* DeviceSize.swift in Sources */,
 				B647FA042906D23200940C3B /* KeychainManager.swift in Sources */,
@@ -792,7 +849,9 @@
 				B647F9EF29033AA200940C3B /* TextField+Extensions.swift in Sources */,
 				B6C204A52915577100B11E72 /* WalletManager.swift in Sources */,
 				B6C204B9291640C600B11E72 /* AccountInfoView.swift in Sources */,
+				B6C204CC29179A7E00B11E72 /* JsonRpcRequest.swift in Sources */,
 				B639AE1C290CFB75008F4C72 /* PhraseInputView.swift in Sources */,
+				B6C204D22917A5BE00B11E72 /* Session+Extension.swift in Sources */,
 				B6B11D782912C008006F0591 /* WalletFiatBalanceView.swift in Sources */,
 				B639AE2E290D6050008F4C72 /* ValidatePhraseView.swift in Sources */,
 				B639AE042906E051008F4C72 /* Defaults.swift in Sources */,
@@ -817,6 +876,7 @@
 			files = (
 				B6F760DD28FC256C006BEF79 /* CarnivalWalletTests.swift in Sources */,
 				B647F9F929039F2800940C3B /* GenerateSecretPhraseTest.swift in Sources */,
+				B6C204C52916532D00B11E72 /* BalanceRequestTests.swift in Sources */,
 				B639AE08290829CE008F4C72 /* KeyStoreTest.swift in Sources */,
 				B639AE1E290D01A2008F4C72 /* PasswordStrengthTest.swift in Sources */,
 				B647F9FB2903BFE400940C3B /* DeriveEthereumAddressTest.swift in Sources */,
@@ -1149,25 +1209,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		B647FA092906DF0E00940C3B /* XCRemoteSwiftPackageReference "Defaults" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sindresorhus/Defaults";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		B647FA0A2906DF0E00940C3B /* Defaults */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B647FA092906DF0E00940C3B /* XCRemoteSwiftPackageReference "Defaults" */;
-			productName = Defaults;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		B639AE362910180B008F4C72 /* CarnivalWallet.xcdatamodeld */ = {

@@ -44,12 +44,13 @@ struct HomeView: View {
 	
 	var body: some View {
 		ZStack {
-			Color.white
-				.ignoresSafeArea()
+			Color.white.ignoresSafeArea()
 			
 			NavigationView {
 				TabView(selection: $selection) {
-					WalletView(account: accountVM.currentAccount).tag(0)
+					WalletView()
+						.tag(0)
+						.environmentObject(accountVM)
 					BrowserView().tag(1)
 					WalletConnectView().tag(2)
 				}

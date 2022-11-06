@@ -24,15 +24,10 @@ final class AccountManager {
 	
 	static func getAddressFromExtendedKey(password: String?) throws -> String {
 		var defaultExtendedKey = Defaults[.ethExtendedKey]
-		var defaultPassword = password
 
 		if defaultExtendedKey == nil {
-			if password == nil {
-				defaultPassword = try SecureManager.getGenericPassowrd()
-			}
-			let phrase = try SecureManager.getGenericMnemonic(password: defaultPassword!)
-			let hdWallet = HDWallet(mnemonic: phrase, passphrase: "")
-			let xpub = hdWallet!.getExtendedPublicKey(purpose: .bip44, coin: .ethereum, version: .xpub)
+			let hdWallet = try WalletManager.getHDWallet(defaultPassword: password)
+			let xpub = hdWallet.getExtendedPublicKey(purpose: .bip44, coin: .ethereum, version: .xpub)
 			defaultExtendedKey = xpub
 			Defaults[.ethExtendedKey] = xpub
 		}
