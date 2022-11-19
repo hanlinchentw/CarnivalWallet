@@ -6,34 +6,16 @@
 //
 
 import SwiftUI
+import BigInt
 
 struct WalletCoinList: View {
 	var coins: Array<Coin>
 
 	var body: some View {
 		VStack(spacing: 12) {
-			ForEach(coins) { coin in
-				HStack {
-					CoinIconView(coin: coin, size: 48)
-					VStack(alignment: .leading) {
-						HStack {
-							Text(coin.balance)
-								.AvenirNextRegular(size: 16)
-							Text(coin.symbol)
-								.AvenirNextMedium(size: 16)
-						}
-						Text("$ \(coin.exchangeRate?.time(coin.balance ?? "") ?? "")")
-							.AvenirNextRegular(size: 14)
-					}
-					.padding(.leading, 16)
-					Spacer()
-					Image(systemName: "chevron.right")
-						.resizable()
-						.scaledToFit()
-						.frame(width: 16, height: 16)
-				}
-				.padding(.horizontal, 16)
-				Divider()
+			ForEach(0 ..< coins.indices.count, id: \.self) { index in
+				let vm = WalletCoinListItemViewModel(coin: coins[index])
+				WalletCoinListItem(vm: vm)
 			}
 		}
 		.padding(.top, 12)

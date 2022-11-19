@@ -10,7 +10,7 @@ import Foundation
 protocol JsonRpcRequest {
 	associatedtype Response
 	var method: String { get }
-	var parameters: Any { get }
+	var parameters: [Any] { get }
 	func response(from resultObject: Any) throws -> Response
 	var requestBody: [String: Any] { get }
 }

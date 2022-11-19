@@ -16,7 +16,7 @@ import CoreData
 class MnemonicInvalidError: Error {}
 
 protocol InitializeWalletViewModel: ObservableObject {
-	func importWallet()
+	func importWallet() async
 	func createWallet()
 }
 
@@ -52,9 +52,8 @@ final class InitializeWalletViewModelImpl: InitializeWalletViewModel {
 }
 
 extension InitializeWalletViewModelImpl {
-	func importWallet() {
+	func importWallet() async {
 		do {
-			print("phrase >>> \(phrase)")
 			try SecureManager.setGenericPassword(password: passwordText, useBioAuth: isBioAuthOn)
 			try WalletManager.initWallet(phrase: phrase, password: passwordText, useBioAuth: isBioAuthOn)
 			try AccountManager.addAccount(password: passwordText)

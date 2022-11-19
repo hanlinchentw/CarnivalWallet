@@ -13,7 +13,7 @@ struct WalletInfoView: View {
 	
 	var body: some View {
 		HStack(spacing: 12) {
-			Image("mouseAvatar")
+			Image("mouse_avatar")
 				.resizable()
 				.size(44)
 				.cornerRadius(22)

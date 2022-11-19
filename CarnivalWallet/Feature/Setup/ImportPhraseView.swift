@@ -38,8 +38,10 @@ struct ImportPhraseView: View {
 						height: 56,
 						disabled: vm.importBtnDisabled,
 						style: .capsule) {
-							vm.importWallet()
-							coordinator.finishSetup()
+							Task {
+								await vm.importWallet()
+								coordinator.finishSetup()
+							}
 						}
 						.padding(.top, 32)
 				}

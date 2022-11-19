@@ -14,9 +14,7 @@ typealias VoidClosure = () -> Void
 
 class ObjectUtils {
 	static func checkNotNil<T>(_ object: T?, message: String) throws -> T {
-		if (object == nil) {
-			throw NSError(domain: message, code: 0)
-		}
+		precondition(object != nil, message)
 		return object!
 	}
 }
@@ -30,6 +28,10 @@ extension NSManagedObjectContext {
 extension Text {
 	init(_ text: String?) {
 		self.init(verbatim: text ?? "")
+	}
+	
+	init(_ text1: String?, _ text2: String?) {
+		self.init("\(text1 ?? "") \(text2 ?? "")")
 	}
 }
 
@@ -162,6 +164,11 @@ extension String {
 		let data = self.data(using: .utf8)!
 		return data.hexEncoded
 	}
+	
+	var parseHex: String? {
+		let data = Data(hexString: self)
+		return data?.toString()
+	}
 }
 
 extension String {
@@ -183,5 +190,80 @@ extension String {
 		let startIndex = index(from: r.lowerBound)
 		let endIndex = index(from: r.upperBound)
 		return String(self[startIndex..<endIndex])
+	}
+}
+
+extension String {
+	func trimPrefix0() -> String {
+		self.replacingOccurrences(of: "^(0+)", with: "", options: .regularExpression)
+	}
+	
+	func trimSuffix0() -> String {
+		self.replacingOccurrences(of: "(0+)$", with: "", options: .regularExpression)
+	}
+}
+
+extension String {
+	func toInt() -> Int {
+		Int(self) ?? 0
+	}
+	
+	func toDouble() -> Double {
+		Double(self) ?? 0
+	}
+}
+
+extension NSSet {
+	func toArray<T>(_ of:  T.Type) -> Array<T> {
+		return self.allObjects as! Array<T>
+	}
+}
+
+extension Int16 {
+	func toInt() -> Int {
+		return Int(self)
+	}
+}
+
+extension Int {
+	func toInt16() -> Int16 {
+		return Int16(self)
+	}
+}
+
+extension Formatter {
+	static let number = NumberFormatter()
+
+	static let withSeparator: NumberFormatter = {
+		let formatter = NumberFormatter()
+		let locale = Locale.current
+		let groupingSeparator = locale.groupingSeparator ?? ","
+		formatter.numberStyle = .decimal
+		formatter.groupingSeparator = groupingSeparator
+		return formatter
+	}()
+}
+
+extension Numeric {
+	func formatted(with groupingSeparator: String? = nil, style: NumberFormatter.Style, locale: Locale = .current) -> String {
+		Formatter.number.locale = locale
+		Formatter.number.numberStyle = style
+		if let groupingSeparator = groupingSeparator {
+			Formatter.number.groupingSeparator = groupingSeparator
+		}
+		return Formatter.number.string(for: self) ?? ""
+	}
+	
+	var currency: String { formatted(style: .currency) }
+}
+
+class SafeAreaUtils {
+	static var safeAreaInsets: UIEdgeInsets? {
+		let window = UIApplication.shared.windows.filter { $0.isKeyWindow }.first
+		return window?.safeAreaInsets
+	}
+
+	static var top: CGFloat {
+		safeAreaInsets?.top ?? 0.0
 	}
 }

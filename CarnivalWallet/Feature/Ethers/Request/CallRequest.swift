@@ -10,23 +10,22 @@ import BigInt
 
 struct CallRequest: JsonRpcRequest {
 	typealias Response = String
-		
+	
 	let to: String
 	let data: String
-
+	
 	var method: String {
 		return "eth_call"
 	}
 	
-	var parameters: Any {
+	var parameters: [Any] {
 		return [["to": to, "data": data], "latest"]
 	}
-
+	
 	func response(from resultObject: Any) throws -> Response {
 		if let response = resultObject as? [String: Any],
-			 let result = response["result"] as? String,
-			 let value = BigInt(result.drop0x, radix: 16) {
-			return String(value)
+			 let result = response["result"] as? String {
+			return result
 		} else {
 			throw CastError(actualValue: resultObject, expectedType: Response.self)
 		}

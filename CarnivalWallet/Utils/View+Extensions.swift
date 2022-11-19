@@ -156,3 +156,48 @@ extension View {
 		}
 	}
 }
+
+extension View {
+	func `qrScannerSheet`(
+		isVisible: Binding<Bool>,
+		onScan: @escaping (_ result: String) -> Void,
+		onClose: @escaping VoidClosure
+	) -> some View {
+		return self.sheet(isPresented: isVisible, content: {
+			ScannerView(
+				onScan: onScan,
+				onClose: onClose
+			).ignoresSafeArea()
+		})
+	}
+}
+
+extension View {
+	@ViewBuilder
+	func `header`<Content: View>(title: String, icon: () -> Content, onPressedItem: @escaping VoidClosure) -> some View {
+		self
+			.padding(.top, SafeAreaUtils.top - 16)
+			.overlay(
+				VStack {
+					ZStack {
+						HStack {
+							Button {
+								onPressedItem()
+							} label: {
+								icon()
+							}
+							.size(16)
+							.foregroundColor(.black)
+							.padding(.leading, 16)
+							Spacer()
+						}
+						Text(title)
+							.AvenirNextMedium(size: 20)
+					}
+					
+					Divider()
+					Spacer()
+				}
+			)
+	}
+}

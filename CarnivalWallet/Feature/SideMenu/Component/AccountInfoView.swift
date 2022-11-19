@@ -14,7 +14,7 @@ struct AccountInfoView: View {
 
 	var body: some View {
 		VStack(alignment: .leading) {
-			Image("mouseAvatar")
+			Image("mouse_avatar")
 				.resizable()
 				.size(56)
 				.cornerRadius(28)

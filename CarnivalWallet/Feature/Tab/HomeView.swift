@@ -26,49 +26,36 @@ enum Screen: Int, CaseIterable {
 }
 
 struct HomeView: View {
-	@EnvironmentObject var coordinator: MainCoordinator
-	@State private var selection: Int = 0
+	@EnvironmentObject var coordinator: HomeCoordinator
 	@State private var sideBarVisible = false
-	@StateObject var accountVM = AccountViewModel()
-
-	init() {
-		let titleColor = UIColor.black
-		let coloredAppearance = UINavigationBarAppearance()
-		coloredAppearance.backgroundColor = .white
-		coloredAppearance.titleTextAttributes = [.foregroundColor: titleColor]
-		UINavigationBar.appearance().standardAppearance = coloredAppearance
-		UINavigationBar.appearance().compactAppearance = coloredAppearance
-		UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
-		UINavigationBar.appearance().tintColor = titleColor
-	}
 	
+	var title: String {
+		Screen.allCases[coordinator.selectedScreen].navigationTitle
+	}
+
 	var body: some View {
 		ZStack {
 			Color.white.ignoresSafeArea()
-			
-			NavigationView {
-				TabView(selection: $selection) {
-					WalletView()
-						.tag(0)
-						.environmentObject(accountVM)
-					BrowserView().tag(1)
-					WalletConnectView().tag(2)
-				}
-				.navigationTitle(Screen.allCases[selection].navigationTitle)
-				.navigationBarTitleDisplayMode(.inline)
-				.navbarLeftItem(item: {
-					Button(action: toggleMenu, label: {
-						Image(systemName: "line.3.horizontal")
-							.foregroundColor(.black)
-					})
-				})
+			TabView(selection: $coordinator.selectedScreen) {
+				coordinator.startWalletView().tag(0)
+				BrowserView().tag(1)
+				WalletConnectView().tag(2)
 			}
+			.header(
+				title: title,
+				icon: {
+					Image(systemName: "line.3.horizontal")
+				},
+				onPressedItem: toggleMenu
+			)
+			.padding(.top, SafeAreaUtils.top)
+
 			SideMenuView(
+				currentAccount: coordinator.currentAccount,
 				visible: $sideBarVisible,
 				toggleMenu: toggleMenu,
 				tapItem: tapItem
 			)
-			.environmentObject(accountVM)
 		}
 	}
 	
@@ -83,12 +70,8 @@ struct HomeView: View {
 	var tapItem: (_ item: MenuItem) -> Void {
 		{ item in
 			switch item {
-			case .Wallet:
-				selection = 0
-			case .Browser:
-				selection = 1
-			case .WalletConnect:
-				selection = 2
+			case .Wallet, .Browser, .WalletConnect:
+				coordinator.switchScreen(screenIndex: item.rawValue)
 			case .Etherscan:
 				return
 			case .Logout:
@@ -96,7 +79,7 @@ struct HomeView: View {
 					if let password = try SecureManager.getGenericPassowrd() {
 						try SecureManager.keystore.delete(wallet: wallet, password: password)
 						try SecureManager.reset()
-						coordinator.setup()
+						//						coordinator.setup()
 					}
 				}
 			}
@@ -108,8 +91,8 @@ struct HomeView: View {
 struct TabView_Previews: PreviewProvider {
 	static var previews: some View {
 		HomeView()
-			.environmentObject({() -> AccountViewModel in
-				return Mock_AccountViewModel()
+			.environmentObject({() -> HomeCoordinator in
+				return HomeCoordinator(navigationController: .init())
 			}())
 	}
 }

@@ -17,7 +17,7 @@ struct BalanceRequest: JsonRpcRequest {
 		return "eth_getBalance"
 	}
 	
-	var parameters: Any {
+	var parameters: [Any] {
 		return [address, "latest"]
 	}
 

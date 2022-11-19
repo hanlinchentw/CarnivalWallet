@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 enum WalletCTAType: String {
 	case Receive = "Receive"
@@ -19,9 +20,10 @@ enum WalletCTAType: String {
 	}
 }
 struct WalletView: View {
-	@EnvironmentObject var accountVM: AccountViewModel
+	@EnvironmentObject var coordinator: WalletCoordinator
 	@StateObject var vm = WalletViewModel()
-
+	var currentAccount: AccountEntity?
+	
 	var body: some View {
 		ZStack {
 			Color.white
@@ -30,8 +32,8 @@ struct WalletView: View {
 			ScrollView {
 				VStack(spacing: 0) {
 					WalletInfoView(
-						address: accountVM.currentAccount?.address,
-						name: accountVM.currentAccount?.name
+						address: currentAccount?.address,
+						name: currentAccount?.name
 					)
 					
 					WalletFiatBalanceView(balance: "170.56")
@@ -66,25 +68,27 @@ struct WalletView: View {
 					Divider()
 						.padding(.top, 16)
 					
-					WalletCoinList(coins: accountVM.coins)
+					WalletCoinList(coins: vm.coins)
 					
 					VStack(spacing: 6) {
 						Text("Don't see your token?")
 							.AvenirNextMedium(size: 16)
-						TextButton("Import Tokens") {
-							// TODO: 添加 Token
+						Button {
+							coordinator.addToken()
+						} label: {
+							Text("Import Tokens")
+								.AvenirNextMedium(size: 14)
+								.foregroundColor(.blue)
 						}
-						.foregroundColor(.blue)
+						.padding(.top, 16)
 					}
-					.padding(.top, 16)
 				}
 			}
 			.safeAreaInset(.top, inset: 32)
 		}
 		.onAppear {
-			if let address = accountVM.currentAccount?.address {
-				vm.fetchBalance(address: address)
-			}
+			vm.updateAccountAndAddres(account: currentAccount)
+			vm.fetchBalance()
 		}
 	}
 }
@@ -92,5 +96,8 @@ struct WalletView: View {
 struct WalletView_Previews: PreviewProvider {
 	static var previews: some View {
 		WalletView()
+			.environmentObject({() -> WalletCoordinator in
+				return WalletCoordinator(navigationController: .init())
+			}())
 	}
 }

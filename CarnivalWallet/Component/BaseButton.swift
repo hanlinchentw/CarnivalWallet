@@ -34,8 +34,8 @@ struct BaseButton: View {
 				}
 				Text(text)
 					.AvenirNextMedium(size: textSize)
-//					.foregroundColor(style == .outline ? .black: .white)
 			}
+			.foregroundColor(style == .outline ? fillColor: .white)
 		}
 		.frame(maxWidth: .infinity)
 		.if(width != nil, modify: { $0.width(width!) })
@@ -44,7 +44,7 @@ struct BaseButton: View {
 		.if(style == .capsule, modify: { $0.background(fillColor).clipShape(Capsule()) })
 		.if(style == .outline) {
 			$0.background(.clear)
-			.roundedBorder(radius: height/2, borderColor: .black, borderWidth: 1)
+				.roundedBorder(radius: height/2, borderColor: fillColor, borderWidth: 1)
 		}
 		.buttonStyle(.plain)
 		.disabled(disabled)

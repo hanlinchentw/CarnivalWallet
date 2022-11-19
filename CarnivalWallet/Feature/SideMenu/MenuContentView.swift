@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct MenuContentView: View {
-	@EnvironmentObject var accountVM: AccountViewModel
-	
+	var currentAccount: AccountEntity?
 	var onReceive: () -> Void
 	var onSend: () -> Void
 	var itemOnPress: (_ item: MenuItem) -> Void
@@ -29,9 +28,9 @@ struct MenuContentView: View {
 				
 				
 				AccountInfoView(
-					name: accountVM.currentAccount?.name,
-					balance: accountVM.currentAccount?.fiatBalance,
-					address: accountVM.currentAccount?.address
+					name: currentAccount?.name,
+					balance: currentAccount?.fiatBalance,
+					address: currentAccount?.address
 				)
 				.padding(.top, 12)
 				.padding(.leading, 16)
@@ -86,8 +85,5 @@ struct MenuContentView_Previews: PreviewProvider {
 				
 			}
 		)
-		.environmentObject({() -> AccountViewModel in
-			return Mock_AccountViewModel()
-		}())
 	}
 }

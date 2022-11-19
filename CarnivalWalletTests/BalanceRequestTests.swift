@@ -12,18 +12,20 @@ import WalletCore
 @testable import CarnivalWallet
 
 final class BalanceRequestTests: XCTestCase {
+	var testWallet: HDWallet! = TestableWallet.testWallet
+
 	func testExample() async throws {
-		let provider = GetBalanceProvider(address: "0x1e200594af3E23462a035076F3499295734a3c1d")
+		let provider = CoinBalanceProvider(address: testWallet.getAddressForCoin(coin: .ethereum))
 		let balance = try await provider.getBalance()
-		print("balance >>> \(balance)")
+//		print("balance >>> \(balance)")
 	}
 	
 	func testTokenExample() async throws {
-		let provider = GetTokenBalanceProvider(
+		let provider = TokenBalanceProvider(
 			address: "0x1e200594af3E23462a035076F3499295734a3c1d",
 			contractAddress: "0xdAC17F958D2ee523a2206206994597C13D831ec7"
 		)
 		let balance = try await provider.getBalance()
-		print("balance >>> \(balance)")
+//		print("balance >>> \(balance)")
 	}
 }
