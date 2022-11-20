@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct MenuContentView: View {
-	var currentAccount: AccountEntity?
+	var currentAccount: AccountEntity? {
+		AccountManager.shared.currentAccount
+	}
+
 	var onReceive: () -> Void
 	var onSend: () -> Void
 	var itemOnPress: (_ item: MenuItem) -> Void

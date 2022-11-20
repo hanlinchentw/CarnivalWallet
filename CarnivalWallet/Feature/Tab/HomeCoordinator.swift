@@ -12,12 +12,8 @@ import SwiftUI
 class HomeCoordinator: Coordinator, ObservableObject {
 	@Published var currentAccountIndex: Int = 0
 
-	var currentAccount: AccountEntity? {
-		.current()
-	}
-
 	var coins: Array<Coin> {
-		currentAccount?.coin?.allObjects as? Array<Coin> ?? []
+		AccountManager.shared.currentAccount?.coin?.allObjects as? Array<Coin> ?? []
 	}
 
 	@Published var selectedScreen: Int = 0

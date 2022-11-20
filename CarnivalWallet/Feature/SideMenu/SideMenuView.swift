@@ -9,7 +9,6 @@ import SwiftUI
 
 
 struct SideMenuView: View {
-	var currentAccount: AccountEntity?
 	let MENU_WIDTH = DeviceDimension.WIDTH * 0.83
 	@Binding var visible: Bool
 	var toggleMenu: () -> Void
@@ -25,7 +24,6 @@ struct SideMenuView: View {
 			
 			HStack {
 				MenuContentView(
-					currentAccount: currentAccount,
 					onReceive: {
 						
 					}, onSend: {
@@ -46,7 +44,7 @@ struct SideMenuView: View {
 
 struct SideMenuView_Previews: PreviewProvider {
 	static var previews: some View {
-		SideMenuView(currentAccount: .testEthAccountEntity, visible: .constant(true), toggleMenu: {
+		SideMenuView(visible: .constant(true), toggleMenu: {
 			
 		}, tapItem: { item in
 			

@@ -28,7 +28,7 @@ class ImportTokenViewModel: ObservableObject {
 		{
 			guard let tokenInfo = self.tokenInfo else { return }
 			let coin = Coin(tokenInfo: tokenInfo, network: .ethereum)
-			AccountEntity.current()?.addToCoin(coin)
+			AccountManager.shared.currentAccount?.addToCoin(coin)
 			try? NSManagedObjectContext.defaultContext.save()
 			self.dismiss()
 		}

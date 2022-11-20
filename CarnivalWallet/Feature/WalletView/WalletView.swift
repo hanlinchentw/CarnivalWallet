@@ -23,7 +23,7 @@ struct WalletView: View {
 	@EnvironmentObject var coordinator: WalletCoordinator
 	@StateObject var vm = WalletViewModel()
 	var currentAccount: AccountEntity? {
-		.current()
+		AccountManager.shared.currentAccount
 	}
 	
 	var body: some View {

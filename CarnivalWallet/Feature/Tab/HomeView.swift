@@ -51,7 +51,6 @@ struct HomeView: View {
 			.padding(.top, SafeAreaUtils.top)
 
 			SideMenuView(
-				currentAccount: coordinator.currentAccount,
 				visible: $sideBarVisible,
 				toggleMenu: toggleMenu,
 				tapItem: tapItem
