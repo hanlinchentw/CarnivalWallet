@@ -13,18 +13,19 @@ struct CoinIconView: View {
 	var contractAddress: String?
 	var size: CGFloat
 	
-	func getIconURL(contractAddress: String) -> URL {
+	func getIconURL(network: String, contractAddress: String) -> URL {
 		let address = AnyAddress(string: contractAddress, coin: .ethereum)!.description
 		let url = "https://assets-cdn.trustwallet.com/blockchains/\(network)/assets/\(address)/logo.png".toURL
 		return url
 	}
 
 	var body: some View {
-		if let contractAddress {
-			AsyncImage(url: getIconURL(contractAddress: contractAddress)) { image in
+		if let contractAddress, !contractAddress.isEmpty, let network {
+			AsyncImage(url: getIconURL(network: network.lowercased(), contractAddress: contractAddress)) { image in
 				image
 					.resizable()
 					.scaledToFit()
+					.cornerRadius(size/2)
 			} placeholder: {
 				Color.gray.opacity(0)
 			}
@@ -34,6 +35,7 @@ struct CoinIconView: View {
 				.resizable()
 				.scaledToFit()
 				.size(size)
+				.cornerRadius(size/2)
 		}
 	}
 }

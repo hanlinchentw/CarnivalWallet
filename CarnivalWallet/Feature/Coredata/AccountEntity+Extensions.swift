@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import Defaults
 
 extension AccountEntity {
 	@discardableResult
@@ -19,6 +20,14 @@ extension AccountEntity {
 		self.addToCoin(.createETH())
 	}
 }
+
+extension AccountEntity {
+	static func current() -> AccountEntity? {
+		let currentAccountIndex = Defaults[.accountIndex]
+		return try? AccountEntity.find(for: ["index": (currentAccountIndex).toString()], in: .defaultContext).first as? AccountEntity
+	}
+}
+
 // MARK: - Mock data
 extension AccountEntity {
 	static var testEthAccountEntity: AccountEntity {

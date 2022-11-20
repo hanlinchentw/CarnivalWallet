@@ -21,15 +21,11 @@ class WalletCoordinator: ObservableObject {
 	}
 	
 	func start() -> some View {
-		let walletView = WalletView(currentAccount: parent?.currentAccount)
+		let walletView = WalletView()
 			.environmentObject(self)
 		return walletView
 	}
-	
-	func getWalletView() {
-		return
-	}
-	
+
 	func addToken() {
 		let addTokenVC = UIHostingController(rootView: ImportTokenView().environmentObject(self))
 		navigationController.pushViewController(addTokenVC, animated: true)

@@ -7,59 +7,6 @@
 
 import SwiftUI
 
-class ImportTokenViewModel: ObservableObject {
-	weak var coordinator: WalletCoordinator?
-	
-	@Published var contractTextInput: String = ""
-	@Published var symbolTextInput: String = ""
-	@Published var decimalsTextInput: String = ""
-	@Published var presentScanQRCodeView = false
-	
-	var dismiss: () -> Void {
-		{
-			self.coordinator?.didFinishAddToken()
-		}
-	}
-	
-	var onPaste: (_ text: String) -> Void {
-		{ text in
-			self.contractTextInput = text
-		}
-	}
-	
-	var onClickScanButton: () -> Void {
-		{
-			self.presentScanQRCodeView = true
-		}
-	}
-	
-	var onScan: (_ result: String) -> Void {
-		{ result in
-			self.contractTextInput = result
-			self.presentScanQRCodeView = false
-			self.getTokenInfo()
-		}
-	}
-	
-	var onCloseQRScanner: () -> Void {
-		{
-			self.presentScanQRCodeView = false
-		}
-	}
-	
-	func getTokenInfo() {
-		Task {
-			let provider = TokenInfoProvider(contractAddress: contractTextInput)
-			let tokenInfo = try ObjectUtils.checkNotNil(try? await provider.getTokenInfo(), message: "")
-			
-			DispatchQueue.main.async {
-				self.symbolTextInput = tokenInfo.symbol
-				self.decimalsTextInput = tokenInfo.decimals
-			}
-		}
-	}
-}
-
 struct ImportTokenView: View {
 	@EnvironmentObject var coordinator: WalletCoordinator
 	@StateObject var vm: ImportTokenViewModel = .init()
@@ -67,46 +14,78 @@ struct ImportTokenView: View {
 	var body: some View {
 		ZStack {
 			Color.white.ignoresSafeArea()
-			VStack(spacing: 56) {
-				TokenInfoTextField(
-					title: "Token Address",
-					placeholder: "0x...",
-					text: $vm.contractTextInput,
-					onPaste: vm.onPaste,
-					onClickScanButton: vm.onClickScanButton
-				)
-				TokenInfoTextField(
-					title: "Token Symbol",
-					placeholder: "USDT",
-					text: $vm.symbolTextInput
-				)
-				TokenInfoTextField(
-					title: "Token Decimal",
-					placeholder: "6",
-					text: $vm.decimalsTextInput
-				)
-				
-				HStack {
-					BaseButton(
-						text: "Cancel",
-						textSize: 16,
-						fillColor: .black,
-						height: 50,
-						style: .outline,
-						onPress: vm.dismiss
+			VStack {
+				VStack {
+					TokenAddressTextField(
+						title: "Token Address",
+						placeholder: "0x...",
+						text: $vm.contractAddress,
+						onPaste: vm.onPaste,
+						onClickScanButton: vm.onClickScanButton,
+						onSubmit: vm.onSearch
 					)
-					.padding(.horizontal, 16)
-					BaseButton(
-						text: "Import",
-						textSize: 16,
-						fillColor: .blue,
-						height: 50,
-						disabled: vm.contractTextInput.isEmpty,
-						style: .outline,
-						onPress: vm.dismiss
-					)
-					.padding(.horizontal, 16)
+					if vm.error != nil {
+						HStack {
+							Image(systemName: "exclamationmark.triangle.fill")
+								.resizable()
+								.size(12)
+							Text("Invaild ContractAddress")
+								.AvenirNextMedium(size: 14)
+							Spacer()
+						}
+						.foregroundColor(.redNormal)
+					}
 				}
+				VStack {
+					if vm.isLoading {
+						ProgressView {
+							Text("Loading ...")
+						}
+					} else if let tokenInfo = vm.tokenInfo {
+						HStack {
+							Text("Profile")
+								.AvenirNextMedium(size: 20)
+							Spacer()
+						}
+						VStack {
+							VStack(spacing: 16) {
+								CoinIconView(
+									network: Network.ethereum.rawValue,
+									contractAddress: tokenInfo.contractAddress,
+									size: 56
+								)
+								TokenInfoRow(title: "Name", value: tokenInfo.name)
+								TokenInfoRow(title: "Symbol", value: tokenInfo.symbol)
+								TokenInfoRow(title: "Decimals", value: tokenInfo.decimals)
+								Link(destination: "https://etherscan.io/token/\(tokenInfo.contractAddress)".toURL) {
+									HStack {
+										Text("View on etherscan")
+											.AvenirNextRegular(size: 16)
+										Image(systemName: "link")
+											.resizable()
+											.size(12)
+									}
+									.foregroundColor(.blue)
+								}
+							}
+							.padding(16)
+						}
+						.background(Color.gray.opacity(0.1))
+						.cornerRadius(16)
+
+						BaseButton(
+							text: "Import",
+							textSize: 16,
+							height: 50,
+							style: .capsule,
+							onPress: vm.onImport
+						)
+						.padding(.top, 16)
+					}
+
+				}
+				.padding(.top, 32)
+				
 				Spacer()
 			}
 			.padding(.top, 32)
@@ -135,5 +114,6 @@ struct ImportTokenView: View {
 struct AddTokenView_Previews: PreviewProvider {
 	static var previews: some View {
 		ImportTokenView()
+			.environmentObject(WalletCoordinator(navigationController: .init()))
 	}
 }

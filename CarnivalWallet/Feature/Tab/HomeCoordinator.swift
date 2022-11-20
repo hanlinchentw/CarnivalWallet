@@ -13,7 +13,7 @@ class HomeCoordinator: Coordinator, ObservableObject {
 	@Published var currentAccountIndex: Int = 0
 
 	var currentAccount: AccountEntity? {
-		return try? AccountEntity.find(for: ["index": (currentAccountIndex).toString()], in: .defaultContext).first
+		.current()
 	}
 
 	var coins: Array<Coin> {

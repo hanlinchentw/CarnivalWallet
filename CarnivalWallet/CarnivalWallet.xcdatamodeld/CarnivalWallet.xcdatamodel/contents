@@ -12,6 +12,7 @@
         <attribute name="contractAddress" optional="YES" attributeType="String"/>
         <attribute name="decimals" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="exchangeRate" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="network" attributeType="String"/>
         <attribute name="symbol" attributeType="String"/>
         <relationship name="account" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AccountEntity" inverseName="coin" inverseEntity="AccountEntity"/>

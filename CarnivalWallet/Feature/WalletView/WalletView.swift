@@ -22,7 +22,9 @@ enum WalletCTAType: String {
 struct WalletView: View {
 	@EnvironmentObject var coordinator: WalletCoordinator
 	@StateObject var vm = WalletViewModel()
-	var currentAccount: AccountEntity?
+	var currentAccount: AccountEntity? {
+		.current()
+	}
 	
 	var body: some View {
 		ZStack {

@@ -8,26 +8,6 @@
 import Foundation
 import APIKit
 
-struct GetTokenInfoError: Error {}
-
-enum TokenInfoField: Int, CaseIterable {
-	case name
-	case symbol
-	case decimals
-	case balanceOf
-
-	var ERC20ContractABIEncodedData: Data {
-		switch self {
-		case .name:
-			return ERC20Encoder.encodeName()
-		case .symbol:
-			return ERC20Encoder.encodeSymbol()
-		case .decimals:
-			return ERC20Encoder.encodeDecimals()
-		}
-	}
-}
-
 struct TokenInfoProvider {
 	let contractAddress: String
 
@@ -43,30 +23,36 @@ struct TokenInfoProvider {
 	}
 	
 	func getTokenInfo() async throws -> any Token {
-		let requests = TokenInfoField.allCases.map { field in
-			return (field, createCallRequest(data: field.ERC20ContractABIEncodedData))
+		let requests = [ERC20ABIFunction.name, ERC20ABIFunction.symbol, ERC20ABIFunction.decimals].map { field in
+			return (field, createCallRequest(data: field.data))
 		}
-		let result = try await withThrowingTaskGroup(of: (TokenInfoField, String).self, returning: [TokenInfoField : String].self) { taskGroup in
+
+		let result = try await withThrowingTaskGroup(of: (ERC20ABIFunction, String).self, returning: [ERC20ABIFunction : String].self) { taskGroup in
 			requests.forEach { field, request in
 				taskGroup.addTask {
 					let result = try await Session.send(request)
-					let trimmedResult = String(result.suffix(64)).trimPrefix0().trimSuffix0()
-					let parseResult = trimmedResult.parseHex
-					return (field, parseResult ?? trimmedResult)
+					guard let parseResult = field.parse(rawData: result) else {
+						throw GetTokenInfoError()
+					}
+					return (field, parseResult)
 				}
 			}
-			var results = [TokenInfoField: String]()
+			var results = [ERC20ABIFunction: String]()
 			for try await result in taskGroup {
 				results[result.0] = result.1
 			}
 			return results
 		}
-		guard let name = result[TokenInfoField.name],
-					let symbol = result[TokenInfoField.symbol],
-					let decimals = result[TokenInfoField.decimals] else {
+		
+		guard let name = result[ERC20ABIFunction.name],
+					let symbol = result[ERC20ABIFunction.symbol],
+					let decimals = result[ERC20ABIFunction.decimals] else {
 			throw GetTokenInfoError()
 		}
-		return TokenImpl(name: name, symbol: symbol, decimals: decimals)
+		return TokenImpl(contractAddress: contractAddress, name: name, symbol: symbol, decimals: decimals)
 	}
-	
+}
+
+extension TokenInfoProvider {
+	struct GetTokenInfoError: Error {}
 }
