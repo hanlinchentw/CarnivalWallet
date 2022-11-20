@@ -73,13 +73,25 @@ struct ImportTokenView: View {
 						.background(Color.gray.opacity(0.1))
 						.cornerRadius(16)
 
-						BaseButton(
-							text: "Import",
-							textSize: 16,
-							height: 50,
-							style: .capsule,
-							onPress: vm.onImport
-						)
+						HStack {
+							BaseButton(
+								text: "Cancel",
+								textSize: 16,
+								fillColor: .black,
+								height: 50,
+								style: .capsule,
+								onPress: vm.dismiss
+							)
+							BaseButton(
+								text: "Import",
+								textSize: 16,
+								fillColor: .blue,
+								height: 50,
+								style: .outline,
+								onPress: vm.onImport
+							)
+						}
+						
 						.padding(.top, 16)
 					}
 
