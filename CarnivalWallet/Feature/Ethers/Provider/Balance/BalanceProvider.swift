@@ -11,6 +11,9 @@ import APIKit
 protocol BalanceProvider {
 	associatedtype Request: JsonRpcRequest
 	var address: String { get set }
-	var contractAddress: String? { get set }
 	func getBalance() async throws -> String
+}
+
+protocol TokenBalanceProvider: BalanceProvider {
+	var contractAddress: String { get set }
 }

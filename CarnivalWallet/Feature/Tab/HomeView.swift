@@ -32,6 +32,10 @@ struct HomeView: View {
 	var title: String {
 		Screen.allCases[coordinator.selectedScreen].navigationTitle
 	}
+	
+	init() {
+		UITabBar.appearance().isHidden = true
+	}
 
 	var body: some View {
 		ZStack {

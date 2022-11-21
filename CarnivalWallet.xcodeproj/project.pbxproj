@@ -87,7 +87,7 @@
 		B6C204D62917AF1F00B11E72 /* TokenBalanceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C204D52917AF1F00B11E72 /* TokenBalanceProvider.swift */; };
 		B6C204D92917B7E900B11E72 /* ERC20Encoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C204D82917B7E900B11E72 /* ERC20Encoder.swift */; };
 		B6C204E12917FC1900B11E72 /* TestableWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C204E02917FC1900B11E72 /* TestableWallet.swift */; };
-		B6C204E3291BFCD600B11E72 /* CoinBalanceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C204E2291BFCD600B11E72 /* CoinBalanceProvider.swift */; };
+		B6C204E3291BFCD600B11E72 /* BalanceProviderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C204E2291BFCD600B11E72 /* BalanceProviderImpl.swift */; };
 		B6C204E5291C8CBC00B11E72 /* EtherNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C204E4291C8CBC00B11E72 /* EtherNumberFormatter.swift */; };
 		B6C204E7291C910F00B11E72 /* EtherNumberFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C204E6291C910F00B11E72 /* EtherNumberFormatterTests.swift */; };
 		B6C204E92923204000B11E72 /* EthereumUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C204E82923204000B11E72 /* EthereumUnit.swift */; };
@@ -207,7 +207,7 @@
 		B6C204D52917AF1F00B11E72 /* TokenBalanceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenBalanceProvider.swift; sourceTree = "<group>"; };
 		B6C204D82917B7E900B11E72 /* ERC20Encoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERC20Encoder.swift; sourceTree = "<group>"; };
 		B6C204E02917FC1900B11E72 /* TestableWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestableWallet.swift; sourceTree = "<group>"; };
-		B6C204E2291BFCD600B11E72 /* CoinBalanceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinBalanceProvider.swift; sourceTree = "<group>"; };
+		B6C204E2291BFCD600B11E72 /* BalanceProviderImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceProviderImpl.swift; sourceTree = "<group>"; };
 		B6C204E4291C8CBC00B11E72 /* EtherNumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EtherNumberFormatter.swift; sourceTree = "<group>"; };
 		B6C204E6291C910F00B11E72 /* EtherNumberFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EtherNumberFormatterTests.swift; sourceTree = "<group>"; };
 		B6C204E82923204000B11E72 /* EthereumUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumUnit.swift; sourceTree = "<group>"; };
@@ -433,7 +433,7 @@
 			children = (
 				B6C204CF29179E9600B11E72 /* BalanceProvider.swift */,
 				B6C204D52917AF1F00B11E72 /* TokenBalanceProvider.swift */,
-				B6C204E2291BFCD600B11E72 /* CoinBalanceProvider.swift */,
+				B6C204E2291BFCD600B11E72 /* BalanceProviderImpl.swift */,
 			);
 			path = Balance;
 			sourceTree = "<group>";
@@ -985,7 +985,7 @@
 				B639AE20290D0A13008F4C72 /* PasswordStrengthUtils.swift in Sources */,
 				B6C204BB2916415F00B11E72 /* MenuListView.swift in Sources */,
 				B6B11D7C2912C113006F0591 /* WalletCoinList.swift in Sources */,
-				B6C204E3291BFCD600B11E72 /* CoinBalanceProvider.swift in Sources */,
+				B6C204E3291BFCD600B11E72 /* BalanceProviderImpl.swift in Sources */,
 				B647FA082906DB8800940C3B /* SecureManager.swift in Sources */,
 				B6C204B429162AB300B11E72 /* MenuItem.swift in Sources */,
 				B6C204B229162A9C00B11E72 /* MenuSection.swift in Sources */,

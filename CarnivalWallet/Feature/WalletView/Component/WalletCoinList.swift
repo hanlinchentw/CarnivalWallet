@@ -7,15 +7,24 @@
 
 import SwiftUI
 import BigInt
+import Defaults
 
 struct WalletCoinList: View {
-	var coins: Array<Coin>
+	@Environment(\.managedObjectContext) var viewContext
+	@FetchRequest(sortDescriptors: []) var coins: FetchedResults<Coin>
+	@FetchRequest(
+		sortDescriptors: [],
+		predicate: .init(format: "%K = %@", "index", Defaults[.accountIndex].toString())
+	) var account: FetchedResults<AccountEntity>
+	
+	var currentAccountCoins: Array<Coin> {
+		return account.first?.coin?.toArray(Coin.self) ?? []
+	}
 
 	var body: some View {
 		VStack(spacing: 12) {
-			ForEach(0 ..< coins.indices.count, id: \.self) { index in
-				let vm = WalletCoinListItemViewModel(coin: coins[index])
-				WalletCoinListItem(vm: vm)
+			ForEach(0 ..< currentAccountCoins.indices.count, id: \.self) { index in
+				WalletCoinListItem(coin: currentAccountCoins[index])
 			}
 		}
 		.padding(.top, 12)
@@ -24,6 +33,6 @@ struct WalletCoinList: View {
 
 struct WalletCoinList_Previews: PreviewProvider {
 	static var previews: some View {
-		WalletCoinList(coins: [.testETH, .testETH])
+		WalletCoinList()
 	}
 }

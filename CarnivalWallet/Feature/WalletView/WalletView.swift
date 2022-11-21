@@ -22,9 +22,6 @@ enum WalletCTAType: String {
 struct WalletView: View {
 	@EnvironmentObject var coordinator: WalletCoordinator
 	@StateObject var vm = WalletViewModel()
-	var currentAccount: AccountEntity? {
-		AccountManager.shared.currentAccount
-	}
 	
 	var body: some View {
 		ZStack {
@@ -34,11 +31,10 @@ struct WalletView: View {
 			ScrollView {
 				VStack(spacing: 0) {
 					WalletInfoView(
-						address: currentAccount?.address,
-						name: currentAccount?.name
+						address: vm.accountAddress,
+						name: vm.accountName
 					)
-					
-					WalletFiatBalanceView(balance: "170.56")
+					WalletFiatBalanceView(balance: vm.accountBalance ?? "0")
 					
 					HStack(spacing: 32) {
 						BaseButton(
@@ -70,7 +66,8 @@ struct WalletView: View {
 					Divider()
 						.padding(.top, 16)
 					
-					WalletCoinList(coins: vm.coins)
+					WalletCoinList()
+						.environment(\.managedObjectContext, .defaultContext)
 					
 					VStack(spacing: 6) {
 						Text("Don't see your token?")
@@ -86,10 +83,13 @@ struct WalletView: View {
 					}
 				}
 			}
+			.refreshable {
+				vm.fetchBalance()
+			}
 			.safeAreaInset(.top, inset: 32)
+			
 		}
 		.onAppear {
-			vm.updateAccountAndAddres(account: currentAccount)
 			vm.fetchBalance()
 		}
 	}

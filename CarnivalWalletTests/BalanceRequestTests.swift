@@ -15,7 +15,7 @@ final class BalanceRequestTests: XCTestCase {
 	var testWallet: HDWallet! = TestableWallet.testWallet
 
 	func testExample() async throws {
-		let provider = CoinBalanceProvider(address: testWallet.getAddressForCoin(coin: .ethereum))
+		let provider = BalanceProviderImpl(address: testWallet.getAddressForCoin(coin: .ethereum))
 		let balance = try await provider.getBalance()
 //		print("balance >>> \(balance)")
 	}

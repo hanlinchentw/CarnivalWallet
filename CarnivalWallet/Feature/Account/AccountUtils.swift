@@ -17,6 +17,14 @@ final class AccountManager: ObservableObject {
 	init() {
 		observeAccountChange()
 	}
+	
+	static var current: AccountEntity? {
+		Self.shared.currentAccount
+	}
+	
+	static var coins: Array<Coin> {
+		Self.current?.coin?.toArray(Coin.self) ?? []
+	}
 
 	func observeAccountChange() {
 		Defaults.observe(.accountIndex) { [weak self] change in

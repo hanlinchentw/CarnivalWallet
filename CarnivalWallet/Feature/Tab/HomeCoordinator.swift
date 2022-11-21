@@ -13,7 +13,7 @@ class HomeCoordinator: Coordinator, ObservableObject {
 	@Published var currentAccountIndex: Int = 0
 
 	var coins: Array<Coin> {
-		AccountManager.shared.currentAccount?.coin?.allObjects as? Array<Coin> ?? []
+		AccountManager.current?.coin?.allObjects as? Array<Coin> ?? []
 	}
 
 	@Published var selectedScreen: Int = 0

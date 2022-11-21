@@ -8,21 +8,29 @@
 import SwiftUI
 
 struct WalletCoinListItem: View {
-	var vm: WalletCoinListItemViewModel
+	@ObservedObject var coin: Coin
+
+	var fiatBalance: String {
+		let exchangeRate = coin.exchangeRate?.toDouble() ?? 0.0
+		let balance = coin.balance?.toDouble() ?? 0.0
+		let fiatBalance = exchangeRate * balance
+		return fiatBalance.toString()
+	}
+
 	var body: some View {
 		VStack {
 			HStack {
 				CoinIconView(
-					network: vm.network,
-					contractAddress: vm.contractAddress,
+					network: coin.network,
+					contractAddress: coin.contractAddress,
 					size: 48
 				)
 				VStack(alignment: .leading) {
 					HStack {
-						Text(vm.balance, vm.symbol)
+						Text(coin.balance, coin.symbol)
 							.AvenirNextRegular(size: 16)
 					}
-					Text("$\(150)")
+					Text("$\(fiatBalance)")	
 						.AvenirNextRegular(size: 14)
 				}
 				.padding(.leading, 16)
@@ -40,6 +48,6 @@ struct WalletCoinListItem: View {
 
 struct WalletCoinListItem_Previews: PreviewProvider {
 	static var previews: some View {
-		WalletCoinListItem(vm: .init(coin: .testETH))
+		WalletCoinListItem(coin: .testETH)
 	}
 }

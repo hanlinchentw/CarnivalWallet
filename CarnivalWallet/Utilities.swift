@@ -81,6 +81,12 @@ extension String {
 	}
 }
 
+extension String: Error {}
+
+extension String: LocalizedError {
+		public var errorDescription: String? { return self }
+}
+
 extension String {
 	func deletePrefix(_ prefix: String) -> String {
 		guard self.hasPrefix(prefix) else { return self }

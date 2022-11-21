@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ImportTokenView: View {
+	@Environment(\.presentationMode) var presentationMode
 	@EnvironmentObject var coordinator: WalletCoordinator
 	@StateObject var vm: ImportTokenViewModel = .init()
 	
@@ -24,12 +25,12 @@ struct ImportTokenView: View {
 						onClickScanButton: vm.onClickScanButton,
 						onSubmit: vm.onSearch
 					)
-					if vm.error != nil {
+					if let errorMessage = vm.errorMessage {
 						HStack {
 							Image(systemName: "exclamationmark.triangle.fill")
 								.resizable()
 								.size(12)
-							Text("Invaild ContractAddress")
+							Text(errorMessage)
 								.AvenirNextMedium(size: 14)
 							Spacer()
 						}

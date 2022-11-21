@@ -9,6 +9,7 @@ import Foundation
 import WalletCore
 import CoreData
 
+@MainActor
 class ImportTokenViewModel: ObservableObject {
 	weak var coordinator: WalletCoordinator?
 	
@@ -17,7 +18,9 @@ class ImportTokenViewModel: ObservableObject {
 	@Published var presentScanQRCodeView = false
 	@Published var isLoading = false
 	@Published var error: (any Error)?
-	
+	var errorMessage: String? {
+		error?.localizedDescription.errorDescription
+	}
 	var dismiss: () -> Void {
 		{
 			self.coordinator?.didFinishAddToken()
@@ -28,6 +31,11 @@ class ImportTokenViewModel: ObservableObject {
 		{
 			guard let tokenInfo = self.tokenInfo else { return }
 			let coin = Coin(tokenInfo: tokenInfo, network: .ethereum)
+			let isExisted = AccountManager.coins.contains(where: { $0.contractAddress == coin.contractAddress })
+			if isExisted {
+				self.error = ImportTokenError.aleardyExisted.rawValue
+				return
+			}
 			AccountManager.shared.currentAccount?.addToCoin(coin)
 			try? NSManagedObjectContext.defaultContext.save()
 			self.dismiss()
@@ -66,19 +74,28 @@ class ImportTokenViewModel: ObservableObject {
 		}
 	}
 	
+	@MainActor
 	func getTokenInfo() {
+		defer {
+			isLoading = false
+		}
+		
 		isLoading = true
 		Task {
 			do {
 				let provider = TokenInfoProvider(contractAddress: contractAddress)
 				let tokenInfo = try await provider.getTokenInfo();
-				DispatchQueue.main.async {
-					self.tokenInfo = tokenInfo
-					self.isLoading = false
-				}
+				self.tokenInfo = tokenInfo
 			} catch {
-				self.error = error
+				self.error = ImportTokenError.apiFailed.rawValue
 			}
 		}
+	}
+}
+
+extension ImportTokenViewModel {
+	enum ImportTokenError: String, Error {
+		case aleardyExisted = "Token already existed in your wallet"
+		case apiFailed = "Invalid Contract address"
 	}
 }
