@@ -10,13 +10,12 @@ import UIKit
 import SwiftUI
 
 class HomeCoordinator: Coordinator, ObservableObject {
-	@Published var currentAccountIndex: Int = 0
+	@Published var selectedScreen: Int = 0
 
 	var coins: Array<Coin> {
 		AccountManager.current?.coin?.allObjects as? Array<Coin> ?? []
 	}
-
-	@Published var selectedScreen: Int = 0
+	
 	var childCoordinators: [Coordinator] = []
 	
 	var navigationController: UINavigationController
@@ -34,11 +33,15 @@ class HomeCoordinator: Coordinator, ObservableObject {
 	func switchScreen(screenIndex: Int) {
 		selectedScreen = screenIndex
 	}
-
 	
 	func startWalletView() -> some View {
 		let coordinator = WalletCoordinator(navigationController: navigationController)
 		coordinator.parent = self
 		return coordinator.start()
+	}
+	
+	func addToken() {
+		let addTokenVC = UIHostingController(rootView: ImportTokenView().environmentObject(self))
+		navigationController.pushViewController(addTokenVC, animated: true)
 	}
 }

@@ -19,8 +19,9 @@ enum WalletCTAType: String {
 		}
 	}
 }
+
 struct WalletView: View {
-	@EnvironmentObject var coordinator: WalletCoordinator
+	@EnvironmentObject var coordinator: HomeCoordinator
 	@StateObject var vm = WalletViewModel()
 	
 	var body: some View {
@@ -79,15 +80,14 @@ struct WalletView: View {
 								.AvenirNextMedium(size: 14)
 								.foregroundColor(.blue)
 						}
-						.padding(.top, 16)
 					}
+					.padding(.top, 16)
 				}
 			}
 			.refreshable {
 				vm.fetchBalance()
 			}
 			.safeAreaInset(.top, inset: 32)
-			
 		}
 		.onAppear {
 			vm.fetchBalance()

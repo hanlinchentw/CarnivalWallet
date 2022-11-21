@@ -9,8 +9,13 @@ import SwiftUI
 
 struct ImportTokenView: View {
 	@Environment(\.presentationMode) var presentationMode
-	@EnvironmentObject var coordinator: WalletCoordinator
 	@StateObject var vm: ImportTokenViewModel = .init()
+	
+	var dismiss: VoidClosure {
+		{
+			presentationMode.wrappedValue.dismiss()
+		}
+	}
 	
 	var body: some View {
 		ZStack {
@@ -81,7 +86,7 @@ struct ImportTokenView: View {
 								fillColor: .black,
 								height: 50,
 								style: .capsule,
-								onPress: vm.dismiss
+								onPress: dismiss
 							)
 							BaseButton(
 								text: "Import",
@@ -89,10 +94,12 @@ struct ImportTokenView: View {
 								fillColor: .blue,
 								height: 50,
 								style: .outline,
-								onPress: vm.onImport
+								onPress: {
+									vm.onImport()
+									dismiss()
+								}
 							)
 						}
-						
 						.padding(.top, 16)
 					}
 
@@ -110,16 +117,14 @@ struct ImportTokenView: View {
 			icon: {
 				Image(systemName: "chevron.left")
 			},
-			onPressedItem: {
-				coordinator.didFinishAddToken()
-			}
+			onPressedItem: dismiss
 		)
 		.qrScannerSheet(
 			isVisible: $vm.presentScanQRCodeView,
 			onScan: vm.onScan,
 			onClose: vm.onCloseQRScanner)
-		.onAppear {
-			self.vm.coordinator = coordinator
+		.onReceive(vm.dismiss) { _ in
+			self.dismiss()
 		}
 	}
 }

@@ -8,25 +8,21 @@
 import Foundation
 import WalletCore
 import CoreData
+import Combine
 
 @MainActor
 class ImportTokenViewModel: ObservableObject {
-	weak var coordinator: WalletCoordinator?
-	
 	@Published var contractAddress: String = ""
 	@Published var tokenInfo: Token?
 	@Published var presentScanQRCodeView = false
 	@Published var isLoading = false
 	@Published var error: (any Error)?
+	@Published var dismiss = PassthroughSubject<Void, Never>()
+
 	var errorMessage: String? {
 		error?.localizedDescription.errorDescription
 	}
-	var dismiss: () -> Void {
-		{
-			self.coordinator?.didFinishAddToken()
-		}
-	}
-	
+
 	var onImport: () -> Void {
 		{
 			guard let tokenInfo = self.tokenInfo else { return }
@@ -38,7 +34,7 @@ class ImportTokenViewModel: ObservableObject {
 			}
 			AccountManager.shared.currentAccount?.addToCoin(coin)
 			try? NSManagedObjectContext.defaultContext.save()
-			self.dismiss()
+			self.dismiss.send()
 		}
 	}
 	
