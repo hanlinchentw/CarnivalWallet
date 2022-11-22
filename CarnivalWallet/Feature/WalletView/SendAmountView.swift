@@ -12,25 +12,22 @@ struct SendAmountView: View {
 	
 	@State var useMax: Bool = false
 	@State var sendAmount = ""
-
+	
 	var body: some View {
 		VStack {
 			VStack(spacing: 16) {
 				Button {
 					
 				} label: {
-					HStack {
-						Text(coordinator.coin.symbol)
-							.AvenirNextMedium(size: 14)
-						Image(systemName: "chevron.down")
-					}
-					.foregroundColor(.white)
+					Text(coordinator.sendCoin.symbol)
+						.AvenirNextMedium(size: 14)
+						.foregroundColor(.white)
 				}
 				.padding()
 				.background(Color.black)
 				.height(32)
 				.cornerRadius(16)
-
+				
 				TextField("0", text: $sendAmount)
 					.AvenirNextMedium(size: 32)
 					.keyboardType(.decimalPad)
@@ -38,13 +35,13 @@ struct SendAmountView: View {
 					.fixedSize()
 					.padding(.horizontal, 16)
 				TextButton("Send Max", color: .blue) {
-					sendAmount = coordinator.coin.balance ?? ""
+					sendAmount = coordinator.sendCoin.balance ?? ""
 				}
-				Text("Balance: ", coordinator.coin.balance, " ", coordinator.coin.symbol)
+				Text("Balance: ", coordinator.sendCoin.balance, " ", coordinator.sendCoin.symbol)
 					.AvenirNextRegular(size: 14)
 			}
 			Spacer()
-
+			
 			BaseButton(text: "Send", height: 56, disabled: false, style: .capsule) {
 				
 			}

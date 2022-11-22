@@ -32,11 +32,11 @@ struct SendView: View {
 						VStack {
 							CoinIconView(
 								network: Network.ethereum.rawValue,
-								contractAddress: coordinator.coin.contractAddress,
+								contractAddress: coordinator.sendCoin.contractAddress,
 								size: 44
 							)
 							
-							Text(coordinator.coin.name)
+							Text(coordinator.sendCoin.name)
 								.AvenirNextMedium(size: 16)
 						}
 						.padding(.top, 32)
@@ -46,7 +46,7 @@ struct SendView: View {
 								Text("From")
 									.AvenirNextRegular(size: 16)
 								Spacer()
-								Text("Balance: ", coordinator.coin.balance, " ", coordinator.coin.symbol)
+								Text("Balance: ", coordinator.sendCoin.balance, " ", coordinator.sendCoin.symbol)
 									.AvenirNextRegular(size: 14)
 							}
 
@@ -105,7 +105,7 @@ struct SendView: View {
 			}
 		}
 		.onAppear {
-			self.selectedCoin = account.coin!.toArray(Coin.self)[0]
+			self.selectedCoin = coordinator.sendCoin
 		}
 	}
 }

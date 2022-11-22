@@ -10,7 +10,7 @@ import UIKit
 import SwiftUI
 
 class SendCoordinator: Coordinator {
-	var coin: Coin
+	var sendCoin: Coin
 
 	var childCoordinators: [Coordinator] = []
 	
@@ -18,7 +18,7 @@ class SendCoordinator: Coordinator {
 	
 	init(coin: Coin, navigationController: UINavigationController) {
 		self.navigationController = navigationController
-		self.coin = coin
+		self.sendCoin = coin
 	}
 	
 	func start() {
