@@ -91,34 +91,12 @@ struct WalletView: View {
 		.onAppear {
 			vm.fetchBalance()
 		}
-		.sheet(isPresented: $vm.coinSheetVisible) {
-			VStack {
-				ScrollView {
-					ForEach(0 ..< vm.coins.indices.count, id: \.self) { index in
-						let coin = vm.coins[index]
-						Button {
-							Task {
-								vm.coinSheetVisible = false
-								try? await Task.sleep(seconds: 0.10)
-								coordinator.sendToken(coin: coin)
-							}
-						} label: {
-							HStack {
-								CoinIconView(network: coin.network, contractAddress: coin.contractAddress, size: 44)
-								Text(coin.symbol)
-									.AvenirNextMedium(size: 17)
-									.padding(.horizontal, 8)
-								Spacer()
-								Image(systemName: "chevron.right")
-									.size(17)
-							}
-							.foregroundColor(.black)
-						}
-						.padding(16)
-					}
-				}
+		.coinSelector(isVisible: $vm.coinSheetVisible, coins: vm.coins) { coin in
+			Task {
+				vm.coinSheetVisible = false
+				try? await Task.sleep(seconds: 0.10)
+				coordinator.sendToken(coin: coin)
 			}
-			.presentationDetents([.medium, .large])
 		}
 	}
 }

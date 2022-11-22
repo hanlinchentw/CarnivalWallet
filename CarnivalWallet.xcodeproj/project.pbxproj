@@ -72,6 +72,7 @@
 		B6B80EA8292BCD7B00995210 /* SendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B80EA7292BCD7B00995210 /* SendView.swift */; };
 		B6B80EAD292C558800995210 /* SendCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B80EAC292C558800995210 /* SendCoordinator.swift */; };
 		B6B80EAF292CF35400995210 /* SendAmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B80EAE292CF35400995210 /* SendAmountView.swift */; };
+		B6B80EB2292D002D00995210 /* CoinSelectorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B80EB1292D002D00995210 /* CoinSelectorSheet.swift */; };
 		B6C204A52915577100B11E72 /* WalletManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C204A42915577100B11E72 /* WalletManager.swift */; };
 		B6C204A72915F1EA00B11E72 /* Coin+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C204A62915F1EA00B11E72 /* Coin+Extensions.swift */; };
 		B6C204A92915F35400B11E72 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C204A82915F35400B11E72 /* MainCoordinator.swift */; };
@@ -196,6 +197,7 @@
 		B6B80EA7292BCD7B00995210 /* SendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendView.swift; sourceTree = "<group>"; };
 		B6B80EAC292C558800995210 /* SendCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendCoordinator.swift; sourceTree = "<group>"; };
 		B6B80EAE292CF35400995210 /* SendAmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendAmountView.swift; sourceTree = "<group>"; };
+		B6B80EB1292D002D00995210 /* CoinSelectorSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinSelectorSheet.swift; sourceTree = "<group>"; };
 		B6C204A42915577100B11E72 /* WalletManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletManager.swift; sourceTree = "<group>"; };
 		B6C204A62915F1EA00B11E72 /* Coin+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Coin+Extensions.swift"; sourceTree = "<group>"; };
 		B6C204A82915F35400B11E72 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
@@ -462,6 +464,14 @@
 			path = Transaction;
 			sourceTree = "<group>";
 		};
+		B6B80EB0292D002000995210 /* Selector */ = {
+			isa = PBXGroup;
+			children = (
+				B6B80EB1292D002D00995210 /* CoinSelectorSheet.swift */,
+			);
+			path = Selector;
+			sourceTree = "<group>";
+		};
 		B6C204A32915576700B11E72 /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
@@ -619,6 +629,7 @@
 		B6F7610628FC27A0006BEF79 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				B6B80EB0292D002000995210 /* Selector */,
 				B6B80E7C29252C2600995210 /* QRCode */,
 				B6B11D7D2913DEBE006F0591 /* Account */,
 				B6F7610828FC27AA006BEF79 /* Browser */,
@@ -963,6 +974,7 @@
 				B647F9E5290327C700940C3B /* WelcomeView.swift in Sources */,
 				B647F9E7290327D800940C3B /* ImportPhraseView.swift in Sources */,
 				B647F9ED29032A2A00940C3B /* TextFont.swift in Sources */,
+				B6B80EB2292D002D00995210 /* CoinSelectorSheet.swift in Sources */,
 				B639AE1A290CFB10008F4C72 /* PasswordInputView.swift in Sources */,
 				B6B80E8C2928A11B00995210 /* TokenSymbolProvider.swift in Sources */,
 				B6F760C828FC256B006BEF79 /* SceneDelegate.swift in Sources */,
