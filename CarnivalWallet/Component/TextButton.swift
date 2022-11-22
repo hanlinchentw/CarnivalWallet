@@ -9,18 +9,20 @@ import SwiftUI
 
 struct TextButton: View {
 	var text: String
+	var color: Color
 	var onPress: () -> Void
 
-	init(_ text: String, onPress: @escaping () -> Void) {
+	init(_ text: String, color: Color = .black, onPress: @escaping () -> Void) {
 		self.text = text
 		self.onPress = onPress
+		self.color = color
 	}
 	
 	var body: some View {
 		Button(action: onPress) {
 			Text(text)
 				.AvenirNextMedium(size: 14)
-//				.foregroundColor(.black)
+				.foregroundColor(color)
 		}
 		.buttonStyle(.plain)
 	}

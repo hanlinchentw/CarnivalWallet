@@ -114,10 +114,10 @@ struct ImportTokenView: View {
 		.tapToResign()
 		.header(
 			title: "Import Tokens",
-			icon: {
+			leftItem: {
 				Image(systemName: "chevron.left")
 			},
-			onPressedItem: dismiss
+			onPressedLeftItem: dismiss
 		)
 		.qrScannerSheet(
 			isVisible: $vm.presentScanQRCodeView,

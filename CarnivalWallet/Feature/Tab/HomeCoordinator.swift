@@ -44,4 +44,20 @@ class HomeCoordinator: Coordinator, ObservableObject {
 		let addTokenVC = UIHostingController(rootView: ImportTokenView().environmentObject(self))
 		navigationController.pushViewController(addTokenVC, animated: true)
 	}
+	
+	func sendToken() {
+		let nav = UINavigationController()
+		let coordinator = SendCoordinator(coin: .testUSDT, navigationController: nav)
+		coordinator.start()
+		nav.navigationBar.isHidden = true
+		nav.modalPresentationStyle = .fullScreen
+		self.navigationController.present(nav, animated: true)
+		self.childCoordinators.append(coordinator)
+	}
+	
+	func doTransaction() {
+		let transactionVC = TransactionViewController()
+		let nav = UINavigationController(rootViewController: transactionVC)
+		self.navigationController.present(nav, animated: true)
+	}
 }

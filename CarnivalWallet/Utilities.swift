@@ -30,8 +30,13 @@ extension Text {
 		self.init(verbatim: text ?? "")
 	}
 	
-	init(_ text1: String?, _ text2: String?) {
-		self.init("\(text1 ?? "") \(text2 ?? "")")
+//	init(_ text1: String?, _ text2: String?) {
+//		self.init("\(text1 ?? "") \(text2 ?? "")")
+//	}
+	
+	init(_ args: String?...) {
+		let string = args.compactMap { $0 }.reduce("", { $0 + $1 })
+		self.init(string)
 	}
 }
 

@@ -12,9 +12,11 @@ struct TokenAddressTextField: View {
 	var placeholder: String
 	@Binding var text: String
 	
+	var hideReturnButton: Bool = false
+
 	var onPaste: (_ text: String) -> Void
 	var onClickScanButton: VoidClosure
-	var onSubmit: VoidClosure
+	var onSubmit: VoidClosure = {}
 	
 	var body: some View {
 		VStack(spacing: 0) {
@@ -37,14 +39,14 @@ struct TokenAddressTextField: View {
 			.padding(.bottom, 10)
 			
 			
-			RoundedRectangle(cornerRadius: 4)
+			RoundedRectangle(cornerRadius: 8)
 				.strokeBorder(style: .init())
 				.overlay {
 					HStack {
 						TextField(placeholder, text: $text, onCommit: onSubmit)
 							.AvenirNextRegular(size: 14)
-							.padding(.vertical, 12)
-						if !text.isEmpty {
+							.padding(.vertical, 10)
+						if !text.isEmpty, !hideReturnButton {
 							Divider()
 								.padding(8)
 							Button {

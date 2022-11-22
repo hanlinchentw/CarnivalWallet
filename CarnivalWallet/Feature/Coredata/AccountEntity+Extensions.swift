@@ -25,7 +25,7 @@ extension AccountEntity {
 	static var testEthAccountEntity: AccountEntity {
 		let entity = AccountEntity.init(index: 0, name: "Account 1", address: "0x1e200594af3E23462a035076F3499295734a3c1d")
 		entity.fiatBalance = "176.56"
-//		entity.addToCoin(Coin.testUSDT)
+		entity.addToCoin(Coin.testUSDT)
 		return entity
 	}
 }

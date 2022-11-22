@@ -114,6 +114,7 @@ extension View {
 	func `capsule`(color: Color) -> some View {
 		return self.overlay(Capsule().background(color))
 	}
+
 	func `capsuleBorder`(style: RoundedCornerStyle = .continuous, borderColor: Color, borderWidth: CGFloat) -> some View {
 		return self.overlay(Capsule(style: style).stroke(borderColor, lineWidth: borderWidth))
 	}
@@ -174,22 +175,38 @@ extension View {
 
 extension View {
 	@ViewBuilder
-	func `header`<Content: View>(title: String, icon: () -> Content, onPressedItem: @escaping VoidClosure) -> some View {
+	func `header`<Content: View>(title: String,
+															 leftItem: () -> Content,
+															 onPressedLeftItem: @escaping VoidClosure,
+															 rightItem: (() -> Content)? = nil,
+															 onPressedRightItem: VoidClosure? = nil
+	) -> some View {
 		self
 			.padding(.top, SafeAreaUtils.top - 16)
+			.width(DeviceDimension.WIDTH)
 			.overlay(
 				VStack {
 					ZStack {
 						HStack {
 							Button {
-								onPressedItem()
+								onPressedLeftItem()
 							} label: {
-								icon()
+								leftItem()
 							}
 							.size(16)
 							.foregroundColor(.black)
 							.padding(.leading, 16)
 							Spacer()
+							if let rightItem {
+								Button {
+									onPressedRightItem?()
+								} label: {
+									rightItem()
+								}
+								.size(16)
+								.foregroundColor(.black)
+								.padding(.trailing, 16)
+							}
 						}
 						Text(title)
 							.AvenirNextMedium(size: 20)
@@ -199,5 +216,6 @@ extension View {
 					Spacer()
 				}
 			)
+			
 	}
 }

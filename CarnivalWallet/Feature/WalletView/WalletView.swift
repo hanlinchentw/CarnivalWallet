@@ -57,7 +57,7 @@ struct WalletView: View {
 							height: 48,
 							style: .capsule,
 							onPress: {
-								
+								coordinator.sendToken()
 							}
 						)
 						.foregroundColor(.white)

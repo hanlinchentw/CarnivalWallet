@@ -13,10 +13,15 @@ enum TextButtonStyle {
 	case outline
 }
 
+enum IconPosition {
+	case right
+	case left
+}
 struct BaseButton: View {
 	var text: String
 	var icon: String? = nil
 	var iconSize: CGFloat = 14
+	var iconPosition: IconPosition = .left
 	var textSize: CGFloat = 14
 	var fillColor: Color = .black
 	var width: CGFloat?
@@ -28,12 +33,16 @@ struct BaseButton: View {
 	var body: some View {
 		Button(action: onPress) {
 			HStack(spacing: 16) {
-				if let icon {
+				if let icon, iconPosition == .left {
 					Image(systemName: icon)
 						.size(iconSize)
 				}
 				Text(text)
 					.AvenirNextMedium(size: textSize)
+				if let icon, iconPosition == .right {
+					Image(systemName: icon)
+						.size(iconSize)
+				}
 			}
 			.foregroundColor(style == .outline ? fillColor: .white)
 		}
@@ -53,7 +62,7 @@ struct BaseButton: View {
 
 struct BaseButton_Previews: PreviewProvider {
 	static var previews: some View {
-		BaseButton(text: "Import", icon: "pencil.circle", width: DeviceDimension.WIDTH - 80, height: 56, style: .outline, onPress: {
+		BaseButton(text: "Import", icon: "pencil.circle", width: DeviceDimension.WIDTH - 80, height: 56,disabled: true, style: .capsule, onPress: {
 			
 		})
 		.foregroundColor(.blue)

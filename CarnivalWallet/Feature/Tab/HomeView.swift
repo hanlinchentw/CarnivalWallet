@@ -47,13 +47,18 @@ struct HomeView: View {
 			}
 			.header(
 				title: title,
-				icon: {
+				leftItem: {
 					Image(systemName: "line.3.horizontal")
 				},
-				onPressedItem: toggleMenu
+				onPressedLeftItem: toggleMenu,
+				rightItem: {
+					Image(systemName: "plus")
+				},
+				onPressedRightItem: {
+					coordinator.addToken()
+				}
 			)
 			.padding(.top, SafeAreaUtils.top)
-
 			SideMenuView(
 				visible: $sideBarVisible,
 				toggleMenu: toggleMenu,
