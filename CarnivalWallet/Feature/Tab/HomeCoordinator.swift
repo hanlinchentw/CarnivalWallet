@@ -45,9 +45,9 @@ class HomeCoordinator: Coordinator, ObservableObject {
 		navigationController.pushViewController(addTokenVC, animated: true)
 	}
 	
-	func sendToken() {
+	func sendToken(coin: Coin?) {
 		let nav = UINavigationController()
-		let coordinator = SendCoordinator(coin: .testUSDT, navigationController: nav)
+		let coordinator = SendCoordinator(coin: coin ?? coins[0], navigationController: nav)
 		coordinator.start()
 		nav.navigationBar.isHidden = true
 		nav.modalPresentationStyle = .fullScreen

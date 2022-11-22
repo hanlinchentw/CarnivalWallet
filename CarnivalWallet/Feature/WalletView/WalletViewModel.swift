@@ -10,6 +10,8 @@ import CoreData
 import BigInt
 
 class WalletViewModel: ObservableObject {
+	@Published var coinSheetVisible: Bool = false
+	
 	var coins: Array<Coin> {
 		AccountManager.current?.coin?.toArray(Coin.self) ?? []
 	}

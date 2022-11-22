@@ -23,7 +23,6 @@ enum WalletCTAType: String {
 struct WalletView: View {
 	@EnvironmentObject var coordinator: HomeCoordinator
 	@StateObject var vm = WalletViewModel()
-	
 	var body: some View {
 		ZStack {
 			Color.white
@@ -57,7 +56,7 @@ struct WalletView: View {
 							height: 48,
 							style: .capsule,
 							onPress: {
-								coordinator.sendToken()
+								vm.coinSheetVisible = true
 							}
 						)
 						.foregroundColor(.white)
@@ -91,6 +90,35 @@ struct WalletView: View {
 		}
 		.onAppear {
 			vm.fetchBalance()
+		}
+		.sheet(isPresented: $vm.coinSheetVisible) {
+			VStack {
+				ScrollView {
+					ForEach(0 ..< vm.coins.indices.count, id: \.self) { index in
+						let coin = vm.coins[index]
+						Button {
+							Task {
+								vm.coinSheetVisible = false
+								try? await Task.sleep(seconds: 0.10)
+								coordinator.sendToken(coin: coin)
+							}
+						} label: {
+							HStack {
+								CoinIconView(network: coin.network, contractAddress: coin.contractAddress, size: 44)
+								Text(coin.symbol)
+									.AvenirNextMedium(size: 17)
+									.padding(.horizontal, 8)
+								Spacer()
+								Image(systemName: "chevron.right")
+									.size(17)
+							}
+							.foregroundColor(.black)
+						}
+						.padding(16)
+					}
+				}
+			}
+			.presentationDetents([.medium, .large])
 		}
 	}
 }

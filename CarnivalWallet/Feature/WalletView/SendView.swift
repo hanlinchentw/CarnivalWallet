@@ -9,12 +9,10 @@ import SwiftUI
 
 struct SendView: View {
 	var coordinator: SendCoordinator
-	@Environment(\.presentationMode) var presentationMode
 	@State var sendToAddress = ""
 	
 	var account: AccountEntity {
-		return .testEthAccountEntity
-		//		return AccountManager.current
+		AccountManager.current!
 	}
 	
 	var balance: String? {
@@ -94,7 +92,7 @@ struct SendView: View {
 					}
 				}
 				Spacer()
-				BaseButton(text: "Next", height: 56, disabled: false, style: .capsule) {
+				BaseButton(text: "Next", height: 56, disabled: sendToAddress.isEmpty, style: .capsule) {
 					coordinator.confirmAmount()
 				}
 			}
