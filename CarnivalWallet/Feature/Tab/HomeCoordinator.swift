@@ -54,10 +54,4 @@ class HomeCoordinator: Coordinator, ObservableObject {
 		self.navigationController.present(nav, animated: true)
 		self.childCoordinators.append(coordinator)
 	}
-	
-	func doTransaction() {
-		let transactionVC = TransactionViewController()
-		let nav = UINavigationController(rootViewController: transactionVC)
-		self.navigationController.present(nav, animated: true)
-	}
 }

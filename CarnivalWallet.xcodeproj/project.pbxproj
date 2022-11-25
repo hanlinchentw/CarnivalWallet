@@ -73,6 +73,11 @@
 		B6B80EAD292C558800995210 /* SendCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B80EAC292C558800995210 /* SendCoordinator.swift */; };
 		B6B80EAF292CF35400995210 /* SendAmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B80EAE292CF35400995210 /* SendAmountView.swift */; };
 		B6B80EB2292D002D00995210 /* CoinSelectorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B80EB1292D002D00995210 /* CoinSelectorSheet.swift */; };
+		B6B80EB4292E4EDA00995210 /* RawData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B80EB3292E4EDA00995210 /* RawData.swift */; };
+		B6B80EB6292E4EE300995210 /* DataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B80EB5292E4EE300995210 /* DataType.swift */; };
+		B6B80EB8292E4F0600995210 /* TransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B80EB7292E4F0600995210 /* TransactionViewModel.swift */; };
+		B6B80EBA292E53F900995210 /* TransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B80EB9292E53F900995210 /* TransactionView.swift */; };
+		B6B80EBE292E7DE200995210 /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B80EBD292E7DE200995210 /* DividerView.swift */; };
 		B6C204A52915577100B11E72 /* WalletManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C204A42915577100B11E72 /* WalletManager.swift */; };
 		B6C204A72915F1EA00B11E72 /* Coin+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C204A62915F1EA00B11E72 /* Coin+Extensions.swift */; };
 		B6C204A92915F35400B11E72 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C204A82915F35400B11E72 /* MainCoordinator.swift */; };
@@ -198,6 +203,11 @@
 		B6B80EAC292C558800995210 /* SendCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendCoordinator.swift; sourceTree = "<group>"; };
 		B6B80EAE292CF35400995210 /* SendAmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendAmountView.swift; sourceTree = "<group>"; };
 		B6B80EB1292D002D00995210 /* CoinSelectorSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinSelectorSheet.swift; sourceTree = "<group>"; };
+		B6B80EB3292E4EDA00995210 /* RawData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawData.swift; sourceTree = "<group>"; };
+		B6B80EB5292E4EE300995210 /* DataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataType.swift; sourceTree = "<group>"; };
+		B6B80EB7292E4F0600995210 /* TransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewModel.swift; sourceTree = "<group>"; };
+		B6B80EB9292E53F900995210 /* TransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionView.swift; sourceTree = "<group>"; };
+		B6B80EBD292E7DE200995210 /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
 		B6C204A42915577100B11E72 /* WalletManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletManager.swift; sourceTree = "<group>"; };
 		B6C204A62915F1EA00B11E72 /* Coin+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Coin+Extensions.swift"; sourceTree = "<group>"; };
 		B6C204A82915F35400B11E72 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
@@ -308,6 +318,7 @@
 				B639AE2B290D4EB2008F4C72 /* TextButton.swift */,
 				B6B11D6E2911704E006F0591 /* CoinIconView.swift */,
 				B6B11D722912B6BA006F0591 /* IconButton.swift */,
+				B6B80EBD292E7DE200995210 /* DividerView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -460,6 +471,10 @@
 			isa = PBXGroup;
 			children = (
 				B6B80EA5292BC9F000995210 /* TransactionViewController.swift */,
+				B6B80EB3292E4EDA00995210 /* RawData.swift */,
+				B6B80EB5292E4EE300995210 /* DataType.swift */,
+				B6B80EB7292E4F0600995210 /* TransactionViewModel.swift */,
+				B6B80EB9292E53F900995210 /* TransactionView.swift */,
 			);
 			path = Transaction;
 			sourceTree = "<group>";
@@ -954,10 +969,13 @@
 				B6B80E8A292897AE00995210 /* WalletCoordinator.swift in Sources */,
 				B6F760C628FC256B006BEF79 /* AppDelegate.swift in Sources */,
 				B639AE30290D6A0F008F4C72 /* ValidatePhraseViewModel.swift in Sources */,
+				B6B80EB8292E4F0600995210 /* TransactionViewModel.swift in Sources */,
 				B6B80E8229252D9D00995210 /* ScannerView.swift in Sources */,
+				B6B80EB4292E4EDA00995210 /* RawData.swift in Sources */,
 				B6B6ED472923290D0093902A /* TokenAddressTextField.swift in Sources */,
 				B6B11D762912BF7F006F0591 /* WalletInfoView.swift in Sources */,
 				B639AE35290D7806008F4C72 /* Coordinator.swift in Sources */,
+				B6B80EBA292E53F900995210 /* TransactionView.swift in Sources */,
 				B6F7610328FC2781006BEF79 /* BrowserView.swift in Sources */,
 				B6B11D7F2913DEC7006F0591 /* AccountViewModel.swift in Sources */,
 				B6B11D812913FD9C006F0591 /* AccountUtils.swift in Sources */,
@@ -995,6 +1013,7 @@
 				B6B11D71291176B7006F0591 /* NetworkMapper.swift in Sources */,
 				B6C204D42917AECD00B11E72 /* CallRequest.swift in Sources */,
 				B6B11D732912B6BB006F0591 /* IconButton.swift in Sources */,
+				B6B80EB6292E4EE300995210 /* DataType.swift in Sources */,
 				B6C204E92923204000B11E72 /* EthereumUnit.swift in Sources */,
 				B647F9E0290315B900940C3B /* DeviceSize.swift in Sources */,
 				B6B80E982928C42E00995210 /* ImportTokenViewModel.swift in Sources */,
@@ -1029,6 +1048,7 @@
 				B6F7610128FC275C006BEF79 /* WalletView.swift in Sources */,
 				B6B11D6D29101DA5006F0591 /* AccountEntity+Extensions.swift in Sources */,
 				B639AE0E2909869D008F4C72 /* Color+Extension.swift in Sources */,
+				B6B80EBE292E7DE200995210 /* DividerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

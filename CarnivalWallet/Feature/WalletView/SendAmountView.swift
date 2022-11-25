@@ -8,34 +8,24 @@
 import SwiftUI
 
 struct SendAmountView: View {
-	var coordinator: SendCoordinator
-	
-	@State var useMax: Bool = false
-	@State var sendAmount = ""
+	@ObservedObject var coordinator: SendCoordinator
 	
 	var body: some View {
 		VStack {
 			VStack(spacing: 16) {
-				Button {
-					
-				} label: {
-					Text(coordinator.sendCoin.symbol)
-						.AvenirNextMedium(size: 14)
-						.foregroundColor(.white)
-				}
-				.padding()
-				.background(Color.black)
-				.height(32)
-				.cornerRadius(16)
+				Text(coordinator.sendCoin.symbol)
+					.AvenirNextMedium(size: 14)
+					.foregroundColor(.white)
+					.capsule(color: .black, radius: 16)
 				
-				TextField("0", text: $sendAmount)
+				TextField("0", text: $coordinator.sendAmount)
 					.AvenirNextMedium(size: 32)
 					.keyboardType(.decimalPad)
 					.multilineTextAlignment(.center)
 					.fixedSize()
 					.padding(.horizontal, 16)
 				TextButton("Send Max", color: .blue) {
-					sendAmount = coordinator.sendCoin.balance ?? ""
+					coordinator.sendAmount = coordinator.sendCoin.balance ?? ""
 				}
 				Text("Balance: ", coordinator.sendCoin.balance, " ", coordinator.sendCoin.symbol)
 					.AvenirNextRegular(size: 14)
@@ -43,7 +33,7 @@ struct SendAmountView: View {
 			Spacer()
 			
 			BaseButton(text: "Send", height: 56, disabled: false, style: .capsule) {
-				
+				coordinator.doTransaction()
 			}
 			.padding(16)
 		}

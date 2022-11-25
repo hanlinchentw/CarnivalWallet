@@ -8,21 +8,9 @@
 import SwiftUI
 
 struct SendView: View {
-	var coordinator: SendCoordinator
-	@State var sendToAddress = ""
-	
-	var account: AccountEntity {
-		AccountManager.current!
-	}
-	
-	var balance: String? {
-		let coins = account.coin?.toArray(Coin.self) ?? []
-		let eth = coins.last(where: { $0.symbol == "ETH" })
-		return eth?.balance
-	}
-	
-	@State var selectedCoin: Coin? = nil
-	
+	@ObservedObject var coordinator: SendCoordinator
+	@State var qrScannerVisible = false
+
 	var body: some View {
 		ZStack {
 			Color.white.ignoresSafeArea()
@@ -57,9 +45,9 @@ struct SendView: View {
 									.cornerRadius(20)
 								VStack(alignment: .leading) {
 									HStack {
-										Text(account.name)
+										Text(coordinator.account.name)
 											.AvenirNextMedium(size: 16)
-										Text(account.address)
+										Text(coordinator.account.address)
 											.AvenirNextRegular(size: 14)
 											.lineLimit(1)
 											.truncationMode(.middle)
@@ -80,19 +68,19 @@ struct SendView: View {
 							TokenAddressTextField(
 								title: "To",
 								placeholder: "Public address 0x...",
-								text: $sendToAddress,
+								text: $coordinator.sendToAddress,
 								hideReturnButton: true
 							) { text in
-								
+								self.coordinator.sendToAddress = text
 							} onClickScanButton: {
-								
+								self.qrScannerVisible = true
 							}
 						}
 						.padding(.top, 16)
 					}
 				}
 				Spacer()
-				BaseButton(text: "Next", height: 56, disabled: sendToAddress.isEmpty, style: .capsule) {
+				BaseButton(text: "Next", height: 56, disabled: coordinator.sendToAddress.isEmpty, style: .capsule) {
 					coordinator.confirmAmount()
 				}
 			}
@@ -103,9 +91,11 @@ struct SendView: View {
 			} onPressedLeftItem: {
 				coordinator.goBack()
 			}
-		}
-		.onAppear {
-			self.selectedCoin = coordinator.sendCoin
+			.qrScannerSheet(isVisible: $qrScannerVisible) { result in
+				self.coordinator.sendToAddress = result
+			} onClose: {
+				self.qrScannerVisible = false
+			}
 		}
 	}
 }

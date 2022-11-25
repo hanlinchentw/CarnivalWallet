@@ -111,10 +111,14 @@ extension View {
 }
 
 extension View {
-	func `capsule`(color: Color) -> some View {
-		return self.overlay(Capsule().background(color))
+	func `capsule`(color: Color, radius: CGFloat) -> some View {
+		return self
+			.padding()
+			.background(color)
+			.height(radius*2)
+			.cornerRadius(radius)
 	}
-
+	
 	func `capsuleBorder`(style: RoundedCornerStyle = .continuous, borderColor: Color, borderWidth: CGFloat) -> some View {
 		return self.overlay(Capsule(style: style).stroke(borderColor, lineWidth: borderWidth))
 	}
@@ -216,6 +220,6 @@ extension View {
 					Spacer()
 				}
 			)
-			
+		
 	}
 }
