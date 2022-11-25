@@ -11,7 +11,6 @@ import SwiftUI
 class TransactionViewController: UIViewController {
 	// MARK: - Properties
 	var viewModel: TransactionViewModel!
-	var transactionView: TransactionView!
 	// MARK: - Lifecycle
 	init(coin: Coin, rawData: RawData) {
 		self.viewModel = .init(coin: coin, rawData: rawData)
@@ -38,7 +37,8 @@ extension TransactionViewController {
 	}
 	
 	func setupTransactionView() {
-		transactionView = TransactionView(viewObject: createViewObject())
+		let onConfirm = { self.viewModel.signTransfer() }
+		let transactionView = TransactionView(viewObject: createViewObject(), onConfirm: onConfirm)
 		view.addSubview(transactionView)
 		transactionView.frame = view.bounds
 	}

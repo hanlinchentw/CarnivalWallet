@@ -16,19 +16,12 @@ struct TransactionViewObject {
 	let amountSymbol: String
 	let fee: String
 	let feeSymbol: String
-	
-	var totalAmountDisplayText: String {
-		if amountSymbol != feeSymbol {
-			return "\(amount) \(amountSymbol)\n+ \(fee) \(feeSymbol)"
-		} else {
-			let totalSpend = (amount.toDouble() + fee.toDouble()).toString()
-			return "\(totalSpend) \(amountSymbol)"
-		}
-	}
 }
 
 class TransactionView: UIView {
 	let viewObject: TransactionViewObject
+	let onConfirm: VoidClosure
+
 	private let amountCardContainer: UIStackView = {
 		let stack = UIStackView()
 		stack.backgroundColor = .black
@@ -130,13 +123,14 @@ class TransactionView: UIView {
 		config.attributedTitle = .init("Confirm", attributes: .init([.font: UIFont.AvenirNextBold(size: 20)]))
 		config.cornerStyle = .capsule
 		let button = UIButton(configuration: config, primaryAction: .init(handler: { _ in
-			print("tapped")
+			self.onConfirm()
 		}))
 		return button
 	}()
 	
-	init(viewObject: TransactionViewObject) {
+	init(viewObject: TransactionViewObject, onConfirm: @escaping VoidClosure) {
 		self.viewObject = viewObject
+		self.onConfirm = onConfirm
 		super.init(frame: .zero)
 		setupAmountCardContainer()
 		setupAddressContainer()
@@ -151,7 +145,6 @@ class TransactionView: UIView {
 
 extension TransactionView {
 	func setupAmountCardContainer() {
-		totalAmountLabel.text = viewObject.totalAmountDisplayText
 		amountLabel.text = "\(viewObject.amount) \(viewObject.amountSymbol)"
 		feeLabel.text = "\(viewObject.fee) \(viewObject.feeSymbol)"
 		amountCardContainer.addArrangedSubview(totalTitleLabel)

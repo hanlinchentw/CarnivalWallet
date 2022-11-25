@@ -9,8 +9,8 @@ import Foundation
 
 enum DataType {
 	case transfer
-	case tokenTransfer
-	case smart
-	case message
-	case typedData
+	case tokenTransfer(contractAddress: String)
+//	case smart
+//	case message
+//	case typedData
 }

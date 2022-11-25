@@ -62,7 +62,7 @@ class SendCoordinator: ObservableObject, Coordinator {
 			return
 		}
 		
-		let dataType = sendCoin.contractAddress == nil ? DataType.transfer : DataType.tokenTransfer
+		let dataType = sendCoin.contractAddress == nil ? DataType.transfer : DataType.tokenTransfer(contractAddress: sendCoin.contractAddress!)
 		let rawData = RawData(to: sendToAddress, from: from, amount: sendAmount, dataType: dataType)
 		let transactionVC = TransactionViewController(coin: sendCoin, rawData: rawData)
 		let nav = UINavigationController(rootViewController: transactionVC)
