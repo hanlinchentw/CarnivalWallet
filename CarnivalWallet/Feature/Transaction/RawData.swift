@@ -13,4 +13,11 @@ struct RawData {
 	let amount: String
 	let dataType: DataType
 	let data: String
+	var fee: Fee? = nil
+}
+
+struct Fee {
+	var gasPrice: String
+	var gas: String
+	let symbol: String
 }

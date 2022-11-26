@@ -30,10 +30,6 @@ extension Text {
 		self.init(verbatim: text ?? "")
 	}
 	
-	//	init(_ text1: String?, _ text2: String?) {
-	//		self.init("\(text1 ?? "") \(text2 ?? "")")
-	//	}
-	
 	init(_ args: String?...) {
 		let string = args.compactMap { $0 }.reduce("", { $0 + $1 })
 		self.init(string)
@@ -68,24 +64,6 @@ extension Double {
 	}
 }
 
-extension String {
-	func plus(_ string: String = "") -> String {
-		return (Double(self)! + Double(string)!).toString()
-	}
-	
-	func minus(_ string: String = "") -> String {
-		return (Double(self)! - Double(string)!).toString()
-	}
-	
-	func time(_ string: String = "") -> String {
-		return (Double(self)! * Double(string)!).toString()
-	}
-	
-	func divide(_ string: String = "") -> String {
-		return (Double(self)! / Double(string)!).toString()
-	}
-}
-
 extension String: Error {}
 
 extension String: LocalizedError {
@@ -95,8 +73,8 @@ extension String: LocalizedError {
 extension String {
 	func addPrefix(_ prefix: String) -> String {
 		return prefix + self
-		
 	}
+	
 	func deletePrefix(_ prefix: String) -> String {
 		guard self.hasPrefix(prefix) else { return self }
 		return String(self.dropFirst(prefix.count))
@@ -108,6 +86,11 @@ extension String {
 	
 	var drop0x: String {
 		self.deletePrefix("0x")
+	}
+}
+extension String {
+	subscript(i: Int) -> String {
+		return String(self[index(startIndex, offsetBy: i)])
 	}
 }
 
