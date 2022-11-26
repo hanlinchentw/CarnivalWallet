@@ -112,6 +112,7 @@ struct ImportTokenView: View {
 			.padding(.horizontal, 16)
 		}
 		.tapToResign()
+		.toolbar(.hidden)
 		.header(
 			title: "Import Tokens",
 			leftItem: {
@@ -119,10 +120,12 @@ struct ImportTokenView: View {
 			},
 			onPressedLeftItem: dismiss
 		)
-		.qrScannerSheet(
-			isVisible: $vm.presentScanQRCodeView,
-			onScan: vm.onScan,
-			onClose: vm.onCloseQRScanner)
+		.sheet(isPresented: $vm.presentScanQRCodeView, content: {
+			ScannerView(
+				onScan: vm.onScan,
+				onClose: vm.onCloseQRScanner
+			).ignoresSafeArea()
+		})
 		.onReceive(vm.dismiss) { _ in
 			self.dismiss()
 		}
@@ -132,6 +135,5 @@ struct ImportTokenView: View {
 struct AddTokenView_Previews: PreviewProvider {
 	static var previews: some View {
 		ImportTokenView()
-			.environmentObject(WalletCoordinator(navigationController: .init()))
 	}
 }

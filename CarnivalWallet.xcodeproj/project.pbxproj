@@ -59,8 +59,6 @@
 		B6B6ED472923290D0093902A /* TokenAddressTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B6ED462923290D0093902A /* TokenAddressTextField.swift */; };
 		B6B80E8029252D2A00995210 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B80E7F29252D2A00995210 /* ScannerViewController.swift */; };
 		B6B80E8229252D9D00995210 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B80E8129252D9D00995210 /* ScannerView.swift */; };
-		B6B80E862928788200995210 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B80E852928788200995210 /* HomeCoordinator.swift */; };
-		B6B80E8A292897AE00995210 /* WalletCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B80E89292897AE00995210 /* WalletCoordinator.swift */; };
 		B6B80E932928AFBC00995210 /* TokenInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B80E922928AFBC00995210 /* TokenInfoProvider.swift */; };
 		B6B80E962928AFCD00995210 /* TokenInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B80E952928AFCD00995210 /* TokenInfo.swift */; };
 		B6B80E982928C42E00995210 /* ImportTokenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B80E972928C42E00995210 /* ImportTokenViewModel.swift */; };
@@ -69,7 +67,6 @@
 		B6B80EA4292948ED00995210 /* TokenInfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B80EA3292948ED00995210 /* TokenInfoRow.swift */; };
 		B6B80EA6292BC9F000995210 /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B80EA5292BC9F000995210 /* TransactionViewController.swift */; };
 		B6B80EA8292BCD7B00995210 /* SendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B80EA7292BCD7B00995210 /* SendView.swift */; };
-		B6B80EAD292C558800995210 /* SendCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B80EAC292C558800995210 /* SendCoordinator.swift */; };
 		B6B80EAF292CF35400995210 /* SendAmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B80EAE292CF35400995210 /* SendAmountView.swift */; };
 		B6B80EB2292D002D00995210 /* CoinSelectorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B80EB1292D002D00995210 /* CoinSelectorSheet.swift */; };
 		B6B80EB4292E4EDA00995210 /* RawData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B80EB3292E4EDA00995210 /* RawData.swift */; };
@@ -88,6 +85,7 @@
 		B6B80ED62931F76D00995210 /* TransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B80ED52931F76D00995210 /* TransactionPresenter.swift */; };
 		B6B80ED82931F78100995210 /* TransactionViewObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B80ED72931F78100995210 /* TransactionViewObject.swift */; };
 		B6B80EDB2932183A00995210 /* ERC20Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B80EDA2932183A00995210 /* ERC20Decoder.swift */; };
+		B6B80EDD29328F5800995210 /* TransactionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B80EDC29328F5800995210 /* TransactionCoordinator.swift */; };
 		B6C204A52915577100B11E72 /* WalletManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C204A42915577100B11E72 /* WalletManager.swift */; };
 		B6C204A72915F1EA00B11E72 /* Coin+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C204A62915F1EA00B11E72 /* Coin+Extensions.swift */; };
 		B6C204A92915F35400B11E72 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C204A82915F35400B11E72 /* MainCoordinator.swift */; };
@@ -199,8 +197,6 @@
 		B6B6ED462923290D0093902A /* TokenAddressTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenAddressTextField.swift; sourceTree = "<group>"; };
 		B6B80E7F29252D2A00995210 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		B6B80E8129252D9D00995210 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
-		B6B80E852928788200995210 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
-		B6B80E89292897AE00995210 /* WalletCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCoordinator.swift; sourceTree = "<group>"; };
 		B6B80E922928AFBC00995210 /* TokenInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenInfoProvider.swift; sourceTree = "<group>"; };
 		B6B80E952928AFCD00995210 /* TokenInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenInfo.swift; sourceTree = "<group>"; };
 		B6B80E972928C42E00995210 /* ImportTokenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportTokenViewModel.swift; sourceTree = "<group>"; };
@@ -209,7 +205,6 @@
 		B6B80EA3292948ED00995210 /* TokenInfoRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenInfoRow.swift; sourceTree = "<group>"; };
 		B6B80EA5292BC9F000995210 /* TransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewController.swift; sourceTree = "<group>"; };
 		B6B80EA7292BCD7B00995210 /* SendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendView.swift; sourceTree = "<group>"; };
-		B6B80EAC292C558800995210 /* SendCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendCoordinator.swift; sourceTree = "<group>"; };
 		B6B80EAE292CF35400995210 /* SendAmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendAmountView.swift; sourceTree = "<group>"; };
 		B6B80EB1292D002D00995210 /* CoinSelectorSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinSelectorSheet.swift; sourceTree = "<group>"; };
 		B6B80EB3292E4EDA00995210 /* RawData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawData.swift; sourceTree = "<group>"; };
@@ -228,6 +223,7 @@
 		B6B80ED52931F76D00995210 /* TransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionPresenter.swift; sourceTree = "<group>"; };
 		B6B80ED72931F78100995210 /* TransactionViewObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewObject.swift; sourceTree = "<group>"; };
 		B6B80EDA2932183A00995210 /* ERC20Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERC20Decoder.swift; sourceTree = "<group>"; };
+		B6B80EDC29328F5800995210 /* TransactionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCoordinator.swift; sourceTree = "<group>"; };
 		B6C204A42915577100B11E72 /* WalletManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletManager.swift; sourceTree = "<group>"; };
 		B6C204A62915F1EA00B11E72 /* Coin+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Coin+Extensions.swift"; sourceTree = "<group>"; };
 		B6C204A82915F35400B11E72 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
@@ -394,7 +390,6 @@
 			children = (
 				B647F9D32903056900940C3B /* HomeView.swift */,
 				B6C204A82915F35400B11E72 /* MainCoordinator.swift */,
-				B6B80E852928788200995210 /* HomeCoordinator.swift */,
 			);
 			path = Tab;
 			sourceTree = "<group>";
@@ -497,6 +492,7 @@
 				B6B80EB9292E53F900995210 /* TransactionView.swift */,
 				B6B80ED52931F76D00995210 /* TransactionPresenter.swift */,
 				B6B80ED72931F78100995210 /* TransactionViewObject.swift */,
+				B6B80EDC29328F5800995210 /* TransactionCoordinator.swift */,
 			);
 			path = Transaction;
 			sourceTree = "<group>";
@@ -727,10 +723,8 @@
 				B6B11D742912BF67006F0591 /* Component */,
 				B6F7610028FC275C006BEF79 /* WalletView.swift */,
 				B6C204BC2916468900B11E72 /* WalletViewModel.swift */,
-				B6B80E89292897AE00995210 /* WalletCoordinator.swift */,
 				B6B80EA7292BCD7B00995210 /* SendView.swift */,
 				B6B80EAE292CF35400995210 /* SendAmountView.swift */,
-				B6B80EAC292C558800995210 /* SendCoordinator.swift */,
 			);
 			path = WalletView;
 			sourceTree = "<group>";
@@ -1019,9 +1013,7 @@
 				B6B6ED45292326AA0093902A /* ImportTokenView.swift in Sources */,
 				B6B80EDB2932183A00995210 /* ERC20Decoder.swift in Sources */,
 				B6C204EE2923243800B11E72 /* WalletCoinListItemViewModel.swift in Sources */,
-				B6B80EAD292C558800995210 /* SendCoordinator.swift in Sources */,
 				B647F9E229031E8D00940C3B /* MenuContentView.swift in Sources */,
-				B6B80E8A292897AE00995210 /* WalletCoordinator.swift in Sources */,
 				B6B80EC62930E6FF00995210 /* GasPriceRequest.swift in Sources */,
 				B6F760C628FC256B006BEF79 /* AppDelegate.swift in Sources */,
 				B639AE30290D6A0F008F4C72 /* ValidatePhraseViewModel.swift in Sources */,
@@ -1045,7 +1037,6 @@
 				B6B80ECE2930EB8000995210 /* EstimateGasProvider.swift in Sources */,
 				B647F9D42903056900940C3B /* HomeView.swift in Sources */,
 				B6C204C32916510300B11E72 /* BalanceRequest.swift in Sources */,
-				B6B80E862928788200995210 /* HomeCoordinator.swift in Sources */,
 				B6C204BD2916468900B11E72 /* WalletViewModel.swift in Sources */,
 				B6B80E932928AFBC00995210 /* TokenInfoProvider.swift in Sources */,
 				B647F9E5290327C700940C3B /* WelcomeView.swift in Sources */,
@@ -1073,6 +1064,7 @@
 				B6B11D71291176B7006F0591 /* NetworkMapper.swift in Sources */,
 				B6C204D42917AECD00B11E72 /* CallRequest.swift in Sources */,
 				B6B11D732912B6BB006F0591 /* IconButton.swift in Sources */,
+				B6B80EDD29328F5800995210 /* TransactionCoordinator.swift in Sources */,
 				B6B80EB6292E4EE300995210 /* DataType.swift in Sources */,
 				B6C204E92923204000B11E72 /* EthereumUnit.swift in Sources */,
 				B647F9E0290315B900940C3B /* DeviceSize.swift in Sources */,

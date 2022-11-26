@@ -6,48 +6,87 @@
 //
 
 import SwiftUI
+import WalletCore
+
+struct SendAmountViewObject: Hashable {
+	var coin: Coin
+	var sendToAddress: String
+}
 
 struct SendAmountView: View {
-	@ObservedObject var coordinator: SendCoordinator
+	@Environment(\.presentationMode) var presentationMode
+
+	var viewObject: SendAmountViewObject
+
+	@Binding var path: NavigationPath
+	@State var sendAmount = ""
+	@State var useMax: Bool = false
+
+	var account: AccountEntity {
+		AccountManager.current ?? .testEthAccountEntity
+	}
 	
 	var body: some View {
 		VStack {
 			VStack(spacing: 16) {
-				Text(coordinator.sendCoin.symbol)
+				Text(viewObject.coin.symbol)
 					.AvenirNextMedium(size: 14)
 					.foregroundColor(.white)
 					.capsule(color: .black, radius: 16)
 				
-				TextField("0", text: $coordinator.sendAmount)
+				TextField("0", text: $sendAmount)
 					.AvenirNextMedium(size: 32)
 					.keyboardType(.decimalPad)
 					.multilineTextAlignment(.center)
-					.fixedSize()
-					.padding(.horizontal, 16)
+					.padding(.horizontal, 32)
+
 				TextButton("Send Max", color: .blue) {
-					coordinator.sendAmount = coordinator.sendCoin.balance ?? ""
+					self.sendAmount = viewObject.coin.balance ?? ""
 				}
-				Text("Balance: ", coordinator.sendCoin.balance, " ", coordinator.sendCoin.symbol)
+				Text("Balance: ", viewObject.coin.balance, " ", viewObject.coin.symbol)
 					.AvenirNextRegular(size: 14)
 			}
 			Spacer()
 			
 			BaseButton(text: "Send", height: 56, disabled: false, style: .capsule) {
-				coordinator.doTransaction()
+				guard AnyAddress.isValid(string: self.viewObject.sendToAddress, coin: .ethereum) else {
+					return
+				}
+				if let rawData = self.mapRawData() {
+					let coordinator = TransactionCoordinator(coin: viewObject.coin, rawData: rawData)
+					coordinator.start()
+				}
 			}
 			.padding(16)
 		}
 		.padding(.top, 90)
+		.toolbar(.hidden)
 		.header(title: "Amount", leftItem: {
 			Image(systemName: "chevron.left")
 		}, onPressedLeftItem: {
-			coordinator.goBack()
+			path.removeLast()
 		})
+	}
+	
+	func mapRawData() -> RawData? {
+		guard let from = account.address else {
+			return nil
+		}
+		let sendCoin = viewObject.coin
+		let sendToAddress = viewObject.sendToAddress
+
+		if let contractAddress = sendCoin.contractAddress {
+			let sendAmountNumber = EtherNumberFormatter.full.number(from: sendAmount, decimals: sendCoin.decimals.toInt())
+			let sendHexString = String(sendAmountNumber!, radix: 16).padZeroToEvenLength()
+			let data = ERC20Encoder.encodeTransfer(to: sendToAddress, value: sendHexString).hexString
+			return .init(to: contractAddress, from: from, amount: "0", dataType: .tokenTransfer, data: data.add0x)
+		}
+		return .init(to: sendToAddress, from: from, amount: sendAmount, dataType: .transfer, data: "0x")
 	}
 }
 
 struct SendAmountView_Previews: PreviewProvider {
 	static var previews: some View {
-		SendAmountView(coordinator: .init(coin: .testUSDT, navigationController: .init()))
+		SendAmountView(viewObject: .init(coin: .testETH, sendToAddress: ""), path: .constant(.init()))
 	}
 }

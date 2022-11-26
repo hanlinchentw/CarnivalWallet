@@ -33,6 +33,9 @@ struct TransactionPresenter {
 		
 	}
 	
+	var isLoadingFee: Bool {
+		return fee == nil
+	}
 	var feeDisplayText: String? {
 		guard rawData.fee != nil else {
 			return nil
@@ -63,9 +66,9 @@ struct TransactionPresenter {
 	
 	var amount: String {
 		if rawData.dataType == .tokenTransfer {
-			let amountPart = String(rawData.data.suffix(64)).trimPrefix0()
-			let decodedAmount = BigInt(amountPart, radix: 16)
-			return EtherNumberFormatter.full.string(from: decodedAmount!, decimals: coin.decimals.toInt())
+			let (_, amount) = ERC20Decoder.decodeTokenTransfer(data: rawData.data)
+			let amountBig = BigInt(amount, radix: 16)
+			return EtherNumberFormatter.short.string(from: amountBig!, decimals: coin.decimals.toInt())
 		}
 		return rawData.amount
 	}
@@ -83,7 +86,6 @@ struct TransactionPresenter {
 		guard let fee = fee else {
 			return attributedString
 		}
-		
 		if rawData.dataType == .tokenTransfer {
 			attributedString.append(.init(string: "\n+ \(feeDisplayText!)",
 																		attributes: [
@@ -92,7 +94,12 @@ struct TransactionPresenter {
 																		]))
 			return attributedString
 		} else {
-			return NSAttributedString(string: (amount.toDouble() + fee.toDouble()).toString() + " " + amountSymbol)
+			let sum = amount.toDouble() + fee.toDouble()
+			return NSAttributedString(string: "\(sum) \(amountSymbol)",
+																attributes: [
+																	.font : UIFont.AvenirNextBold(size: 28),
+																	.foregroundColor: UIColor.black
+																])
 		}
 	}
 }

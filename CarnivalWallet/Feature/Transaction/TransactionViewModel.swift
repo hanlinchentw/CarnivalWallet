@@ -50,7 +50,6 @@ class TransactionViewModel {
 	func signTransfer() {
 		Task {
 			do {
-				print("viewModel signTransfer")
 				guard let password = try? SecureManager.getGenericPassowrd(),
 							let privateKey = try? SecureManager.getPrivateKey(password: password) else {
 					throw SecureManager.PasswordRetrivedError()
@@ -100,17 +99,11 @@ extension TransactionViewModel {
 
 	func loadCoinIcon() {
 		Task {
-			guard let contractAddress = coin.contractAddress else {
-				return
-			}
-			let url = getIconURL(network: Network.ethereum.rawValue.lowercased(), contractAddress: contractAddress)
-			print("urlstring >>> \(url.absoluteString)")
-			guard let data = try? await URLSession.shared.data(from: url).0 else {
-				return
-			}
-			
-			DispatchQueue.main.async {
-				self.coinIconData = data
+			if let contractAddress = coin.contractAddress {
+				let url = getIconURL(network: Network.ethereum.rawValue.lowercased(), contractAddress: contractAddress)
+				self.coinIconData = try? await URLSession.shared.data(from: url).0
+			} else {
+				self.coinIconData = UIImage(named: "ethereum")?.pngData()
 			}
 		}
 	}

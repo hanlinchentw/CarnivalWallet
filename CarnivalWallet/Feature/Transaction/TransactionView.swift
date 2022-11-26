@@ -13,6 +13,11 @@ import Combine
 class TransactionView: UIView {
 	@Published var presenter: TransactionPresenter? = nil
 
+	private let indicatorView: UIActivityIndicatorView = {
+		let indicator = UIActivityIndicatorView(style: .gray)
+		return indicator
+	}()
+	
 	private let totalAmountStackView: UIStackView = {
 		let stack = UIStackView()
 		stack.axis = .vertical
@@ -90,6 +95,8 @@ class TransactionView: UIView {
 			self.toAddressLabel.text = presenter.toAddress
 			self.feeLabel.text = presenter.feeDisplayText
 			self.totalAmountLabel.attributedText = presenter.totalAmountDisplayText
+			
+			presenter.isLoadingFee ? self.indicatorView.startAnimating() : self.indicatorView.stopAnimating()
 		}
 		.store(in: &set)
 	}
@@ -103,7 +110,9 @@ extension TransactionView {
 		totalAmountStackView.translatesAutoresizingMaskIntoConstraints = false
 		NSLayoutConstraint.activate([
 			totalAmountStackView.topAnchor.constraint(equalTo: topAnchor),
-			totalAmountStackView.centerXAnchor.constraint(equalTo: centerXAnchor)
+			totalAmountStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
+			totalAmountStackView.leftAnchor.constraint(equalTo: leftAnchor, constant: 32),
+			totalAmountStackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -32)
 		])
 	}
 
@@ -111,7 +120,7 @@ extension TransactionView {
 		let amountStack = UIStackView(arrangedSubviews: [amountTitleLabel, amountLabel])
 		amountStack.axis = .horizontal
 		amountStack.distribution = .fillProportionally
-		let feeStack = UIStackView(arrangedSubviews: [feeTitleLabel, feeLabel])
+		let feeStack = UIStackView(arrangedSubviews: [feeTitleLabel, feeLabel, indicatorView])
 		feeStack.axis = .horizontal
 		feeStack.distribution = .fillProportionally
 		detailCardContainer.addArrangedSubview(amountStack)

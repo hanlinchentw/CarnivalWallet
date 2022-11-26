@@ -8,9 +8,19 @@
 import SwiftUI
 
 struct SendView: View {
-	@ObservedObject var coordinator: SendCoordinator
+	var coin: Coin
+	//	@ObservedObject var coordinator: SendCoordinator
+	@Environment(\.presentationMode) var presentationMode
+	@Binding var path: NavigationPath
 	@State var qrScannerVisible = false
-
+	@State var useMax: Bool = false
+	@State var sendAmount = ""
+	@State var sendToAddress = ""
+	
+	var account: AccountEntity {
+		AccountManager.current ?? .testEthAccountEntity
+	}
+	
 	var body: some View {
 		ZStack {
 			Color.white.ignoresSafeArea()
@@ -20,24 +30,24 @@ struct SendView: View {
 						VStack {
 							CoinIconView(
 								network: Network.ethereum.rawValue,
-								contractAddress: coordinator.sendCoin.contractAddress,
+								contractAddress: coin.contractAddress,
 								size: 44
 							)
 							
-							Text(coordinator.sendCoin.name)
+							Text(coin.name)
 								.AvenirNextMedium(size: 16)
 						}
 						.padding(.top, 32)
-
+						
 						VStack(alignment: .leading) {
 							HStack {
 								Text("From")
 									.AvenirNextRegular(size: 16)
 								Spacer()
-								Text("Balance: ", coordinator.sendCoin.balance, " ", coordinator.sendCoin.symbol)
+								Text("Balance: ", coin.balance, " ", coin.symbol)
 									.AvenirNextRegular(size: 14)
 							}
-
+							
 							HStack {
 								Image(name: "mouse_avatar")
 									.resizable()
@@ -45,33 +55,31 @@ struct SendView: View {
 									.cornerRadius(20)
 								VStack(alignment: .leading) {
 									HStack {
-										Text(coordinator.account.name)
+										Text(account.name)
 											.AvenirNextMedium(size: 16)
-										Text(coordinator.account.address)
+										Text(account.address)
 											.AvenirNextRegular(size: 14)
 											.lineLimit(1)
 											.truncationMode(.middle)
 									}
 								}
 								.padding(.horizontal, 8)
-								
-								
 								Spacer()
 								Image(systemName: "chevron.down")
 							}
 							.height(56)
 							.padding(.trailing, 8)
 						}
-							.padding(.top, 16)
+						.padding(.top, 16)
 						
 						VStack(alignment: .leading) {
 							TokenAddressTextField(
 								title: "To",
 								placeholder: "Public address 0x...",
-								text: $coordinator.sendToAddress,
+								text: $sendToAddress,
 								hideReturnButton: true
 							) { text in
-								self.coordinator.sendToAddress = text
+								self.sendToAddress = text
 							} onClickScanButton: {
 								self.qrScannerVisible = true
 							}
@@ -80,28 +88,36 @@ struct SendView: View {
 					}
 				}
 				Spacer()
-				BaseButton(text: "Next", height: 56, disabled: coordinator.sendToAddress.isEmpty, style: .capsule) {
-					coordinator.confirmAmount()
+				BaseButton(text: "Next", height: 56, disabled: sendToAddress.isEmpty, style: .capsule) {
+					path.append(
+						SendAmountViewObject(coin: coin, sendToAddress: sendToAddress)
+					)
 				}
 			}
 			.padding(.top, 16)
 			.padding(.horizontal, 20)
+			.toolbar(.hidden)
 			.header(title: "Send to") {
-				Image(systemName: "xmark")
+				Image(systemName: "chevron.left")
 			} onPressedLeftItem: {
-				coordinator.goBack()
+				presentationMode.wrappedValue.dismiss()
 			}
-			.qrScannerSheet(isVisible: $qrScannerVisible) { result in
-				self.coordinator.sendToAddress = result
-			} onClose: {
-				self.qrScannerVisible = false
-			}
+			.sheet(isPresented: $qrScannerVisible, content: {
+				ScannerView(
+					onScan: { result in
+						self.sendToAddress = result
+					},
+					onClose: {
+						self.qrScannerVisible = false
+					}
+				).ignoresSafeArea()
+			})
 		}
 	}
 }
 
 struct SendView_Previews: PreviewProvider {
 	static var previews: some View {
-		SendView(coordinator: .init(coin: .testETH, navigationController: .init()))
+		SendView(coin: .testETH, path: .constant(.init()))
 	}
 }

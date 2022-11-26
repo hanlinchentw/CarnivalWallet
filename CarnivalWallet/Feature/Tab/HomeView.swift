@@ -26,44 +26,59 @@ enum Screen: Int, CaseIterable {
 }
 
 struct HomeView: View {
-	@EnvironmentObject var coordinator: HomeCoordinator
+	@State var selectedScreen: Int = 0
 	@State private var sideBarVisible = false
+
+	var coins: Array<Coin> {
+		AccountManager.current?.coin?.allObjects as? Array<Coin> ?? []
+	}
 	
 	var title: String {
-		Screen.allCases[coordinator.selectedScreen].navigationTitle
+		Screen.allCases[selectedScreen].navigationTitle
 	}
 	
 	init() {
 		UITabBar.appearance().isHidden = true
 	}
-
+	
+	@State private var path = NavigationPath()
+	
 	var body: some View {
-		ZStack {
-			Color.white.ignoresSafeArea()
-			TabView(selection: $coordinator.selectedScreen) {
-				coordinator.startWalletView().tag(0)
-				BrowserView().tag(1)
-				WalletConnectView().tag(2)
-			}
-			.header(
-				title: title,
-				leftItem: {
-					Image(systemName: "line.3.horizontal")
-				},
-				onPressedLeftItem: toggleMenu,
-				rightItem: {
-					Image(systemName: "plus")
-				},
-				onPressedRightItem: {
-					coordinator.addToken()
+		NavigationStack(path: $path) {
+			ZStack {
+				Color.white.ignoresSafeArea()
+				TabView(selection: $selectedScreen) {
+					WalletView(path: $path)
+						.tag(0)
+						.navigationDestination(for: Coin.self) { coin in
+							SendView(coin: coin, path: $path)
+						}
+						.navigationDestination(for: SendAmountViewObject.self) {
+							SendAmountView(viewObject: $0, path: $path)
+						}
+						.navigationDestination(for: String.self) { routeName in
+							if routeName == "Import Tokens" {
+								ImportTokenView()
+							}
+						}
+					BrowserView().tag(1)
+					WalletConnectView().tag(2)
 				}
-			)
-			.padding(.top, SafeAreaUtils.top)
-			SideMenuView(
-				visible: $sideBarVisible,
-				toggleMenu: toggleMenu,
-				tapItem: tapItem
-			)
+				.header(
+					title: title,
+					leftItem: {
+						Image(systemName: "line.3.horizontal")
+					},
+					onPressedLeftItem: toggleMenu
+				)
+				.padding(.top, SafeAreaUtils.top)
+				SideMenuView(
+					visible: $sideBarVisible,
+					toggleMenu: toggleMenu,
+					tapItem: tapItem
+				)
+			}
+			
 		}
 	}
 	
@@ -79,7 +94,7 @@ struct HomeView: View {
 		{ item in
 			switch item {
 			case .Wallet, .Browser, .WalletConnect:
-				coordinator.switchScreen(screenIndex: item.rawValue)
+				selectedScreen = item.rawValue
 			case .Etherscan:
 				return
 			case .Logout:
@@ -87,7 +102,6 @@ struct HomeView: View {
 					if let password = try SecureManager.getGenericPassowrd() {
 						try SecureManager.keystore.delete(wallet: wallet, password: password)
 						try SecureManager.reset()
-						//						coordinator.setup()
 					}
 				}
 			}
@@ -99,8 +113,5 @@ struct HomeView: View {
 struct TabView_Previews: PreviewProvider {
 	static var previews: some View {
 		HomeView()
-			.environmentObject({() -> HomeCoordinator in
-				return HomeCoordinator(navigationController: .init())
-			}())
 	}
 }

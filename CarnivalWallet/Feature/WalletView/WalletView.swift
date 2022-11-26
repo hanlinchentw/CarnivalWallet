@@ -21,8 +21,11 @@ enum WalletCTAType: String {
 }
 
 struct WalletView: View {
-	@EnvironmentObject var coordinator: HomeCoordinator
+	@Binding var path: NavigationPath
 	@StateObject var vm = WalletViewModel()
+	
+//	@State private var path = NavigationPath()
+
 	var body: some View {
 		ZStack {
 			Color.white
@@ -72,13 +75,17 @@ struct WalletView: View {
 					VStack(spacing: 6) {
 						Text("Don't see your token?")
 							.AvenirNextMedium(size: 16)
-						Button {
-							coordinator.addToken()
-						} label: {
+						NavigationLink(value: "Import Tokens") {
 							Text("Import Tokens")
 								.AvenirNextMedium(size: 14)
 								.foregroundColor(.blue)
 						}
+//						Button {
+//
+////								coordinator.addToken()
+//						} label: {
+//
+//						}
 					}
 					.padding(.top, 16)
 				}
@@ -95,17 +102,19 @@ struct WalletView: View {
 			Task {
 				vm.coinSheetVisible = false
 				try? await Task.sleep(seconds: 0.10)
-				coordinator.sendToken(coin: coin)
+				path.append(coin)
+//				coordinator.sendToken(coin: coin)
 			}
 		}
+		
 	}
 }
 
 struct WalletView_Previews: PreviewProvider {
 	static var previews: some View {
-		WalletView()
-			.environmentObject({() -> WalletCoordinator in
-				return WalletCoordinator(navigationController: .init())
-			}())
+		WalletView(path: .constant(.init()))
+//			.environmentObject({() -> WalletCoordinator in
+//				return WalletCoordinator(navigationController: .init())
+//			}())
 	}
 }

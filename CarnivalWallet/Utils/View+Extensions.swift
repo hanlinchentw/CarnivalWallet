@@ -163,21 +163,6 @@ extension View {
 }
 
 extension View {
-	func `qrScannerSheet`(
-		isVisible: Binding<Bool>,
-		onScan: @escaping (_ result: String) -> Void,
-		onClose: @escaping VoidClosure
-	) -> some View {
-		return self.sheet(isPresented: isVisible, content: {
-			ScannerView(
-				onScan: onScan,
-				onClose: onClose
-			).ignoresSafeArea()
-		})
-	}
-}
-
-extension View {
 	@ViewBuilder
 	func `header`<Content: View>(title: String,
 															 leftItem: () -> Content,

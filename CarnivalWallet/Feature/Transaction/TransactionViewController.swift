@@ -67,7 +67,7 @@ class TransactionViewController: UIViewController {
 	}
 	
 	func bindCoinIcon() {
-		viewModel.$coinIconData.sink { data in
+		viewModel.$coinIconData.receive(on: RunLoop.main).sink { data in
 			if let data {
 				self.coinIconImageView.image = UIImage(data: data)
 			}

@@ -19,9 +19,9 @@ class MainCoordinator: ObservableObject, Coordinator {
 	
 	func start() {
 		self.navigationController.navigationBar.isHidden = true
-		let homeCoordinator = HomeCoordinator(navigationController: navigationController)
-		childCoordinators.append(homeCoordinator)
-		homeCoordinator.start()
+		let homeView = HomeView()
+		let homeVC = UIHostingController(rootView: homeView)
+		navigationController.pushViewController(homeVC, animated: true)
 		if SecureManager.keystore.wallets.isEmpty {
 			setup()
 		}
@@ -34,19 +34,8 @@ class MainCoordinator: ObservableObject, Coordinator {
 	}
 	
 	func finishSetup() {
-		let homeCoordinator = HomeCoordinator(navigationController: navigationController)
-		childCoordinators.append(homeCoordinator)
-		homeCoordinator.start()
-	}
-}
-
-extension MainCoordinator {
-	func childDidFinish(_ child: Coordinator?) {
-		for (index, coordinator) in childCoordinators.enumerated() {
-			if coordinator === child {
-				childCoordinators.remove(at: index)
-				break
-			}
-		}
+		let homeView = HomeView()
+		let homeVC = UIHostingController(rootView: homeView)
+		navigationController.pushViewController(homeVC, animated: true)
 	}
 }
