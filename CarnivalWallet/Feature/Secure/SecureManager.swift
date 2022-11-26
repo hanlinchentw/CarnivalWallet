@@ -39,7 +39,6 @@ class SecureManager {
 	static func setGenericPassword(password: String, useBioAuth: Bool) throws {
 		if useBioAuth {
 			Task {
-				try await Self.useBioAuth()
 				try KeychainManager.setItemWithBiometry(password, key: "wallet_password")
 			}
 		} else {
@@ -68,4 +67,18 @@ class SecureManager {
 		try KeychainManager.deleteItem(key: "wallet_password")
 		try FileManager.default.removeItem(at: keyDirectory)
 	}
+	
+	static func getPrivateKey(password: String) throws -> Data {
+		let keyStore = try KeyStore(keyDirectory: keyDirectory)
+		let wallet = keyStore.wallets[0]
+
+		let nilablePrivateKey = wallet.key.decryptPrivateKey(password: Data(password.utf8))
+		let privateKey = try ObjectUtils.checkNotNil(nilablePrivateKey, message: "SecureManager.getGenericMnemonic privateKey is nil.")
+
+		return privateKey
+	}
+}
+
+extension SecureManager {
+	struct PasswordRetrivedError: Error {}
 }

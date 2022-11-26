@@ -12,4 +12,5 @@ struct RawData {
 	let from: String
 	let amount: String
 	let dataType: DataType
+	let data: String
 }

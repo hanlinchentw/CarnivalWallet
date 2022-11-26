@@ -21,7 +21,7 @@ final class BalanceRequestTests: XCTestCase {
 	}
 	
 	func testTokenExample() async throws {
-		let provider = TokenBalanceProvider(
+		let provider = TokenBalanceProviderImpl(
 			address: "0x1e200594af3E23462a035076F3499295734a3c1d",
 			contractAddress: "0xdAC17F958D2ee523a2206206994597C13D831ec7"
 		)

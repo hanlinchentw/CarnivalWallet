@@ -7,9 +7,9 @@
 
 import Foundation
 
-enum DataType {
+enum DataType: Int {
 	case transfer
-	case tokenTransfer(contractAddress: String)
+	case tokenTransfer
 //	case smart
 //	case message
 //	case typedData

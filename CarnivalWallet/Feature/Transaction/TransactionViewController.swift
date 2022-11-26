@@ -26,6 +26,7 @@ class TransactionViewController: UIViewController {
 		view.backgroundColor = .white
 		setupNavBar()
 		setupTransactionView()
+		Task { await viewModel.getGasFee() }
 	}
 }
 

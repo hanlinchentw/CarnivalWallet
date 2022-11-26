@@ -54,18 +54,34 @@ class SendCoordinator: ObservableObject, Coordinator {
 	}
 	
 	func doTransaction() {
+		do {
+			guard AnyAddress.isValid(string: sendToAddress, coin: .ethereum) else {
+				return
+			}
+			let rawData = try self.mapRawData()
+			let transactionVC = TransactionViewController(coin: sendCoin, rawData: rawData)
+			let nav = UINavigationController(rootViewController: transactionVC)
+			self.navigationController.present(nav, animated: true)
+		} catch {
+			
+		}
+	}
+	
+	func mapRawData() throws -> RawData {
 		guard let from = account.address else {
-			return
+			throw MappingError()
 		}
 
-		guard AnyAddress.isValid(string: sendToAddress, coin: .ethereum) else {
-			return
+		if let contractAddress = sendCoin.contractAddress {
+			let sendAmountNumber = EtherNumberFormatter.full.number(from: sendAmount, decimals: sendCoin.decimals.toInt())
+			let sendHexString = String(sendAmountNumber!, radix: 16).padZeroToEvenLength()
+			let data = ERC20Encoder.encodeTransfer(to: sendToAddress, value: sendHexString).hexString
+			return .init(to: contractAddress, from: from, amount: "0", dataType: .tokenTransfer, data: data.add0x)
 		}
-		
-		let dataType = sendCoin.contractAddress == nil ? DataType.transfer : DataType.tokenTransfer(contractAddress: sendCoin.contractAddress!)
-		let rawData = RawData(to: sendToAddress, from: from, amount: sendAmount, dataType: dataType)
-		let transactionVC = TransactionViewController(coin: sendCoin, rawData: rawData)
-		let nav = UINavigationController(rootViewController: transactionVC)
-		self.navigationController.present(nav, animated: true)
+		return .init(to: sendToAddress, from: from, amount: sendAmount, dataType: .transfer, data: "0x")
 	}
+}
+
+extension SendCoordinator {
+	struct MappingError: Error {}
 }

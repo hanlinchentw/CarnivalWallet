@@ -1,31 +1,30 @@
 //
-//  NonceRequest.swift
+//  SendTransactionRequest.swift
 //  CarnivalWallet
 //
-//  Created by 陳翰霖 on 2022/11/25.
+//  Created by 陳翰霖 on 2022/11/26.
 //
 
 import Foundation
 import BigInt
 
-struct NonceRequest: JsonRpcRequest {
+struct SendTransactionRequest: JsonRpcRequest {
 	typealias Response = String
 	
-	let address: String
+	let signedTx: String
 	
 	var method: String {
-		return "eth_getTransactionCount"
+		return "eth_sendRawTransaction"
 	}
 	
 	var parameters: [Any] {
-		return [address, "latest"]
+		return [signedTx, "latest"]
 	}
 
 	func response(from resultObject: Any) throws -> Response {
 		if let response = resultObject as? [String: Any],
-			 let result = response["result"] as? String,
-			 let value = BigInt(result.drop0x, radix: 16) {
-			return String(value)
+			 let result = response["result"] as? String {
+			return result
 		} else {
 			throw CastError(actualValue: resultObject, expectedType: Response.self)
 		}

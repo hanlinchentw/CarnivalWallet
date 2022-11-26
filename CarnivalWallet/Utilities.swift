@@ -30,9 +30,9 @@ extension Text {
 		self.init(verbatim: text ?? "")
 	}
 	
-//	init(_ text1: String?, _ text2: String?) {
-//		self.init("\(text1 ?? "") \(text2 ?? "")")
-//	}
+	//	init(_ text1: String?, _ text2: String?) {
+	//		self.init("\(text1 ?? "") \(text2 ?? "")")
+	//	}
 	
 	init(_ args: String?...) {
 		let string = args.compactMap { $0 }.reduce("", { $0 + $1 })
@@ -89,19 +89,48 @@ extension String {
 extension String: Error {}
 
 extension String: LocalizedError {
-		public var errorDescription: String? { return self }
+	public var errorDescription: String? { return self }
 }
 
 extension String {
+	func addPrefix(_ prefix: String) -> String {
+		return prefix + self
+		
+	}
 	func deletePrefix(_ prefix: String) -> String {
 		guard self.hasPrefix(prefix) else { return self }
 		return String(self.dropFirst(prefix.count))
+	}
+	
+	var add0x: String {
+		self.addPrefix("0x")
 	}
 	
 	var drop0x: String {
 		self.deletePrefix("0x")
 	}
 }
+
+extension String {
+	func padStart(length: Int, with string: String) -> String {
+		self.padding(toLength: length, withPad: string, startingAt: 0)
+	}
+	
+	func padEnd(length: Int, with string: String) -> String {
+		String (
+			String(self.reversed()).padding(toLength: length, withPad: string, startingAt: 0).reversed()
+		)
+	}
+	
+	func padZeroToEvenLength() -> String {
+		var string = self
+		if string.count % 2 != 0 {
+			string = "0" + string
+		}
+		return string
+	}
+}
+
 extension NSManagedObject {
 	static func first<T: NSManagedObject>(_ context: NSManagedObjectContext) throws -> T? {
 		return try self.allIn(context).first
@@ -162,6 +191,12 @@ extension Data {
 	
 	func toString() -> String? {
 		return String(data: self, encoding: .utf8)
+	}
+	
+	/// Hexadecimal string representation of `Data` object.
+	var hexDecimal: String {
+		return map { String(format: "%02x", $0) }
+			.joined()
 	}
 }
 
@@ -244,7 +279,7 @@ extension Int {
 
 extension Formatter {
 	static let number = NumberFormatter()
-
+	
 	static let withSeparator: NumberFormatter = {
 		let formatter = NumberFormatter()
 		let locale = Locale.current
@@ -273,7 +308,7 @@ class SafeAreaUtils {
 		let window = UIApplication.shared.windows.filter { $0.isKeyWindow }.first
 		return window?.safeAreaInsets
 	}
-
+	
 	static var top: CGFloat {
 		safeAreaInsets?.top ?? 0.0
 	}
