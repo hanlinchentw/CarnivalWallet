@@ -61,6 +61,7 @@ class TransactionViewController: UIViewController {
 		super.viewWillAppear(animated)
 		viewModel.loadCoinIcon()
 	}
+
 	@objc func confirmButtonTapped() {
 		viewModel.signTransfer()
 	}
@@ -82,11 +83,15 @@ class TransactionViewController: UIViewController {
 		}
 		.store(in: &set)
 	}
+	
+	@objc func cancel() {
+		self.navigationController?.dismiss(animated: true)
+	}
 }
 // MARK: - UI Setup
 extension TransactionViewController {
 	func setupNavBar() {
-		let barButtonItem = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(self.dismiss(animated:completion:)))
+		let barButtonItem = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancel))
 		self.navigationItem.leftBarButtonItem = barButtonItem
 		self.navigationItem.title = "Transaction"
 	}

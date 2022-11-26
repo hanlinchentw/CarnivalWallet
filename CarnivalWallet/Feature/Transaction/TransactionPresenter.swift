@@ -75,7 +75,7 @@ struct TransactionPresenter {
 	}
 	
 	var totalAmountDisplayText: NSAttributedString? {
-		var attributedString = NSMutableAttributedString(string: amountDisplayText,
+		let attributedString = NSMutableAttributedString(string: amountDisplayText,
 																										 attributes: [
 																											.font : UIFont.AvenirNextBold(size: 28),
 																											.foregroundColor: UIColor.black
