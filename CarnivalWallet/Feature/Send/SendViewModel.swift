@@ -46,6 +46,10 @@ class SendViewModel: ObservableObject {
 		}
 	}
 	
+	var nextButtonDisabled: Bool {
+		sendToAddress.isEmpty
+	}
+	
 	func onPressNextButton(callback: VoidClosure) {
 		let isValidAddress = AnyAddress.isValid(string: sendToAddress, coin: .ethereum)
 		if isValidAddress {

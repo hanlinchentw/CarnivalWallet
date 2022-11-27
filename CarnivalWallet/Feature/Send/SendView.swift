@@ -17,68 +17,38 @@ struct SendView: View {
 		ZStack {
 			Color.white.ignoresSafeArea()
 			VStack {
-				ScrollView {
-					VStack(alignment: .center) {
-						VStack {
-							CoinIconView(
-								network: Network.ethereum.rawValue,
-								contractAddress: coin.contractAddress,
-								size: 44
-							)
-							
-							Text(coin.name)
-								.AvenirNextMedium(size: 16)
-						}
-						.padding(.top, 32)
-						
-						VStack(alignment: .leading) {
-							HStack {
-								Text("From")
-									.AvenirNextRegular(size: 16)
-								Spacer()
-								Text("Balance: ", coin.balance, " ", coin.symbol)
-									.AvenirNextRegular(size: 14)
-							}
-							
-							HStack {
-								Image(name: "mouse_avatar")
-									.resizable()
-									.size(40)
-									.cornerRadius(20)
-								VStack(alignment: .leading) {
-									HStack {
-										Text(vm.account.name)
-											.AvenirNextMedium(size: 16)
-										Text(vm.account.address)
-											.AvenirNextRegular(size: 14)
-											.lineLimit(1)
-											.truncationMode(.middle)
-									}
-								}
-								.padding(.horizontal, 8)
-								Spacer()
-								Image(systemName: "chevron.down")
-							}
-							.height(56)
-							.padding(.trailing, 8)
-						}
-						.padding(.top, 16)
-						
-						VStack(alignment: .leading) {
-							TokenAddressTextField(
-								title: "To",
-								placeholder: "Public address 0x...",
-								text: $vm.sendToAddress,
-								hideReturnButton: true,
-								onPaste: vm.onPaste,
-								onClickScanButton: vm.onClickScanButton
-							)
-						}
-						.padding(.top, 16)
-					}
+				VStack(alignment: .center) {
+					CoinInfoView(
+						contractAddress: coin.contractAddress,
+						name: coin.name
+					)
+					.padding(.top, 32)
+					
+					FromAddressView(
+						accountName: vm.account.name,
+						accountAddress: vm.account.address,
+						balance: coin.balance,
+						symbol: coin.symbol
+					)
+					.padding(.top, 16)
+					
+					TokenAddressTextField(
+						title: "To",
+						placeholder: "Public address 0x...",
+						text: $vm.sendToAddress,
+						hideReturnButton: true,
+						onPaste: vm.onPaste,
+						onClickScanButton: vm.onClickScanButton
+					)
+					.padding(.top, 16)
 				}
 				Spacer()
-				BaseButton(text: "Next", height: 56, disabled: vm.sendToAddress.isEmpty, style: .capsule) {
+				BaseButton(
+					text: "Next",
+					height: 56,
+					disabled: vm.nextButtonDisabled,
+					style: .capsule
+				) {
 					vm.onPressNextButton {
 						path.append(
 							SendAmountViewObject(coin: coin, sendToAddress: vm.sendToAddress)
@@ -94,12 +64,12 @@ struct SendView: View {
 			} onPressedLeftItem: {
 				presentationMode.wrappedValue.dismiss()
 			}
-			.sheet(isPresented: $vm.qrScannerVisible, content: {
+			.sheet(isPresented: $vm.qrScannerVisible) {
 				ScannerView(
 					onScan: vm.onScan,
 					onClose: vm.onCloseScanner
 				).ignoresSafeArea()
-			})
+			}
 		}
 	}
 }
