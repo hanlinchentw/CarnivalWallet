@@ -21,9 +21,6 @@ struct SendAmountView: View {
 	@Binding var path: NavigationPath
 	@State var sendAmount = ""
 	@State var useMax: Bool = false
-
-	let success = NotificationCenter.default
-						 .publisher(for: NSNotification.Name("TRANSACTION_SUCCESS"))
 	
 	var account: AccountEntity {
 		AccountManager.current ?? .testEthAccountEntity
@@ -69,7 +66,7 @@ struct SendAmountView: View {
 		}, onPressedLeftItem: {
 			path.removeLast()
 		})
-		.onReceive(success) { _ in
+		.onReceive(TransactionNotification.Success.publisher) { _ in
 			path.removeLast()
 		}
 	}

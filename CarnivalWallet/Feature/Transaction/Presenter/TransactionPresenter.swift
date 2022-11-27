@@ -11,7 +11,7 @@ import Combine
 import BigInt
 import WalletCore
 
-struct TransactionPresenter {
+class TransactionPresenter {
 	var coin: Coin
 	var rawData: RawData
 	
@@ -103,6 +103,7 @@ struct TransactionPresenter {
 		}
 	}
 }
+
 extension TransactionPresenter {
 	enum DetailItem: String {
 		case amount = "Amount"

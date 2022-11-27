@@ -62,10 +62,6 @@ class TransactionViewController: UIViewController {
 		viewModel.getGasFee()
 		viewModel.loadCoinIcon()
 	}
-
-	@objc func confirmButtonTapped() {
-		viewModel.signTransfer()
-	}
 	
 	func bindCoinIcon() {
 		viewModel.$coinIconData.receive(on: RunLoop.main).sink { [weak self] data in
@@ -92,7 +88,7 @@ class TransactionViewController: UIViewController {
 			switch result {
 			case .success(_):
 				self.navigationController?.dismiss(animated: true, completion: {
-					NotificationCenter.default.post(name: .init("TRANSACTION_SUCCESS"), object: nil)
+					TransactionNotification.Success.post()
 				})
 				break
 			case .failure(let error):
@@ -102,7 +98,11 @@ class TransactionViewController: UIViewController {
 		}
 		.store(in: &set)
 	}
-	
+
+	@objc func confirmButtonTapped() {
+		viewModel.signTransfer()
+	}
+
 	@objc func cancel() {
 		self.navigationController?.dismiss(animated: true)
 	}
@@ -114,7 +114,7 @@ extension TransactionViewController {
 		self.navigationItem.leftBarButtonItem = barButtonItem
 		self.navigationItem.title = "Transaction"
 	}
-	
+
 	func setupCoinIconView() {
 		view.addSubview(iconView)
 		iconView.translatesAutoresizingMaskIntoConstraints = false

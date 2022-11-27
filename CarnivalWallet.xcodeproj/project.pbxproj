@@ -46,6 +46,8 @@
 		B647F9FF29066FB100940C3B /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647F9FE29066FB100940C3B /* UIFont+Extensions.swift */; };
 		B647FA042906D23200940C3B /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647FA032906D23200940C3B /* KeychainManager.swift */; };
 		B647FA082906DB8800940C3B /* SecureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B647FA072906DB8800940C3B /* SecureManager.swift */; };
+		B69AAA7C2933CD01009CE10E /* TransactionNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAA7B2933CD01009CE10E /* TransactionNotification.swift */; };
+		B69AAA822933D388009CE10E /* SendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAA812933D388009CE10E /* SendViewModel.swift */; };
 		B6B11D6D29101DA5006F0591 /* AccountEntity+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B11D6C29101DA5006F0591 /* AccountEntity+Extensions.swift */; };
 		B6B11D6F2911704E006F0591 /* CoinIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B11D6E2911704E006F0591 /* CoinIconView.swift */; };
 		B6B11D71291176B7006F0591 /* NetworkMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B11D70291176B7006F0591 /* NetworkMapper.swift */; };
@@ -184,6 +186,8 @@
 		B647F9FE29066FB100940C3B /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		B647FA032906D23200940C3B /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		B647FA072906DB8800940C3B /* SecureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureManager.swift; sourceTree = "<group>"; };
+		B69AAA7B2933CD01009CE10E /* TransactionNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionNotification.swift; sourceTree = "<group>"; };
+		B69AAA812933D388009CE10E /* SendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendViewModel.swift; sourceTree = "<group>"; };
 		B6B11D6C29101DA5006F0591 /* AccountEntity+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountEntity+Extensions.swift"; sourceTree = "<group>"; };
 		B6B11D6E2911704E006F0591 /* CoinIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinIconView.swift; sourceTree = "<group>"; };
 		B6B11D70291176B7006F0591 /* NetworkMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMapper.swift; sourceTree = "<group>"; };
@@ -429,6 +433,7 @@
 			children = (
 				B6B80EB5292E4EE300995210 /* DataType.swift */,
 				B6B80EB3292E4EDA00995210 /* RawData.swift */,
+				B69AAA7B2933CD01009CE10E /* TransactionNotification.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -464,6 +469,16 @@
 				B6B80EB7292E4F0600995210 /* TransactionViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		B69AAA802933D378009CE10E /* Send */ = {
+			isa = PBXGroup;
+			children = (
+				B6B80EA7292BCD7B00995210 /* SendView.swift */,
+				B6B80EAE292CF35400995210 /* SendAmountView.swift */,
+				B69AAA812933D388009CE10E /* SendViewModel.swift */,
+			);
+			path = Send;
 			sourceTree = "<group>";
 		};
 		B6B11D742912BF67006F0591 /* Component */ = {
@@ -751,6 +766,7 @@
 				B6C204A32915576700B11E72 /* Wallet */,
 				B6F7610928FC27B5006BEF79 /* WalletConnect */,
 				B6F7610728FC27A8006BEF79 /* WalletView */,
+				B69AAA802933D378009CE10E /* Send */,
 				B6B80EA9292BCD8000995210 /* Transaction */,
 			);
 			path = Feature;
@@ -763,8 +779,6 @@
 				B6B11D742912BF67006F0591 /* Component */,
 				B6F7610028FC275C006BEF79 /* WalletView.swift */,
 				B6C204BC2916468900B11E72 /* WalletViewModel.swift */,
-				B6B80EA7292BCD7B00995210 /* SendView.swift */,
-				B6B80EAE292CF35400995210 /* SendAmountView.swift */,
 			);
 			path = WalletView;
 			sourceTree = "<group>";
@@ -1090,6 +1104,7 @@
 				B6B80ED02930EB8900995210 /* GasPriceProvider.swift in Sources */,
 				B647F9F529039DCF00940C3B /* String+Extensions.swift in Sources */,
 				B6B80E962928AFCD00995210 /* TokenInfo.swift in Sources */,
+				B69AAA822933D388009CE10E /* SendViewModel.swift in Sources */,
 				B6B80E8029252D2A00995210 /* ScannerViewController.swift in Sources */,
 				B647F9D9290310F900940C3B /* View+Extensions.swift in Sources */,
 				B6C204E5291C8CBC00B11E72 /* EtherNumberFormatter.swift in Sources */,
@@ -1133,6 +1148,7 @@
 				B6B11D6F2911704E006F0591 /* CoinIconView.swift in Sources */,
 				B639AE20290D0A13008F4C72 /* PasswordStrengthUtils.swift in Sources */,
 				B6C204BB2916415F00B11E72 /* MenuListView.swift in Sources */,
+				B69AAA7C2933CD01009CE10E /* TransactionNotification.swift in Sources */,
 				B6B11D7C2912C113006F0591 /* WalletCoinList.swift in Sources */,
 				B6B80EAF292CF35400995210 /* SendAmountView.swift in Sources */,
 				B6C204E3291BFCD600B11E72 /* BalanceProviderImpl.swift in Sources */,

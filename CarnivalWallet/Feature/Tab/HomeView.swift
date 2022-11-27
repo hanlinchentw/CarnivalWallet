@@ -71,7 +71,7 @@ struct HomeView: View {
 					},
 					onPressedLeftItem: toggleMenu
 				)
-				.padding(.top, SafeAreaUtils.top)
+				.padding(.top, SafeAreaUtils.top - 16)
 				SideMenuView(
 					visible: $sideBarVisible,
 					toggleMenu: toggleMenu,

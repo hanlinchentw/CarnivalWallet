@@ -9,17 +9,9 @@ import SwiftUI
 
 struct SendView: View {
 	var coin: Coin
-	//	@ObservedObject var coordinator: SendCoordinator
 	@Environment(\.presentationMode) var presentationMode
 	@Binding var path: NavigationPath
-	@State var qrScannerVisible = false
-	@State var useMax: Bool = false
-	@State var sendAmount = ""
-	@State var sendToAddress = ""
-	
-	var account: AccountEntity {
-		AccountManager.current ?? .testEthAccountEntity
-	}
+	@StateObject var vm = SendViewModel()
 	
 	var body: some View {
 		ZStack {
@@ -55,9 +47,9 @@ struct SendView: View {
 									.cornerRadius(20)
 								VStack(alignment: .leading) {
 									HStack {
-										Text(account.name)
+										Text(vm.account.name)
 											.AvenirNextMedium(size: 16)
-										Text(account.address)
+										Text(vm.account.address)
 											.AvenirNextRegular(size: 14)
 											.lineLimit(1)
 											.truncationMode(.middle)
@@ -76,22 +68,22 @@ struct SendView: View {
 							TokenAddressTextField(
 								title: "To",
 								placeholder: "Public address 0x...",
-								text: $sendToAddress,
-								hideReturnButton: true
-							) { text in
-								self.sendToAddress = text
-							} onClickScanButton: {
-								self.qrScannerVisible = true
-							}
+								text: $vm.sendToAddress,
+								hideReturnButton: true,
+								onPaste: vm.onPaste,
+								onClickScanButton: vm.onClickScanButton
+							)
 						}
 						.padding(.top, 16)
 					}
 				}
 				Spacer()
-				BaseButton(text: "Next", height: 56, disabled: sendToAddress.isEmpty, style: .capsule) {
-					path.append(
-						SendAmountViewObject(coin: coin, sendToAddress: sendToAddress)
-					)
+				BaseButton(text: "Next", height: 56, disabled: vm.sendToAddress.isEmpty, style: .capsule) {
+					vm.onPressNextButton {
+						path.append(
+							SendAmountViewObject(coin: coin, sendToAddress: vm.sendToAddress)
+						)
+					}
 				}
 			}
 			.padding(.top, 16)
@@ -102,14 +94,10 @@ struct SendView: View {
 			} onPressedLeftItem: {
 				presentationMode.wrappedValue.dismiss()
 			}
-			.sheet(isPresented: $qrScannerVisible, content: {
+			.sheet(isPresented: $vm.qrScannerVisible, content: {
 				ScannerView(
-					onScan: { result in
-						self.sendToAddress = result
-					},
-					onClose: {
-						self.qrScannerVisible = false
-					}
+					onScan: vm.onScan,
+					onClose: vm.onCloseScanner
 				).ignoresSafeArea()
 			})
 		}
