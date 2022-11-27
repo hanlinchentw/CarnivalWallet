@@ -19,7 +19,6 @@ struct SendTransactionProvider {
 			request: Request.init(signedTx: signedTx)
 		)
 		let result = try await Session.send(request)
-		print("\(#function) >>> \(result)")
 		return result
 	}
 }

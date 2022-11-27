@@ -25,7 +25,6 @@ struct EstimateGasProvider {
 			request: Request.init(from: input.from, to: input.to, value: input.value, data: input.data)
 		)
 		let result = try await Session.send(request)
-		print("result >>> \(result)")
 		return result
 	}
 }

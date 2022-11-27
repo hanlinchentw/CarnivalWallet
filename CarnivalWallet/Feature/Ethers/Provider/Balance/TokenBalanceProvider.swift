@@ -21,7 +21,7 @@ struct TokenBalanceProviderImpl: TokenBalanceProvider {
 			rpcURL: "https://rpc.ankr.com/eth",
 			request: Request.init(
 				to: contractAddress,
-				data: data.hexEncoded
+				data: data.hexString.add0x
 			)
 		)
 		let result = try await Session.send(request)

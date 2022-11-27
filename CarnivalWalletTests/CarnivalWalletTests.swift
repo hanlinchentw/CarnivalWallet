@@ -40,7 +40,7 @@ final class CarnivalWalletTests: XCTestCase {
 		XCTAssertEqual("0", string!)
 		XCTAssertEqual("0x0", hexEncoded)
 	}
-	
+
 	func test_4() {
 		let dataString = "0xa9059cbb0000000000000000000000001e200594af3e23462a035076f3499295734a3c1d0000000000000000000000000000000000000000000000000000000000000000"
 		let (address, amount) = ERC20Decoder.decodeTokenTransfer(data: dataString)

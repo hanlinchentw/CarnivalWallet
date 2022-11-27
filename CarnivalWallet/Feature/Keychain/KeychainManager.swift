@@ -49,6 +49,7 @@ class KeychainManager {
 		}
 		let query = [
 			kSecClass: kSecClassGenericPassword,
+			kSecAttrService: "Carnival",
 			kSecAttrAccount: key,
 			kSecValueData: data,
 			kSecReturnData: true
@@ -60,13 +61,13 @@ class KeychainManager {
 	static func getItem(key: String) -> AnyObject? {
 		let query = [
 			kSecClass: kSecClassGenericPassword,
+			kSecAttrService: "Carnival",
 			kSecAttrAccount: key,
-			kSecMatchLimit: kSecMatchLimitOne,
-			kSecReturnAttributes: true,
 			kSecReturnData: true
 		]  as CFDictionary
 		var result: AnyObject?
 		SecItemCopyMatching(query, &result)
+		print("result >>> \(result)")
 		return result
 	}
 	

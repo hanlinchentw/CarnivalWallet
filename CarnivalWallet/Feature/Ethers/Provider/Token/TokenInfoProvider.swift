@@ -16,7 +16,7 @@ struct TokenInfoProvider {
 			rpcURL: "https://rpc.ankr.com/eth",
 			request: CallRequest.init(
 				to: contractAddress,
-				data: data.hexEncoded
+				data: data.hexString.add0x
 			)
 		)
 		return request

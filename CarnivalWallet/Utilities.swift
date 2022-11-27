@@ -164,36 +164,12 @@ extension Task where Success == Never, Failure == Never {
 }
 
 extension Data {
-	var hex: String {
-		return map { String(format: "%02hhx", $0) }.joined()
-	}
-	
-	var hexEncoded: String {
-		return "0x" + self.hex
-	}
-	
 	func toString() -> String? {
 		return String(data: self, encoding: .utf8)
-	}
-	
-	/// Hexadecimal string representation of `Data` object.
-	var hexDecimal: String {
-		return map { String(format: "%02x", $0) }
-			.joined()
 	}
 }
 
 extension String {
-	var hex: String {
-		let data = self.data(using: .utf8)!
-		return data.map { String(format: "%02x", $0) }.joined()
-	}
-	
-	var hexEncoded: String {
-		let data = self.data(using: .utf8)!
-		return data.hexEncoded
-	}
-	
 	var parseHex: String? {
 		let data = Data(hexString: self)
 		return data?.toString()

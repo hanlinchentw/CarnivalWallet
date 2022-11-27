@@ -26,6 +26,7 @@ struct BaseButton: View {
 	var fillColor: Color = .black
 	var width: CGFloat?
 	var height: CGFloat = 0
+	var borderWidth: CGFloat = 1
 	var disabled: Bool = false
 	var style: TextButtonStyle
 	var onPress: () -> Void
@@ -53,7 +54,7 @@ struct BaseButton: View {
 		.if(style == .capsule, modify: { $0.background(fillColor).clipShape(Capsule()) })
 		.if(style == .outline) {
 			$0.background(.clear)
-				.roundedBorder(radius: height/2, borderColor: fillColor, borderWidth: 1)
+				.roundedBorder(radius: height/2, borderColor: fillColor, borderWidth: borderWidth)
 		}
 		.buttonStyle(.plain)
 		.disabled(disabled)

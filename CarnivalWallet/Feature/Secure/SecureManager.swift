@@ -47,7 +47,11 @@ class SecureManager {
 	}
 	
 	static func getGenericPassowrd() throws -> String? {
-		return KeychainManager.getItem(key: "wallet_password") as? String
+		guard let item = KeychainManager.getItem(key: "wallet_password") as? Data else {
+			throw CastError(actualValue: "wallet_password", expectedType: Data.self)
+		}
+		let password = String(data: item, encoding: .utf8)
+		return password
 	}
 	
 	static func getGenericMnemonic(password: String) throws -> String {
@@ -72,10 +76,10 @@ class SecureManager {
 		let keyStore = try KeyStore(keyDirectory: keyDirectory)
 		let wallet = keyStore.wallets[0]
 
-		let nilablePrivateKey = wallet.key.decryptPrivateKey(password: Data(password.utf8))
+		let nilablePrivateKey = wallet.key.privateKey(coin: .ethereum, password: Data(password.utf8))
 		let privateKey = try ObjectUtils.checkNotNil(nilablePrivateKey, message: "SecureManager.getGenericMnemonic privateKey is nil.")
 
-		return privateKey
+		return privateKey.data
 	}
 }
 

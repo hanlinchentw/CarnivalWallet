@@ -13,10 +13,7 @@ import Combine
 class TransactionView: UIView {
 	@Published var presenter: TransactionPresenter? = nil
 
-	private let indicatorView: UIActivityIndicatorView = {
-		let indicator = UIActivityIndicatorView(style: .gray)
-		return indicator
-	}()
+	private let indicatorView: UIActivityIndicatorView  = .init(style: .medium)
 	
 	private let totalAmountStackView: UIStackView = {
 		let stack = UIStackView()

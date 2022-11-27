@@ -11,9 +11,9 @@ import Combine
 
 class TransactionViewController: UIViewController {
 	// MARK: - Properties
-	var viewModel: TransactionViewModel!
+	var viewModel: TransactionViewModel
 	
-	private let coinIconImageView: UIImageView = {
+	private let iconView: UIImageView = {
 		let iv = UIImageView()
 		iv.layer.cornerRadius = 28
 		iv.contentMode = .scaleAspectFill
@@ -21,7 +21,7 @@ class TransactionViewController: UIViewController {
 	}()
 	
 	let transactionView = TransactionView()
-	
+
 	private lazy var confirmButton: UIButton = {
 		var config = UIButton.Configuration.filled()
 		config.baseBackgroundColor = UIColor.black
@@ -33,7 +33,7 @@ class TransactionViewController: UIViewController {
 		button.addTarget(self, action: #selector(confirmButtonTapped), for: .touchUpInside)
 		return button
 	}()
-
+	
 	var set = Set<AnyCancellable>()
 	// MARK: - Lifecycle
 	init(coin: Coin, rawData: RawData) {
@@ -44,7 +44,7 @@ class TransactionViewController: UIViewController {
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-	
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		view.backgroundColor = .white
@@ -54,11 +54,12 @@ class TransactionViewController: UIViewController {
 		setupConfirmButton()
 		bindCoinIcon()
 		bindRawData()
-		Task { await viewModel.getGasFee() }
+		bindResult()
 	}
-
+	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
+		viewModel.getGasFee()
 		viewModel.loadCoinIcon()
 	}
 
@@ -67,19 +68,37 @@ class TransactionViewController: UIViewController {
 	}
 	
 	func bindCoinIcon() {
-		viewModel.$coinIconData.receive(on: RunLoop.main).sink { data in
-			if let data {
-				self.coinIconImageView.image = UIImage(data: data)
-			}
+		viewModel.$coinIconData.receive(on: RunLoop.main).sink { [weak self] data in
+			guard let self = self,
+						let data = data else { return }
+			self.iconView.image = UIImage(data: data)
 		}
 		.store(in: &set)
 	}
 	
 	func bindRawData() {
-		viewModel.$rawData.sink { rawData in
-			print("new RawData >>> \(rawData)")
+		viewModel.$rawData.sink { [weak self] rawData in
+			guard let self = self else { return }
 			let presenter = TransactionPresenter(coin: self.viewModel.coin, rawData: rawData)
 			self.transactionView.presenter = presenter
+		}
+		.store(in: &set)
+	}
+	
+	func bindResult() {
+		viewModel.$sendResult.receive(on: RunLoop.main).sink { [weak self] result in
+			guard let result = result,
+						let self = self else { return }
+			switch result {
+			case .success(_):
+				self.navigationController?.dismiss(animated: true, completion: {
+					NotificationCenter.default.post(name: .init("TRANSACTION_SUCCESS"), object: nil)
+				})
+				break
+			case .failure(let error):
+				print("error >>> \(error.localizedDescription)")
+				break
+			}
 		}
 		.store(in: &set)
 	}
@@ -97,19 +116,19 @@ extension TransactionViewController {
 	}
 	
 	func setupCoinIconView() {
-		view.addSubview(coinIconImageView)
-		coinIconImageView.translatesAutoresizingMaskIntoConstraints = false
-		coinIconImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32).isActive = true
-		coinIconImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-		coinIconImageView.heightAnchor.constraint(equalToConstant: 56).isActive = true
-		coinIconImageView.widthAnchor.constraint(equalToConstant: 56).isActive = true
+		view.addSubview(iconView)
+		iconView.translatesAutoresizingMaskIntoConstraints = false
+		iconView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32).isActive = true
+		iconView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+		iconView.heightAnchor.constraint(equalToConstant: 56).isActive = true
+		iconView.widthAnchor.constraint(equalToConstant: 56).isActive = true
 	}
 	
 	func setupTransactionView() {
 		view.addSubview(transactionView)
 		transactionView.translatesAutoresizingMaskIntoConstraints = false
 		NSLayoutConstraint.activate([
-			transactionView.topAnchor.constraint(equalTo: coinIconImageView.bottomAnchor, constant: 24),
+			transactionView.topAnchor.constraint(equalTo: iconView.bottomAnchor, constant: 24),
 			transactionView.leftAnchor.constraint(equalTo: view.leftAnchor),
 			transactionView.rightAnchor.constraint(equalTo: view.rightAnchor),
 			transactionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -124,18 +143,5 @@ extension TransactionViewController {
 		confirmButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
 		confirmButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
 		confirmButton.heightAnchor.constraint(equalToConstant: 56).isActive = true
-	}
-}
-
-extension TransactionViewController {
-	func createViewObject() -> TransactionViewObject {
-		return .init(
-			from: viewModel.rawData.from,
-			to: viewModel.rawData.to,
-			amount: viewModel.rawData.amount,
-			amountSymbol: viewModel.coin.symbol ?? "",
-			fee: "0.000237",
-			feeSymbol: "ETH"
-		)
 	}
 }

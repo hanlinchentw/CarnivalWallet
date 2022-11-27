@@ -25,7 +25,7 @@ struct TokenAddressTextField: View {
 					.AvenirNextRegular(size: 16)
 				Spacer()
 				if let onClickScanButton {
-					Image(systemName: "text.viewfinder")
+					Image("scan_code")
 						.onTapGesture(perform: onClickScanButton)
 					Divider().height(14)
 				}

@@ -17,7 +17,6 @@ struct GasPriceProvider {
 			request: Request.init()
 		)
 		let result = try await Session.send(request)
-		print("result >>> \(result)")
 		return result
 	}
 }

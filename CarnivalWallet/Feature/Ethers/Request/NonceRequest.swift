@@ -23,9 +23,8 @@ struct NonceRequest: JsonRpcRequest {
 
 	func response(from resultObject: Any) throws -> Response {
 		if let response = resultObject as? [String: Any],
-			 let result = response["result"] as? String,
-			 let value = BigInt(result.drop0x, radix: 16) {
-			return String(value)
+			 let result = response["result"] as? String {
+			return result
 		} else {
 			throw CastError(actualValue: resultObject, expectedType: Response.self)
 		}

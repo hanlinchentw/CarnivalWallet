@@ -19,7 +19,6 @@ struct NonceProvider {
 			request: Request.init(address: address)
 		)
 		let result = try await Session.send(request)
-		print("result >>> \(result)")
 		return result
 	}
 }

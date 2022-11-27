@@ -43,7 +43,6 @@ struct WalletView: View {
 						BaseButton(
 							text: WalletCTAType.Receive.rawValue,
 							icon: WalletCTAType.Receive.icon,
-							fillColor: .blue,
 							height: 48,
 							style: .capsule,
 							onPress: {
@@ -55,7 +54,6 @@ struct WalletView: View {
 						BaseButton(
 							text: WalletCTAType.Send.rawValue,
 							icon: WalletCTAType.Send.icon,
-							fillColor: .blue,
 							height: 48,
 							style: .capsule,
 							onPress: {
@@ -80,12 +78,6 @@ struct WalletView: View {
 								.AvenirNextMedium(size: 14)
 								.foregroundColor(.blue)
 						}
-//						Button {
-//
-////								coordinator.addToken()
-//						} label: {
-//
-//						}
 					}
 					.padding(.top, 16)
 				}

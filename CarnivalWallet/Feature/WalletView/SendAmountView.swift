@@ -22,6 +22,9 @@ struct SendAmountView: View {
 	@State var sendAmount = ""
 	@State var useMax: Bool = false
 
+	let success = NotificationCenter.default
+						 .publisher(for: NSNotification.Name("TRANSACTION_SUCCESS"))
+	
 	var account: AccountEntity {
 		AccountManager.current ?? .testEthAccountEntity
 	}
@@ -66,6 +69,9 @@ struct SendAmountView: View {
 		}, onPressedLeftItem: {
 			path.removeLast()
 		})
+		.onReceive(success) { _ in
+			path.removeLast()
+		}
 	}
 	
 	func mapRawData() -> RawData? {

@@ -18,7 +18,7 @@ struct SendTransactionRequest: JsonRpcRequest {
 	}
 	
 	var parameters: [Any] {
-		return [signedTx, "latest"]
+		return [signedTx]
 	}
 
 	func response(from resultObject: Any) throws -> Response {
