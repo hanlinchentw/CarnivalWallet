@@ -51,6 +51,12 @@ struct TokenInfoProvider {
 		}
 		return TokenImpl(contractAddress: contractAddress, name: name, symbol: symbol, decimals: decimals)
 	}
+	
+	func getDecimals() async throws -> String {
+		let request = createCallRequest(data: ERC20ABIFunction.decimals.data)
+		let result = try await Session.send(request)
+		return result
+	}
 }
 
 extension TokenInfoProvider {

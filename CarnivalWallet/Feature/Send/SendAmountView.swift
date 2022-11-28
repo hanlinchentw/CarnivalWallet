@@ -14,17 +14,11 @@ struct SendAmountViewObject: Hashable {
 }
 
 struct SendAmountView: View {
-	@Environment(\.presentationMode) var presentationMode
-
 	var viewObject: SendAmountViewObject
-
+	@EnvironmentObject var walletVM: WalletViewModel
+	@Environment(\.presentationMode) var presentationMode
 	@Binding var path: NavigationPath
-	@State var sendAmount = ""
-	@State var useMax: Bool = false
-	
-	var account: AccountEntity {
-		AccountManager.current ?? .testEthAccountEntity
-	}
+	@StateObject var vm = SendAmountViewModel()
 	
 	var body: some View {
 		VStack {
@@ -34,27 +28,27 @@ struct SendAmountView: View {
 					.foregroundColor(.white)
 					.capsule(color: .black, radius: 16)
 				
-				TextField("0", text: $sendAmount)
+				TextField("0", text: $vm.sendAmount)
 					.AvenirNextMedium(size: 32)
 					.keyboardType(.decimalPad)
 					.multilineTextAlignment(.center)
 					.padding(.horizontal, 32)
 
 				TextButton("Send Max", color: .blue) {
-					self.sendAmount = viewObject.coin.balance ?? ""
+					vm.onPressMaxButton(viewObject: viewObject)
 				}
+
 				Text("Balance: ", viewObject.coin.balance, " ", viewObject.coin.symbol)
 					.AvenirNextRegular(size: 14)
+				if let error = vm.error {
+					ErrorText(error.description, alignment: .center)
+				}
 			}
 			Spacer()
 			
-			BaseButton(text: "Send", height: 56, disabled: false, style: .capsule) {
-				guard AnyAddress.isValid(string: self.viewObject.sendToAddress, coin: .ethereum) else {
-					return
-				}
-				if let rawData = self.mapRawData() {
-					let coordinator = TransactionCoordinator(coin: viewObject.coin, rawData: rawData)
-					coordinator.start()
+			BaseButton(text: "Send", height: 56, isLoading: vm.isSendButtonLoading, style: .capsule) {
+				Task {
+					await vm.onPressSendButton(viewObject: viewObject)
 				}
 			}
 			.padding(16)
@@ -69,22 +63,9 @@ struct SendAmountView: View {
 		.onReceive(TransactionNotification.Success.publisher) { _ in
 			path.removeLast()
 		}
-	}
-	
-	func mapRawData() -> RawData? {
-		guard let from = account.address else {
-			return nil
+		.onAppear {
+			walletVM.fetchBalance()
 		}
-		let sendCoin = viewObject.coin
-		let sendToAddress = viewObject.sendToAddress
-
-		if let contractAddress = sendCoin.contractAddress {
-			let sendAmountNumber = EtherNumberFormatter.full.number(from: sendAmount, decimals: sendCoin.decimals.toInt())
-			let sendHexString = String(sendAmountNumber!, radix: 16).padZeroToEvenLength()
-			let data = ERC20Encoder.encodeTransfer(to: sendToAddress, value: sendHexString).hexString
-			return .init(to: contractAddress, from: from, amount: "0", dataType: .tokenTransfer, data: data.add0x)
-		}
-		return .init(to: sendToAddress, from: from, amount: sendAmount, dataType: .transfer, data: "0x")
 	}
 }
 

@@ -31,18 +31,10 @@ class TransactionViewModel {
 				let from = rawData.from
 				let to = rawData.to
 				let data = rawData.data
-
-				nonce = try await NonceProvider(address: from).getNonce()
-				
-				let gasPrice = try await GasPriceProvider().getGasPrice()
-
-				let amountNumber = EtherNumberFormatter.full.number(from: rawData.amount, decimals: coin.decimals.toInt())
-				let amount = String(amountNumber!, radix: 16).add0x
-				let input = EstimateGasInput(from: from, to: to, value: amount, data: data)
-				let gas = try await EstimateGasProvider(input: input).estimateGas()
+				let transactionInfo = try await TransactionInfoProvider(from: from, to: to, data: data, amount: rawData.amount, contractAddress: coin.contractAddress).getTransactionInfo()
 				
 				DispatchQueue.main.async {
-					let fee: Fee = .init(gasPrice: gasPrice, gas: gas, symbol: "ETH")
+					let fee: Fee = .init(gasPrice: transactionInfo.gasPrice, gas: transactionInfo.gas, symbol: "ETH")
 					self.rawData.fee = fee
 					print(">>> \(#function) fee = \(fee)")
 				}
@@ -50,7 +42,6 @@ class TransactionViewModel {
 				print(">>> \(#function) error = \(error.localizedDescription)")
 			}
 		}
-		
 	}
 	
 	func signTransfer() {

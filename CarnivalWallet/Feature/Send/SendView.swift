@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SendView: View {
-	var coin: Coin
+	@ObservedObject var coin: Coin
 	@Environment(\.presentationMode) var presentationMode
 	@Binding var path: NavigationPath
 	@StateObject var vm = SendViewModel()
@@ -41,6 +41,9 @@ struct SendView: View {
 						onClickScanButton: vm.onClickScanButton
 					)
 					.padding(.top, 16)
+					if vm.toAddressInvalid != nil  {
+						ErrorText("Invalid address")
+					}
 				}
 				Spacer()
 				BaseButton(
@@ -49,7 +52,7 @@ struct SendView: View {
 					disabled: vm.nextButtonDisabled,
 					style: .capsule
 				) {
-					vm.onPressNextButton {
+					vm.checkIfAddressValid {
 						path.append(
 							SendAmountViewObject(coin: coin, sendToAddress: vm.sendToAddress)
 						)

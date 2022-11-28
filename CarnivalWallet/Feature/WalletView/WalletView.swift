@@ -22,9 +22,8 @@ enum WalletCTAType: String {
 
 struct WalletView: View {
 	@Binding var path: NavigationPath
-	@StateObject var vm = WalletViewModel()
-	
-//	@State private var path = NavigationPath()
+	@EnvironmentObject var vm: WalletViewModel
+	@State var coinSheetVisible: Bool = false
 
 	var body: some View {
 		ZStack {
@@ -57,7 +56,7 @@ struct WalletView: View {
 							height: 48,
 							style: .capsule,
 							onPress: {
-								vm.coinSheetVisible = true
+								coinSheetVisible = true
 							}
 						)
 						.foregroundColor(.white)
@@ -90,12 +89,11 @@ struct WalletView: View {
 		.onAppear {
 			vm.fetchBalance()
 		}
-		.coinSelector(isVisible: $vm.coinSheetVisible, coins: vm.coins) { coin in
+		.coinSelector(isVisible: $coinSheetVisible, coins: vm.coins) { coin in
 			Task {
-				vm.coinSheetVisible = false
+				coinSheetVisible = false
 				try? await Task.sleep(seconds: 0.10)
 				path.append(coin)
-//				coordinator.sendToken(coin: coin)
 			}
 		}
 		
@@ -105,8 +103,6 @@ struct WalletView: View {
 struct WalletView_Previews: PreviewProvider {
 	static var previews: some View {
 		WalletView(path: .constant(.init()))
-//			.environmentObject({() -> WalletCoordinator in
-//				return WalletCoordinator(navigationController: .init())
-//			}())
+			.environmentObject(WalletViewModel())
 	}
 }

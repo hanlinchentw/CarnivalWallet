@@ -12,12 +12,13 @@ import WalletCore
 
 class SendViewModel: ObservableObject {
 	@Published var qrScannerVisible = false
-	@Published var useMax: Bool = false
-	@Published var sendAmount = ""
-	@Published var sendToAddress = ""
-
+	@Published var sendToAddress = "" {
+		didSet {
+			self.toAddressInvalid = nil
+		}
+	}
 	@Published var toAddressInvalid: (any Error)?
-	
+
 	var account: AccountEntity {
 		AccountManager.current ?? .testEthAccountEntity
 	}
@@ -25,12 +26,14 @@ class SendViewModel: ObservableObject {
 	var onPaste: (String) -> Void {
 		{ text in
 			self.sendToAddress = text
+			self.checkIfAddressValid()
 		}
 	}
 	
 	var onScan: (String) -> Void {
 		{ text in
 			self.sendToAddress = text
+			self.checkIfAddressValid()
 		}
 	}
 	
@@ -47,13 +50,13 @@ class SendViewModel: ObservableObject {
 	}
 	
 	var nextButtonDisabled: Bool {
-		sendToAddress.isEmpty
+		sendToAddress.isEmpty || !toAddressInvalid.isNil
 	}
 	
-	func onPressNextButton(callback: VoidClosure) {
+	func checkIfAddressValid(callback: VoidClosure? = nil) {
 		let isValidAddress = AnyAddress.isValid(string: sendToAddress, coin: .ethereum)
 		if isValidAddress {
-			callback()
+			callback?()
 		} else {
 			toAddressInvalid = SendViewError.toAddressInvalid
 		}

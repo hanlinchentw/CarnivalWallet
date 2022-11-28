@@ -28,6 +28,7 @@ enum Screen: Int, CaseIterable {
 struct HomeView: View {
 	@State var selectedScreen: Int = 0
 	@State private var sideBarVisible = false
+	@StateObject var walletVM = WalletViewModel()
 
 	var coins: Array<Coin> {
 		AccountManager.current?.coin?.allObjects as? Array<Coin> ?? []
@@ -50,11 +51,13 @@ struct HomeView: View {
 				TabView(selection: $selectedScreen) {
 					WalletView(path: $path)
 						.tag(0)
+						.environmentObject(walletVM)
 						.navigationDestination(for: Coin.self) { coin in
 							SendView(coin: coin, path: $path)
 						}
 						.navigationDestination(for: SendAmountViewObject.self) {
 							SendAmountView(viewObject: $0, path: $path)
+								.environmentObject(walletVM)
 						}
 						.navigationDestination(for: String.self) { routeName in
 							if routeName == "Import Tokens" {
@@ -72,6 +75,7 @@ struct HomeView: View {
 					onPressedLeftItem: toggleMenu
 				)
 				.padding(.top, SafeAreaUtils.top - 16)
+
 				SideMenuView(
 					visible: $sideBarVisible,
 					toggleMenu: toggleMenu,

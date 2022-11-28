@@ -216,6 +216,10 @@ extension String {
 	func toDouble() -> Double {
 		Double(self) ?? 0
 	}
+	
+	func safeToDouble() -> Double? {
+		Double(self)
+	}
 }
 
 extension NSSet {

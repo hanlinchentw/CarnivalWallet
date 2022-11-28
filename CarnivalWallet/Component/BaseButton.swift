@@ -28,6 +28,7 @@ struct BaseButton: View {
 	var height: CGFloat = 0
 	var borderWidth: CGFloat = 1
 	var disabled: Bool = false
+	var isLoading: Bool = false
 	var style: TextButtonStyle
 	var onPress: () -> Void
 
@@ -38,8 +39,12 @@ struct BaseButton: View {
 					Image(systemName: icon)
 						.size(iconSize)
 				}
-				Text(text)
-					.AvenirNextMedium(size: textSize)
+				if isLoading {
+					ProgressView().progressViewStyle(CircularProgressViewStyle(tint: style == .outline ? fillColor: .white))
+				} else {
+					Text(text)
+						.AvenirNextMedium(size: textSize)
+				}
 				if let icon, iconPosition == .right {
 					Image(systemName: icon)
 						.size(iconSize)
