@@ -53,9 +53,7 @@ struct SendView: View {
 					style: .capsule
 				) {
 					vm.checkIfAddressValid {
-						path.append(
-							SendAmountViewObject(coin: coin, sendToAddress: vm.sendToAddress)
-						)
+						path.append(RouteName.sendAmount(coin: coin, toAddress: vm.sendToAddress))
 					}
 				}
 			}

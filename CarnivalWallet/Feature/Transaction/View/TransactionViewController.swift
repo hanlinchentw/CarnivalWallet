@@ -48,10 +48,13 @@ class TransactionViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		view.backgroundColor = .white
+		// UI from top to bottom
 		setupNavBar()
 		setupCoinIconView()
 		setupTransactionView()
 		setupConfirmButton()
+
+		// subscribe changes from view model property
 		bindCoinIcon()
 		bindRawData()
 		bindResult()
@@ -59,7 +62,10 @@ class TransactionViewController: UIViewController {
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		viewModel.getGasFee()
+		if viewModel.rawData.fee.isNil {
+			viewModel.getGasFee()
+		}
+		
 		viewModel.loadCoinIcon()
 	}
 	

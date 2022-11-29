@@ -20,11 +20,22 @@ enum WalletCTAType: String {
 	}
 }
 
+enum CoinSelectorState: Int {
+	case send
+	case receive
+	case invisible
+}
+
 struct WalletView: View {
 	@Binding var path: NavigationPath
 	@EnvironmentObject var vm: WalletViewModel
-	@State var coinSheetVisible: Bool = false
+	
+	@State var coinSelectorState: CoinSelectorState = .invisible
 
+	var coinSelectorVisible: Binding<Bool> {
+		.constant(coinSelectorState != .invisible)
+	}
+	
 	var body: some View {
 		ZStack {
 			Color.white
@@ -45,7 +56,7 @@ struct WalletView: View {
 							height: 48,
 							style: .capsule,
 							onPress: {
-								
+								coinSelectorState = .receive
 							}
 						)
 						.foregroundColor(.white)
@@ -56,7 +67,7 @@ struct WalletView: View {
 							height: 48,
 							style: .capsule,
 							onPress: {
-								coinSheetVisible = true
+								coinSelectorState = .send
 							}
 						)
 						.foregroundColor(.white)
@@ -72,7 +83,7 @@ struct WalletView: View {
 					VStack(spacing: 6) {
 						Text("Don't see your token?")
 							.AvenirNextMedium(size: 16)
-						NavigationLink(value: "Import Tokens") {
+						NavigationLink(value: RouteName.importToken) {
 							Text("Import Tokens")
 								.AvenirNextMedium(size: 14)
 								.foregroundColor(.blue)
@@ -89,14 +100,16 @@ struct WalletView: View {
 		.onAppear {
 			vm.fetchBalance()
 		}
-		.coinSelector(isVisible: $coinSheetVisible, coins: vm.coins) { coin in
+		.coinSelector(isVisible: coinSelectorVisible, coins: vm.coins) { coin in
 			Task {
-				coinSheetVisible = false
-				try? await Task.sleep(seconds: 0.10)
-				path.append(coin)
+				if (coinSelectorState == .send) {
+					path.append(RouteName.send(coin))
+				} else {
+					path.append(RouteName.receive(coin))
+				}
+				coinSelectorState = .invisible
 			}
 		}
-		
 	}
 }
 

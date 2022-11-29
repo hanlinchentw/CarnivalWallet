@@ -43,6 +43,10 @@ struct TransactionInfoProvider {
 	
 	func getFee() async throws -> String {
 		let feeInfo = try await self.getTransactionInfo()
+		return calculateFee(feeInfo: feeInfo)
+	}
+	
+	func calculateFee(feeInfo: TransactionInfo) -> String {
 		let gasBigInt = BigInt(feeInfo.gas)!
 		let gasPriceBigInt = BigInt(feeInfo.gasPrice)!
 		let fee = gasBigInt * gasPriceBigInt

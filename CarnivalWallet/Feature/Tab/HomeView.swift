@@ -29,7 +29,7 @@ struct HomeView: View {
 	@State var selectedScreen: Int = 0
 	@State private var sideBarVisible = false
 	@StateObject var walletVM = WalletViewModel()
-
+	
 	var coins: Array<Coin> {
 		AccountManager.current?.coin?.allObjects as? Array<Coin> ?? []
 	}
@@ -52,18 +52,20 @@ struct HomeView: View {
 					WalletView(path: $path)
 						.tag(0)
 						.environmentObject(walletVM)
-						.navigationDestination(for: Coin.self) { coin in
-							SendView(coin: coin, path: $path)
-						}
-						.navigationDestination(for: SendAmountViewObject.self) {
-							SendAmountView(viewObject: $0, path: $path)
-								.environmentObject(walletVM)
-						}
-						.navigationDestination(for: String.self) { routeName in
-							if routeName == "Import Tokens" {
+						.navigationDestination(for: RouteName.self) { route in
+							switch route {
+							case .send(let coin):
+								SendView(coin: coin, path: $path)
+							case .sendAmount(let coin, let toAddress):
+								SendAmountView(coin: coin, sendToAddress: toAddress, path: $path)
+									.environmentObject(walletVM)
+							case .receive(let coin):
+								ReceiveView(coin: coin)
+							case .importToken:
 								ImportTokenView()
 							}
 						}
+					
 					BrowserView().tag(1)
 					WalletConnectView().tag(2)
 				}
@@ -75,7 +77,7 @@ struct HomeView: View {
 					onPressedLeftItem: toggleMenu
 				)
 				.padding(.top, SafeAreaUtils.top - 16)
-
+				
 				SideMenuView(
 					visible: $sideBarVisible,
 					toggleMenu: toggleMenu,

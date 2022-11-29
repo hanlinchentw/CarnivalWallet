@@ -18,17 +18,22 @@ class SendAmountViewModel: ObservableObject {
 		AccountManager.current ?? .testEthAccountEntity
 	}
 
-	func onPressMaxButton(viewObject: SendAmountViewObject) {
-		sendAmount = viewObject.coin.balance ?? ""
+	func onPressMaxButton(coin: Coin) {
+		sendAmount = coin.balance ?? ""
 	}
 	
-	func onPressSendButton(viewObject: SendAmountViewObject) async {
+	@MainActor
+	func onPressSendButton(coin: Coin, toAddress: String) async {
+		self.isSendButtonLoading = true
+		defer {
+			self.isSendButtonLoading = false
+		}
 		do {
 			guard let amount = sendAmount.safeToDouble() else {
 				self.error = SendAmountError.invalidAmount
 				return
 			}
-			guard let balance = viewObject.coin.balance,
+			guard let balance = coin.balance,
 						balance.toDouble() >= amount else {
 				self.error = SendAmountError.balanceNotEnough
 				return
@@ -36,40 +41,53 @@ class SendAmountViewModel: ObservableObject {
 			guard let from = account.address else {
 				return
 			}
-			DispatchQueue.main.async {
-				self.isSendButtonLoading = true
-			}
-			defer {
-				self.isSendButtonLoading = false
-			}
-			let rawData = RawDataMapper.mapRawData(contractAddress: viewObject.coin.contractAddress, from: from, to: viewObject.sendToAddress, amount: amount.toString(), decimals: viewObject.coin.decimals.toInt())
-			let fee = try await TransactionInfoProvider(from: from, to: viewObject.sendToAddress, data: rawData.data, amount: amount.toString(), contractAddress: viewObject.coin.contractAddress).getFee()
+			let rawData = RawDataMapper.mapRawData(
+				contractAddress: coin.contractAddress,
+				from: from,
+				to: toAddress,
+				amount: amount.toString(),
+				decimals: coin.decimals.toInt()
+			)
+			let provider = TransactionInfoProvider(
+				from: from,
+				to: toAddress,
+				data: rawData.data,
+				amount: amount.toString(),
+				contractAddress: coin.contractAddress
+			)
+			let transactionInfo = try await provider.getTransactionInfo()
+			let fee = provider.calculateFee(feeInfo: transactionInfo)
 			
-			if amount + fee.toDouble() > balance.toDouble() {
+			let balanceNotEnoughForTotal = amount + fee.toDouble() >= balance.toDouble()
+
+			if balanceNotEnoughForTotal {
 				let newAmount = amount - fee.toDouble()
-				
+
 				if newAmount < 0 {
-					DispatchQueue.main.async {
-						self.error = SendAmountError.balanceNotEnoughToPayFee(fee)
-					}
+					self.error = SendAmountError.balanceNotEnoughToPayFee(fee)
 					return
 				}
-				print("newAmount >>> \(newAmount.toString()) ")
-				let newRawData = RawDataMapper.mapRawData(contractAddress: viewObject.coin.contractAddress, from: from, to: viewObject.sendToAddress, amount: newAmount.toString(), decimals: viewObject.coin.decimals.toInt())
-				
-				DispatchQueue.main.async {
-					let coordinator = TransactionCoordinator(coin: viewObject.coin, rawData: newRawData)
-					coordinator.start()
-				}
+				let newRawData = RawDataMapper.mapRawData(
+					contractAddress: coin.contractAddress,
+					from: from,
+					to: toAddress,
+					amount: newAmount.toString(),
+					decimals: coin.decimals.toInt(),
+					fee: .init(gasPrice: transactionInfo.gasPrice, gas: transactionInfo.gas, symbol: Network.ethereum.rawValue)
+				)
+				self.startTransaction(coin: coin,rawData: newRawData)
 			} else {
-				DispatchQueue.main.async {
-					let coordinator = TransactionCoordinator(coin: viewObject.coin, rawData: rawData)
-					coordinator.start()
-				}
+				self.startTransaction(coin: coin,rawData: rawData)
 			}
 		} catch {
 			
 		}
+	}
+	
+	@MainActor
+	func startTransaction(coin: Coin, rawData: RawData) {
+		let coordinator = TransactionCoordinator(coin: coin, rawData: rawData)
+		coordinator.start()
 	}
 }
 
@@ -94,14 +112,14 @@ extension SendAmountViewModel {
 
 extension SendAmountViewModel {
 	class RawDataMapper {
-		static func mapRawData(contractAddress: String?, from: String, to: String, amount: String, decimals: Int) -> RawData {
+		static func mapRawData(contractAddress: String?, from: String, to: String, amount: String, decimals: Int, fee: Fee? = nil) -> RawData {
 			if let contractAddress {
 				let sendAmountNumber = EtherNumberFormatter.full.number(from: amount, decimals: decimals)
 				let sendHexString = String(sendAmountNumber!, radix: 16).padZeroToEvenLength()
 				let data = ERC20Encoder.encodeTransfer(to: to, value: sendHexString).hexString
-				return .init(to: contractAddress, from: from, amount: "0", dataType: .tokenTransfer, data: data.add0x)
+				return .init(to: contractAddress, from: from, amount: "0", dataType: .tokenTransfer, data: data.add0x, fee: fee)
 			}
-			return .init(to: to, from: from, amount: amount, dataType: .transfer, data: "0x")
+			return .init(to: to, from: from, amount: amount, dataType: .transfer, data: "0x", fee: fee)
 		}
 	}
 }

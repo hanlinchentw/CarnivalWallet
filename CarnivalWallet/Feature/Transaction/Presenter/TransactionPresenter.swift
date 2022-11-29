@@ -68,7 +68,7 @@ class TransactionPresenter {
 		if rawData.dataType == .tokenTransfer {
 			let (_, amount) = ERC20Decoder.decodeTokenTransfer(data: rawData.data)
 			let amountBig = BigInt(amount, radix: 16)
-			return EtherNumberFormatter.short.string(from: amountBig!, decimals: coin.decimals.toInt())
+			return EtherNumberFormatter.full.string(from: amountBig!, decimals: coin.decimals.toInt())
 		}
 		return rawData.amount
 	}

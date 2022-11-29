@@ -8,13 +8,10 @@
 import SwiftUI
 import WalletCore
 
-struct SendAmountViewObject: Hashable {
+struct SendAmountView: View {
 	var coin: Coin
 	var sendToAddress: String
-}
 
-struct SendAmountView: View {
-	var viewObject: SendAmountViewObject
 	@EnvironmentObject var walletVM: WalletViewModel
 	@Environment(\.presentationMode) var presentationMode
 	@Binding var path: NavigationPath
@@ -23,7 +20,7 @@ struct SendAmountView: View {
 	var body: some View {
 		VStack {
 			VStack(spacing: 16) {
-				Text(viewObject.coin.symbol)
+				Text(coin.symbol)
 					.AvenirNextMedium(size: 14)
 					.foregroundColor(.white)
 					.capsule(color: .black, radius: 16)
@@ -35,10 +32,10 @@ struct SendAmountView: View {
 					.padding(.horizontal, 32)
 
 				TextButton("Send Max", color: .blue) {
-					vm.onPressMaxButton(viewObject: viewObject)
+					vm.onPressMaxButton(coin: coin)
 				}
 
-				Text("Balance: ", viewObject.coin.balance, " ", viewObject.coin.symbol)
+				Text("Balance: ", coin.balance, " ", coin.symbol)
 					.AvenirNextRegular(size: 14)
 				if let error = vm.error {
 					ErrorText(error.description, alignment: .center)
@@ -48,7 +45,7 @@ struct SendAmountView: View {
 			
 			BaseButton(text: "Send", height: 56, isLoading: vm.isSendButtonLoading, style: .capsule) {
 				Task {
-					await vm.onPressSendButton(viewObject: viewObject)
+					await vm.onPressSendButton(coin: coin, toAddress: sendToAddress)
 				}
 			}
 			.padding(16)
@@ -71,6 +68,6 @@ struct SendAmountView: View {
 
 struct SendAmountView_Previews: PreviewProvider {
 	static var previews: some View {
-		SendAmountView(viewObject: .init(coin: .testETH, sendToAddress: ""), path: .constant(.init()))
+		SendAmountView(coin: .testETH, sendToAddress: "", path: .constant(.init()))
 	}
 }

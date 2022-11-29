@@ -53,6 +53,9 @@
 		B69AAA8C2934741A009CE10E /* ErrorText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAA8B2934741A009CE10E /* ErrorText.swift */; };
 		B69AAA8E2934757B009CE10E /* SendAmountViewComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAA8D2934757B009CE10E /* SendAmountViewComponents.swift */; };
 		B69AAA9029347A1D009CE10E /* TransactionInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAA8F29347A1D009CE10E /* TransactionInfoProvider.swift */; };
+		B69AAA9329363CD5009CE10E /* ReceiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAA9229363CD5009CE10E /* ReceiveView.swift */; };
+		B69AAA9629363E17009CE10E /* QRCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAA9529363E17009CE10E /* QRCodeGenerator.swift */; };
+		B69AAA9B293642D1009CE10E /* RouteName.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAA9A293642D1009CE10E /* RouteName.swift */; };
 		B6B11D6D29101DA5006F0591 /* AccountEntity+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B11D6C29101DA5006F0591 /* AccountEntity+Extensions.swift */; };
 		B6B11D6F2911704E006F0591 /* CoinIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B11D6E2911704E006F0591 /* CoinIconView.swift */; };
 		B6B11D71291176B7006F0591 /* NetworkMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B11D70291176B7006F0591 /* NetworkMapper.swift */; };
@@ -198,6 +201,9 @@
 		B69AAA8B2934741A009CE10E /* ErrorText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorText.swift; sourceTree = "<group>"; };
 		B69AAA8D2934757B009CE10E /* SendAmountViewComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendAmountViewComponents.swift; sourceTree = "<group>"; };
 		B69AAA8F29347A1D009CE10E /* TransactionInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionInfoProvider.swift; sourceTree = "<group>"; };
+		B69AAA9229363CD5009CE10E /* ReceiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveView.swift; sourceTree = "<group>"; };
+		B69AAA9529363E17009CE10E /* QRCodeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeGenerator.swift; sourceTree = "<group>"; };
+		B69AAA9A293642D1009CE10E /* RouteName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteName.swift; sourceTree = "<group>"; };
 		B6B11D6C29101DA5006F0591 /* AccountEntity+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountEntity+Extensions.swift"; sourceTree = "<group>"; };
 		B6B11D6E2911704E006F0591 /* CoinIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinIconView.swift; sourceTree = "<group>"; };
 		B6B11D70291176B7006F0591 /* NetworkMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMapper.swift; sourceTree = "<group>"; };
@@ -511,6 +517,23 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		B69AAA9129363CCA009CE10E /* Receive */ = {
+			isa = PBXGroup;
+			children = (
+				B69AAA9229363CD5009CE10E /* ReceiveView.swift */,
+				B69AAA9529363E17009CE10E /* QRCodeGenerator.swift */,
+			);
+			path = Receive;
+			sourceTree = "<group>";
+		};
+		B69AAA97293642A2009CE10E /* Route */ = {
+			isa = PBXGroup;
+			children = (
+				B69AAA9A293642D1009CE10E /* RouteName.swift */,
+			);
+			path = Route;
+			sourceTree = "<group>";
+		};
 		B6B11D742912BF67006F0591 /* Component */ = {
 			isa = PBXGroup;
 			children = (
@@ -780,6 +803,8 @@
 		B6F7610628FC27A0006BEF79 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				B69AAA97293642A2009CE10E /* Route */,
+				B69AAA9129363CCA009CE10E /* Receive */,
 				B6B80EB0292D002000995210 /* Selector */,
 				B6B80E7C29252C2600995210 /* QRCode */,
 				B6B11D7D2913DEBE006F0591 /* Account */,
@@ -1137,14 +1162,17 @@
 				B6B80ED02930EB8900995210 /* GasPriceProvider.swift in Sources */,
 				B647F9F529039DCF00940C3B /* String+Extensions.swift in Sources */,
 				B69AAA8A293470BF009CE10E /* SendAmountViewModel.swift in Sources */,
+				B69AAA9329363CD5009CE10E /* ReceiveView.swift in Sources */,
 				B6B80E962928AFCD00995210 /* TokenInfo.swift in Sources */,
 				B69AAA822933D388009CE10E /* SendViewModel.swift in Sources */,
 				B6B80E8029252D2A00995210 /* ScannerViewController.swift in Sources */,
 				B647F9D9290310F900940C3B /* View+Extensions.swift in Sources */,
 				B6C204E5291C8CBC00B11E72 /* EtherNumberFormatter.swift in Sources */,
 				B6B80EA8292BCD7B00995210 /* SendView.swift in Sources */,
+				B69AAA9B293642D1009CE10E /* RouteName.swift in Sources */,
 				B639AE13290CCB96008F4C72 /* BaseButton.swift in Sources */,
 				B647F9E9290327E800940C3B /* CreateWalletView.swift in Sources */,
+				B69AAA9629363E17009CE10E /* QRCodeGenerator.swift in Sources */,
 				B6B80EC22930E40D00995210 /* EstimateGasRequest.swift in Sources */,
 				B6C204C029164EDB00B11E72 /* EtherServiceRequest.swift in Sources */,
 				B6C204D62917AF1F00B11E72 /* TokenBalanceProvider.swift in Sources */,
