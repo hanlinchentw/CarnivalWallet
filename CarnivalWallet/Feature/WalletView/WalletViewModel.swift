@@ -25,7 +25,7 @@ class WalletViewModel: ObservableObject {
 	var accountAddress: String? {
 		AccountManager.current?.address
 	}
-	
+
 	func fetchBalance() {
 		guard let account = AccountManager.shared.currentAccount else { return }
 		var operations: [(any BalanceProvider, Coin)] = []

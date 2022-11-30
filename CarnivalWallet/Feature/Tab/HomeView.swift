@@ -41,26 +41,30 @@ struct HomeView: View {
 	init() {
 		UITabBar.appearance().isHidden = true
 	}
-	
-	@State private var path = NavigationPath()
-	
+
+	@StateObject var navigator = NavigatorImpl()
+
 	var body: some View {
-		NavigationStack(path: $path) {
+		NavigationStack(path: $navigator.path) {
 			ZStack {
 				Color.white.ignoresSafeArea()
 				TabView(selection: $selectedScreen) {
-					WalletView(path: $path)
+					WalletView()
 						.tag(0)
 						.environmentObject(walletVM)
+						.environmentObject(navigator)
 						.navigationDestination(for: RouteName.self) { route in
 							switch route {
 							case .send(let coin):
-								SendView(coin: coin, path: $path)
+								SendView(coin: coin)
+									.environmentObject(navigator)
 							case .sendAmount(let coin, let toAddress):
-								SendAmountView(coin: coin, sendToAddress: toAddress, path: $path)
+								SendAmountView(coin: coin, sendToAddress: toAddress)
+									.environmentObject(navigator)
 									.environmentObject(walletVM)
 							case .receive(let coin):
 								ReceiveView(coin: coin)
+									.environmentObject(navigator)
 							case .importToken:
 								ImportTokenView()
 							}

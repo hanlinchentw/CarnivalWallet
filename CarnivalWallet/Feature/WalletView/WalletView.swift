@@ -27,14 +27,13 @@ enum CoinSelectorState: Int {
 }
 
 struct WalletView: View {
-	@Binding var path: NavigationPath
 	@EnvironmentObject var vm: WalletViewModel
+	@EnvironmentObject var navigator: NavigatorImpl
 	
+	@State var sendCoin: Coin?
+	@State var receiveCoin: Coin?
 	@State var coinSelectorState: CoinSelectorState = .invisible
-
-	var coinSelectorVisible: Binding<Bool> {
-		.constant(coinSelectorState != .invisible)
-	}
+	@State var coinSelectorVisible: Bool = false
 	
 	var body: some View {
 		ZStack {
@@ -57,6 +56,7 @@ struct WalletView: View {
 							style: .capsule,
 							onPress: {
 								coinSelectorState = .receive
+								coinSelectorVisible = true
 							}
 						)
 						.foregroundColor(.white)
@@ -68,6 +68,7 @@ struct WalletView: View {
 							style: .capsule,
 							onPress: {
 								coinSelectorState = .send
+								coinSelectorVisible = true
 							}
 						)
 						.foregroundColor(.white)
@@ -100,14 +101,26 @@ struct WalletView: View {
 		.onAppear {
 			vm.fetchBalance()
 		}
-		.coinSelector(isVisible: coinSelectorVisible, coins: vm.coins) { coin in
+		.coinSelector(isVisible: $coinSelectorVisible, coins: vm.coins) { coin in
 			Task {
+				coinSelectorVisible = false
 				if (coinSelectorState == .send) {
-					path.append(RouteName.send(coin))
+					sendCoin = coin
 				} else {
-					path.append(RouteName.receive(coin))
+					receiveCoin = coin
 				}
-				coinSelectorState = .invisible
+			}
+		}
+		.onReceive(sendCoin.publisher) { _ in
+			if let sendCoin {
+				navigator.navigateToSend(coin: sendCoin)
+				self.sendCoin = nil
+			}
+		}
+		.onReceive(receiveCoin.publisher) { _ in
+			if let receiveCoin {
+				navigator.navigateToRecieve(coin: receiveCoin)
+				self.receiveCoin = nil
 			}
 		}
 	}
@@ -115,7 +128,8 @@ struct WalletView: View {
 
 struct WalletView_Previews: PreviewProvider {
 	static var previews: some View {
-		WalletView(path: .constant(.init()))
+		WalletView()
 			.environmentObject(WalletViewModel())
+			.environmentObject(NavigatorImpl())
 	}
 }

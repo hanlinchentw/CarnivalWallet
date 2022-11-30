@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct SendView: View {
+	@EnvironmentObject var navigator: NavigatorImpl
 	@ObservedObject var coin: Coin
 	@Environment(\.presentationMode) var presentationMode
-	@Binding var path: NavigationPath
 	@StateObject var vm = SendViewModel()
-	
+
 	var body: some View {
 		ZStack {
 			Color.white.ignoresSafeArea()
@@ -53,7 +53,7 @@ struct SendView: View {
 					style: .capsule
 				) {
 					vm.checkIfAddressValid {
-						path.append(RouteName.sendAmount(coin: coin, toAddress: vm.sendToAddress))
+						navigator.navigateToSendAmount(coin: coin, toAddress: vm.sendToAddress)
 					}
 				}
 			}
@@ -77,6 +77,6 @@ struct SendView: View {
 
 struct SendView_Previews: PreviewProvider {
 	static var previews: some View {
-		SendView(coin: .testETH, path: .constant(.init()))
+		SendView(coin: .testETH)
 	}
 }

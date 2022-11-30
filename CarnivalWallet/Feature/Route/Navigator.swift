@@ -6,3 +6,25 @@
 //
 
 import Foundation
+import SwiftUI
+
+protocol Navigator: AnyObject {
+	var path: NavigationPath { get set }
+	func navigate(to: RouteName)
+	func pop()
+	func popToTop()
+}
+
+extension Navigator {
+	func navigate(to: RouteName) {
+		path.append(to)
+	}
+	
+	func pop() {
+		path.removeLast()
+	}
+	
+	func popToTop() {
+		path.removeLast(path.count)
+	}
+}

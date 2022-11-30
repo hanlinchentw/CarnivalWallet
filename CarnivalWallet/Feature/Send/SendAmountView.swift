@@ -11,10 +11,10 @@ import WalletCore
 struct SendAmountView: View {
 	var coin: Coin
 	var sendToAddress: String
-
+	
+	@EnvironmentObject var navigator: NavigatorImpl
 	@EnvironmentObject var walletVM: WalletViewModel
 	@Environment(\.presentationMode) var presentationMode
-	@Binding var path: NavigationPath
 	@StateObject var vm = SendAmountViewModel()
 	
 	var body: some View {
@@ -55,10 +55,10 @@ struct SendAmountView: View {
 		.header(title: "Amount", leftItem: {
 			Image(systemName: "chevron.left")
 		}, onPressedLeftItem: {
-			path.removeLast()
+			navigator.pop()
 		})
 		.onReceive(TransactionNotification.Success.publisher) { _ in
-			path.removeLast()
+			navigator.pop()
 		}
 		.onAppear {
 			walletVM.fetchBalance()
@@ -68,6 +68,6 @@ struct SendAmountView: View {
 
 struct SendAmountView_Previews: PreviewProvider {
 	static var previews: some View {
-		SendAmountView(coin: .testETH, sendToAddress: "", path: .constant(.init()))
+		SendAmountView(coin: .testETH, sendToAddress: "")
 	}
 }

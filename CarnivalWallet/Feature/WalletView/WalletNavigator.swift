@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+protocol WalletNavigator {
+	func navigateToSend(coin: Coin)
+	func navigateToSendAmount(coin: Coin, toAddress: String)
+	func navigateToRecieve(coin: Coin)
+	func navigateToImportToken()
+}
