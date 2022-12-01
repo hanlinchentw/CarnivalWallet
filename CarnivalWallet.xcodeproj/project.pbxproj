@@ -60,6 +60,9 @@
 		B69AAA9F293665D3009CE10E /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAA9E293665D3009CE10E /* Navigator.swift */; };
 		B69AAAA129366839009CE10E /* WalletNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAAA029366839009CE10E /* WalletNavigator.swift */; };
 		B69AAAA32937246F009CE10E /* ReceiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAAA22937246F009CE10E /* ReceiveViewModel.swift */; };
+		B69AAAA8293871A0009CE10E /* GetTransactionByHashRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAAA7293871A0009CE10E /* GetTransactionByHashRequest.swift */; };
+		B69AAAAA29387528009CE10E /* GetTransactionByHashProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAAA929387528009CE10E /* GetTransactionByHashProvider.swift */; };
+		B69AAAAC293875D7009CE10E /* History+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAAAB293875D7009CE10E /* History+Extensions.swift */; };
 		B6B11D6D29101DA5006F0591 /* AccountEntity+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B11D6C29101DA5006F0591 /* AccountEntity+Extensions.swift */; };
 		B6B11D6F2911704E006F0591 /* CoinIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B11D6E2911704E006F0591 /* CoinIconView.swift */; };
 		B6B11D71291176B7006F0591 /* NetworkMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B11D70291176B7006F0591 /* NetworkMapper.swift */; };
@@ -212,6 +215,9 @@
 		B69AAA9E293665D3009CE10E /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
 		B69AAAA029366839009CE10E /* WalletNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletNavigator.swift; sourceTree = "<group>"; };
 		B69AAAA22937246F009CE10E /* ReceiveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveViewModel.swift; sourceTree = "<group>"; };
+		B69AAAA7293871A0009CE10E /* GetTransactionByHashRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTransactionByHashRequest.swift; sourceTree = "<group>"; };
+		B69AAAA929387528009CE10E /* GetTransactionByHashProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTransactionByHashProvider.swift; sourceTree = "<group>"; };
+		B69AAAAB293875D7009CE10E /* History+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "History+Extensions.swift"; sourceTree = "<group>"; };
 		B6B11D6C29101DA5006F0591 /* AccountEntity+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountEntity+Extensions.swift"; sourceTree = "<group>"; };
 		B6B11D6E2911704E006F0591 /* CoinIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinIconView.swift; sourceTree = "<group>"; };
 		B6B11D70291176B7006F0591 /* NetworkMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMapper.swift; sourceTree = "<group>"; };
@@ -391,6 +397,7 @@
 				B639AE4229101BA2008F4C72 /* CoreDataManager.swift */,
 				B6B11D6C29101DA5006F0591 /* AccountEntity+Extensions.swift */,
 				B6C204A62915F1EA00B11E72 /* Coin+Extensions.swift */,
+				B69AAAAB293875D7009CE10E /* History+Extensions.swift */,
 			);
 			path = Coredata;
 			sourceTree = "<group>";
@@ -639,6 +646,7 @@
 				B6B80ECB2930EB7100995210 /* NonceProvider.swift */,
 				B6B80ED32931AA2D00995210 /* SendTransactionProvider.swift */,
 				B69AAA8F29347A1D009CE10E /* TransactionInfoProvider.swift */,
+				B69AAAA929387528009CE10E /* GetTransactionByHashProvider.swift */,
 			);
 			path = Transaction;
 			sourceTree = "<group>";
@@ -715,6 +723,7 @@
 				B6C204CB29179A7E00B11E72 /* JsonRpcRequest.swift */,
 				B6B80EBF2930E20100995210 /* NonceRequest.swift */,
 				B6B80ED12931A9A800995210 /* SendTransactionRequest.swift */,
+				B69AAAA7293871A0009CE10E /* GetTransactionByHashRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1144,15 +1153,18 @@
 				B6B80EB8292E4F0600995210 /* TransactionViewModel.swift in Sources */,
 				B6B80E8229252D9D00995210 /* ScannerView.swift in Sources */,
 				B6B80EB4292E4EDA00995210 /* RawData.swift in Sources */,
+				B69AAAAC293875D7009CE10E /* History+Extensions.swift in Sources */,
 				B6B6ED472923290D0093902A /* TokenAddressTextField.swift in Sources */,
 				B6B11D762912BF7F006F0591 /* WalletInfoView.swift in Sources */,
 				B639AE35290D7806008F4C72 /* Coordinator.swift in Sources */,
 				B69AAA8C2934741A009CE10E /* ErrorText.swift in Sources */,
 				B6B80EBA292E53F900995210 /* TransactionView.swift in Sources */,
 				B69AAA872933D7F7009CE10E /* SendViewComponents.swift in Sources */,
+				B69AAAAA29387528009CE10E /* GetTransactionByHashProvider.swift in Sources */,
 				B6F7610328FC2781006BEF79 /* BrowserView.swift in Sources */,
 				B6B11D7F2913DEC7006F0591 /* AccountViewModel.swift in Sources */,
 				B6B11D812913FD9C006F0591 /* AccountUtils.swift in Sources */,
+				B69AAAA8293871A0009CE10E /* GetTransactionByHashRequest.swift in Sources */,
 				B6C204D029179E9600B11E72 /* BalanceProvider.swift in Sources */,
 				B639AE2A290D252B008F4C72 /* SecurePhraseView.swift in Sources */,
 				B639AE0A2908B68E008F4C72 /* Utilities.swift in Sources */,

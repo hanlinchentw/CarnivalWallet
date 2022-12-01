@@ -8,6 +8,7 @@
 import Foundation
 import WalletCore
 import BigInt
+import CoreData
 
 typealias SendTransactionResult = Result<String, Error>
 
@@ -83,11 +84,14 @@ class TransactionViewModel {
 				let signedTx = output.encoded.hexString.add0x
 				print(">>> \(#function) signedTx = \(signedTx)")
 				
-				let txId = try await SendTransactionProvider(signedTx: signedTx).sendTransaction()
-				print(">>> \(#function) txId = \(txId)")
+				let txHash = try await SendTransactionProvider(signedTx: signedTx).sendTransaction()
+				print(">>> \(#function) txId = \(txHash)")
+				
 
 				DispatchQueue.main.async {
-					self.sendResult = .success(txId)
+					self.sendResult = .success(txHash)
+					let history = History.init(txHash: txHash)
+					try? NSManagedObjectContext.defaultContext.save()
 				}
 			} catch {
 				self.sendResult = .failure(error)

@@ -17,4 +17,7 @@
         <attribute name="symbol" attributeType="String"/>
         <relationship name="account" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AccountEntity" inverseName="coin" inverseEntity="AccountEntity"/>
     </entity>
+    <entity name="History" representedClassName="History" syncable="YES" codeGenerationType="class">
+        <attribute name="txHash" optional="YES" attributeType="String"/>
+    </entity>
 </model>
