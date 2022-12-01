@@ -63,6 +63,7 @@
 		B69AAAA8293871A0009CE10E /* GetTransactionByHashRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAAA7293871A0009CE10E /* GetTransactionByHashRequest.swift */; };
 		B69AAAAA29387528009CE10E /* GetTransactionByHashProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAAA929387528009CE10E /* GetTransactionByHashProvider.swift */; };
 		B69AAAAC293875D7009CE10E /* History+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAAAB293875D7009CE10E /* History+Extensions.swift */; };
+		B69AAAB1293876EA009CE10E /* CoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAAB0293876EA009CE10E /* CoinView.swift */; };
 		B6B11D6D29101DA5006F0591 /* AccountEntity+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B11D6C29101DA5006F0591 /* AccountEntity+Extensions.swift */; };
 		B6B11D6F2911704E006F0591 /* CoinIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B11D6E2911704E006F0591 /* CoinIconView.swift */; };
 		B6B11D71291176B7006F0591 /* NetworkMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B11D70291176B7006F0591 /* NetworkMapper.swift */; };
@@ -218,6 +219,7 @@
 		B69AAAA7293871A0009CE10E /* GetTransactionByHashRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTransactionByHashRequest.swift; sourceTree = "<group>"; };
 		B69AAAA929387528009CE10E /* GetTransactionByHashProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTransactionByHashProvider.swift; sourceTree = "<group>"; };
 		B69AAAAB293875D7009CE10E /* History+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "History+Extensions.swift"; sourceTree = "<group>"; };
+		B69AAAB0293876EA009CE10E /* CoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinView.swift; sourceTree = "<group>"; };
 		B6B11D6C29101DA5006F0591 /* AccountEntity+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountEntity+Extensions.swift"; sourceTree = "<group>"; };
 		B6B11D6E2911704E006F0591 /* CoinIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinIconView.swift; sourceTree = "<group>"; };
 		B6B11D70291176B7006F0591 /* NetworkMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMapper.swift; sourceTree = "<group>"; };
@@ -551,6 +553,14 @@
 			path = Route;
 			sourceTree = "<group>";
 		};
+		B69AAAAD293876CB009CE10E /* CoinPage */ = {
+			isa = PBXGroup;
+			children = (
+				B69AAAB0293876EA009CE10E /* CoinView.swift */,
+			);
+			path = CoinPage;
+			sourceTree = "<group>";
+		};
 		B6B11D742912BF67006F0591 /* Component */ = {
 			isa = PBXGroup;
 			children = (
@@ -823,27 +833,28 @@
 		B6F7610628FC27A0006BEF79 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
-				B69AAA97293642A2009CE10E /* Route */,
-				B69AAA9129363CCA009CE10E /* Receive */,
-				B6B80EB0292D002000995210 /* Selector */,
-				B6B80E7C29252C2600995210 /* QRCode */,
 				B6B11D7D2913DEBE006F0591 /* Account */,
 				B6F7610828FC27AA006BEF79 /* Browser */,
+				B69AAAAD293876CB009CE10E /* CoinPage */,
 				B639AE33290D77FD008F4C72 /* Coordinator */,
 				B639AE3929101ABB008F4C72 /* Coredata */,
 				B6B6ED41292326800093902A /* CustomToken */,
 				B6C204BE29164ED200B11E72 /* Ethers */,
 				B647FA022906D22400940C3B /* Keychain */,
+				B6B80E7C29252C2600995210 /* QRCode */,
+				B69AAA9129363CCA009CE10E /* Receive */,
+				B69AAA97293642A2009CE10E /* Route */,
 				B647FA062906DB7100940C3B /* Secure */,
+				B6B80EB0292D002000995210 /* Selector */,
+				B69AAA802933D378009CE10E /* Send */,
 				B647F9E3290327B100940C3B /* Setup */,
 				B6C204B029162A8700B11E72 /* SideMenu */,
 				B647F9DA2903123600940C3B /* Tab */,
+				B6B80EA9292BCD8000995210 /* Transaction */,
 				B639AE022906E045008F4C72 /* UserDefault */,
 				B6C204A32915576700B11E72 /* Wallet */,
 				B6F7610928FC27B5006BEF79 /* WalletConnect */,
 				B6F7610728FC27A8006BEF79 /* WalletView */,
-				B69AAA802933D378009CE10E /* Send */,
-				B6B80EA9292BCD8000995210 /* Transaction */,
 			);
 			path = Feature;
 			sourceTree = "<group>";
@@ -1230,6 +1241,7 @@
 				B6B11D782912C008006F0591 /* WalletFiatBalanceView.swift in Sources */,
 				B6B80E9C2928CD4300995210 /* ParseError.swift in Sources */,
 				B6B80ED22931A9A800995210 /* SendTransactionRequest.swift in Sources */,
+				B69AAAB1293876EA009CE10E /* CoinView.swift in Sources */,
 				B639AE2E290D6050008F4C72 /* ValidatePhraseView.swift in Sources */,
 				B6B80EA6292BC9F000995210 /* TransactionViewController.swift in Sources */,
 				B6B80ED42931AA2D00995210 /* SendTransactionProvider.swift in Sources */,
