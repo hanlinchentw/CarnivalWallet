@@ -65,6 +65,9 @@ struct HomeView: View {
 							case .receive(let coin):
 								ReceiveView(coin: coin)
 									.environmentObject(navigator)
+							case .coin(let coin):
+								CoinView(coin: coin)
+									.environmentObject(navigator)
 							case .importToken:
 								ImportTokenView()
 							}

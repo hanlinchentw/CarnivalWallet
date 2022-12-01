@@ -12,6 +12,7 @@ enum RouteName {
 	case receive(Coin)
 	case send(Coin)
 	case sendAmount(coin: Coin, toAddress: String)
+	case coin(Coin)
 	
 	var name: String? {
 		switch self {
@@ -23,6 +24,8 @@ enum RouteName {
 			return "Send"
 		case .sendAmount:
 			return "Amount"
+		case .coin:
+			return "Coin"
 		}
 	}
 }

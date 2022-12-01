@@ -78,7 +78,9 @@ struct WalletView: View {
 					Divider()
 						.padding(.top, 16)
 					
-					WalletCoinList()
+					WalletCoinList(onPressItem: { coin in
+						navigator.navigateToCoin(coin: coin)
+					})
 						.environment(\.managedObjectContext, .defaultContext)
 					
 					VStack(spacing: 6) {

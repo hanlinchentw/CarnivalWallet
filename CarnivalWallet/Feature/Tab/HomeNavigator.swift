@@ -26,4 +26,8 @@ class NavigatorImpl: ObservableObject, Navigator, WalletNavigator {
 	func navigateToImportToken() {
 		navigate(to: .importToken)
 	}
+	
+	func navigateToCoin(coin: Coin) {
+		navigate(to: .coin(coin))
+	}
 }

@@ -10,6 +10,7 @@ import BigInt
 import Defaults
 
 struct WalletCoinList: View {
+	var onPressItem: (Coin) -> Void
 	@Environment(\.managedObjectContext) var viewContext
 	@FetchRequest(sortDescriptors: []) var coins: FetchedResults<Coin>
 	@FetchRequest(
@@ -24,7 +25,11 @@ struct WalletCoinList: View {
 	var body: some View {
 		VStack(spacing: 12) {
 			ForEach(0 ..< currentAccountCoins.indices.count, id: \.self) { index in
-				WalletCoinListItem(coin: currentAccountCoins[index])
+				let coin = currentAccountCoins[index]
+				WalletCoinListItem(coin: coin)
+					.onTapGesture {
+						onPressItem(coin)
+					}
 			}
 		}
 		.padding(.top, 12)
@@ -33,6 +38,8 @@ struct WalletCoinList: View {
 
 struct WalletCoinList_Previews: PreviewProvider {
 	static var previews: some View {
-		WalletCoinList()
+		WalletCoinList(onPressItem: { _ in
+			
+		})
 	}
 }
