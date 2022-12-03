@@ -32,12 +32,20 @@ struct WalletCoinListItem: View {
 				Image(systemName: isEditing ? "minus.circle.fill" : "chevron.right")
 					.resizable()
 					.scaledToFit()
-					.foregroundColor(isEditing ? Color.redNormal : Color.black)
+					.foregroundColor(accessoryColor)
 					.frame(width: 16, height: 16)
 			}
 			.padding(.horizontal, 16)
 			Divider()
 		}
+	}
+	
+	var accessoryColor: Color {
+		let isMainCoin = coin.contractAddress == nil
+		if isMainCoin {
+			return Color.gray
+		}
+		return isEditing ? Color.redNormal : Color.black
 	}
 }
 

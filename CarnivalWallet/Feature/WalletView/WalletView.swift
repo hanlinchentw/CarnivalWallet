@@ -48,7 +48,7 @@ struct WalletView: View {
 						name: vm.accountName
 					)
 
-					WalletFiatBalanceView(balance: vm.totalFiatBalance)
+					WalletFiatBalanceView(balance: vm.accountBalance)
 					
 					HStack(spacing: 32) {
 						BaseButton(
@@ -84,6 +84,8 @@ struct WalletView: View {
 							isEditing: vm.isEditing,
 							onPressItem: { coin in
 								if vm.isEditing {
+									let isMainCoin = coin.contractAddress == nil
+									if isMainCoin { return }
 									vm.deleteCoin(coin)
 									return
 								}
