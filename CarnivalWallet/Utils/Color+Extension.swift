@@ -23,4 +23,8 @@ extension Color {
 	static var greenNormal: Color {
 		Color.init(red: 0.333, green: 0.847, blue: 0.675)
 	}
+	
+	static var greenDark: Color {
+		Color.init(red: 0, green: 0.64, blue: 0.165)
+	}
 }

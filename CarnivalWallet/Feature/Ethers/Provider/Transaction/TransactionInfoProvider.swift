@@ -37,18 +37,18 @@ struct TransactionInfoProvider {
 		let amount = String(amountNumber, radix: 16).add0x
 		let input = EstimateGasInput(from: from, to: to, value: amount, data: data)
 		let gas = try await EstimateGasProvider(input: input).estimateGas()
-		
+
 		return .init(nonce: nonce, gas: gas, gasPrice: gasPrice)
 	}
 	
 	func getFee() async throws -> String {
 		let feeInfo = try await self.getTransactionInfo()
-		return calculateFee(feeInfo: feeInfo)
+		return Self.calculateFee(gas: feeInfo.gas, gasPrice: feeInfo.gasPrice)
 	}
 	
-	func calculateFee(feeInfo: TransactionInfo) -> String {
-		let gasBigInt = BigInt(feeInfo.gas)!
-		let gasPriceBigInt = BigInt(feeInfo.gasPrice)!
+	static func calculateFee(gas: String, gasPrice: String) -> String {
+		let gasBigInt = BigInt(gas.drop0x, radix: 16)!
+		let gasPriceBigInt = BigInt(gasPrice.drop0x, radix: 16)!
 		let fee = gasBigInt * gasPriceBigInt
 		return EtherNumberFormatter.full.string(from: fee)
 	}

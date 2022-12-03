@@ -13,7 +13,7 @@ struct GetTransactionByHashProvider {
 	
 	let txHash: String
 
-	func getGasPrice() async throws -> any TransactionObject {
+	func getTransactionByHash() async throws -> LegacyTransactionObject {
 		let request = EtherServiceRequest(
 			rpcURL: "https://rpc.ankr.com/eth",
 			request: Request.init(txHash: txHash)

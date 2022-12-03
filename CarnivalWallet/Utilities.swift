@@ -276,3 +276,14 @@ class SafeAreaUtils {
 		safeAreaInsets?.top ?? 0.0
 	}
 }
+
+extension Dictionary where Key == String, Value: Any {
+	
+	func object<T: Decodable>(_ type: T.Type) -> T? {
+		if let data = try? JSONSerialization.data(withJSONObject: self, options: []) {
+			return try? JSONDecoder().decode(T.self, from: data)
+		} else {
+			return nil
+		}
+	}
+}

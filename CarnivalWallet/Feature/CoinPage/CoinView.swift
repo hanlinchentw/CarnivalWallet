@@ -8,8 +8,16 @@
 import SwiftUI
 
 struct CoinView: View {
-	@EnvironmentObject var navigator: NavigatorImpl
 	var coin: Coin
+	@Environment(\.managedObjectContext) var viewContext
+//		@FetchRequest(sortDescriptors: []) var transactions: FetchedResults<History>
+	var transactions: Array<History> {
+		Array(repeating: History.testHistory, count: 30)
+	}
+
+	@EnvironmentObject var navigator: NavigatorImpl
+	@StateObject var vm = HistoryViewModel()
+	
 	var body: some View {
 		ZStack {
 			VStack {
@@ -17,9 +25,11 @@ struct CoinView: View {
 					CoinIconView(network: coin.network, contractAddress: coin.contractAddress, size: 56)
 						.padding(.top, 32)
 					
-					Text(coin.balance, coin.symbol)
+					Text(coin.balance, " ", coin.symbol)
 						.AvenirNextMedium(size: 32)
-					
+						.minimumScaleFactor(0.5)
+						.lineLimit(0)
+						.padding(.horizontal, 32)
 					HStack(spacing: 32) {
 						BaseButton(
 							text: WalletCTAType.Receive.rawValue,
@@ -47,6 +57,7 @@ struct CoinView: View {
 					
 					Divider().padding(.top, 20)
 				}
+				HistoryView(coin: coin, transactions: transactions)
 				Spacer()
 			}
 			.toolbar(.hidden)
@@ -55,6 +66,10 @@ struct CoinView: View {
 			} onPressedLeftItem: {
 				navigator.pop()
 			}
+			.edgesIgnoringSafeArea(.bottom)
+		}
+		.task {
+			await vm.fetchTransaction()
 		}
 	}
 }

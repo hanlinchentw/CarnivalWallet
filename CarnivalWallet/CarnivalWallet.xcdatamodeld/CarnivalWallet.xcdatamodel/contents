@@ -16,8 +16,15 @@
         <attribute name="network" attributeType="String"/>
         <attribute name="symbol" attributeType="String"/>
         <relationship name="account" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AccountEntity" inverseName="coin" inverseEntity="AccountEntity"/>
+        <relationship name="histories" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="History" inverseName="coin" inverseEntity="History"/>
     </entity>
     <entity name="History" representedClassName="History" syncable="YES" codeGenerationType="class">
-        <attribute name="txHash" optional="YES" attributeType="String"/>
+        <attribute name="amount" optional="YES" attributeType="String"/>
+        <attribute name="fee" optional="YES" attributeType="String"/>
+        <attribute name="from" optional="YES" attributeType="String"/>
+        <attribute name="timestamp" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="to" optional="YES" attributeType="String"/>
+        <attribute name="txHash" attributeType="String"/>
+        <relationship name="coin" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Coin" inverseName="histories" inverseEntity="Coin"/>
     </entity>
 </model>

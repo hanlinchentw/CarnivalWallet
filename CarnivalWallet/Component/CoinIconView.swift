@@ -35,6 +35,7 @@ struct CoinIconView: View {
 				.resizable()
 				.scaledToFit()
 				.size(size)
+				.background(.clear)
 				.cornerRadius(size/2)
 		}
 	}

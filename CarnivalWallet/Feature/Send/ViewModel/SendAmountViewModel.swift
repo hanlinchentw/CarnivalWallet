@@ -56,7 +56,7 @@ class SendAmountViewModel: ObservableObject {
 				contractAddress: coin.contractAddress
 			)
 			let transactionInfo = try await provider.getTransactionInfo()
-			let fee = provider.calculateFee(feeInfo: transactionInfo)
+			let fee = TransactionInfoProvider.calculateFee(gas: transactionInfo.gas, gasPrice: transactionInfo.gasPrice)
 			
 			let balanceNotEnoughForTotal = amount + fee.toDouble() >= balance.toDouble()
 

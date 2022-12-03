@@ -11,6 +11,7 @@ import Defaults
 
 struct WalletCoinList: View {
 	var onPressItem: (Coin) -> Void
+	
 	@Environment(\.managedObjectContext) var viewContext
 	@FetchRequest(sortDescriptors: []) var coins: FetchedResults<Coin>
 	@FetchRequest(

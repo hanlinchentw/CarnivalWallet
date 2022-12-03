@@ -7,38 +7,22 @@
 
 import Foundation
 
-protocol TransactionObject {
-	var type: String { get set }
-	var nonce: String { get set }
-	var value: String { get set }
-	var input: String { get set }
-}
-
-struct LegacyTransactionObject: TransactionObject {
+struct LegacyTransactionObject: Decodable{
+	var blockNumber: String
+	var from: String
+	var to: String
 	var type: String
 	var nonce: String
 	var value: String
 	var input: String
-
 	let gas: String
 	let gasPrice: String
 }
-
-struct EIP1559TransactionObject: TransactionObject {
-	var type: String
-	var nonce: String
-	var value: String
-	var input: String
-
-	let maxFeePerGas: String
-	let maxPriorityFeePerGas: String
-}
-
 struct GetTransactionByHashRequest: JsonRpcRequest {
-	typealias Response = TransactionObject
+	typealias Response = LegacyTransactionObject
 	
 	let txHash: String
-
+	
 	var method: String {
 		return "eth_getTransactionByHash"
 	}
@@ -46,16 +30,14 @@ struct GetTransactionByHashRequest: JsonRpcRequest {
 	var parameters: [Any] {
 		return [txHash]
 	}
-
+	
 	func response(from resultObject: Any) throws -> Response {
-		if let response = resultObject as? [String: Any] {
-			if let result = response["result"] as? LegacyTransactionObject {
-				return result
-			}
-			if let result = response["result"] as? EIP1559TransactionObject {
-				return result
+		if let response = resultObject as? [String: Any],
+			 let result = response["result"] as? [String: Any] {
+			if let legacyObject = result.object(LegacyTransactionObject.self) {
+				return legacyObject
 			}
 		}
-		throw CastError(actualValue: resultObject, expectedType: (any Response).self)
+		throw CastError(actualValue: resultObject, expectedType: Response.self)
 	}
 }

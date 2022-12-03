@@ -56,15 +56,13 @@ class TransactionViewModel {
 				guard let fee = rawData.fee else {
 					return
 				}
-				let gas = fee.gas.toHex()
-				let gasPrice = fee.gasPrice.toHex()
 				let amount = rawData.amount.toHex(decimals: coin.decimals.toInt())
 
 				let input = EthereumSigningInput.with {
 					$0.chainID = Data(hexString: "01")!
 					$0.nonce = Data(hexString: self.nonce)!
-					$0.gasLimit = Data(hexString: gas)!
-					$0.gasPrice = Data(hexString: gasPrice)!
+					$0.gasLimit = Data(hexString: fee.gas)!
+					$0.gasPrice = Data(hexString: fee.gasPrice)!
 					$0.privateKey = privateKey
 					$0.toAddress = rawData.to
 					$0.transaction = EthereumTransaction.with {

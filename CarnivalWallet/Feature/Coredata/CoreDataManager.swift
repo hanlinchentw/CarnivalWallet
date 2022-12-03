@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 import UIKit
 
-final class CoreDataManager {
+class CoreDataManager {
 	// MARK: - Properties
 	static let sharedInstance = CoreDataManager()
 	// MARK: - Save

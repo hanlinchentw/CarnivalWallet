@@ -19,8 +19,12 @@ struct ReceiveView: View {
 		ZStack {
 			Color.gray.opacity(0.1).ignoresSafeArea()
 			VStack {
-				
-				Spacer()
+				CoinIconView(
+					network: coin.network,
+					contractAddress: coin.contractAddress,
+					size: 56
+				)
+				.padding(.top, 32)
 				VStack {
 					if let address = vm.account?.address,
 						 let qrImage = vm.getQRCode(address: address) {

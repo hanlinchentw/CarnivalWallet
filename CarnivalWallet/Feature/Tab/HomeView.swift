@@ -67,6 +67,7 @@ struct HomeView: View {
 									.environmentObject(navigator)
 							case .coin(let coin):
 								CoinView(coin: coin)
+									.environment(\.managedObjectContext, .defaultContext)
 									.environmentObject(navigator)
 							case .importToken:
 								ImportTokenView()

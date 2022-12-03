@@ -64,6 +64,11 @@
 		B69AAAAA29387528009CE10E /* GetTransactionByHashProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAAA929387528009CE10E /* GetTransactionByHashProvider.swift */; };
 		B69AAAAC293875D7009CE10E /* History+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAAAB293875D7009CE10E /* History+Extensions.swift */; };
 		B69AAAB1293876EA009CE10E /* CoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAAB0293876EA009CE10E /* CoinView.swift */; };
+		B69AAAB32938C95A009CE10E /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAAB22938C95A009CE10E /* HistoryViewModel.swift */; };
+		B69AAAB529390537009CE10E /* GetBlockNumberRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAAB429390537009CE10E /* GetBlockNumberRequest.swift */; };
+		B69AAAB829390754009CE10E /* GetBlockByNumberProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAAB729390754009CE10E /* GetBlockByNumberProvider.swift */; };
+		B69AAABA293AE814009CE10E /* HistoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAAB9293AE814009CE10E /* HistoryPresenter.swift */; };
+		B69AAAC2293AE951009CE10E /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAAC1293AE951009CE10E /* HistoryView.swift */; };
 		B6B11D6D29101DA5006F0591 /* AccountEntity+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B11D6C29101DA5006F0591 /* AccountEntity+Extensions.swift */; };
 		B6B11D6F2911704E006F0591 /* CoinIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B11D6E2911704E006F0591 /* CoinIconView.swift */; };
 		B6B11D71291176B7006F0591 /* NetworkMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B11D70291176B7006F0591 /* NetworkMapper.swift */; };
@@ -220,6 +225,11 @@
 		B69AAAA929387528009CE10E /* GetTransactionByHashProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTransactionByHashProvider.swift; sourceTree = "<group>"; };
 		B69AAAAB293875D7009CE10E /* History+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "History+Extensions.swift"; sourceTree = "<group>"; };
 		B69AAAB0293876EA009CE10E /* CoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinView.swift; sourceTree = "<group>"; };
+		B69AAAB22938C95A009CE10E /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+		B69AAAB429390537009CE10E /* GetBlockNumberRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBlockNumberRequest.swift; sourceTree = "<group>"; };
+		B69AAAB729390754009CE10E /* GetBlockByNumberProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBlockByNumberProvider.swift; sourceTree = "<group>"; };
+		B69AAAB9293AE814009CE10E /* HistoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPresenter.swift; sourceTree = "<group>"; };
+		B69AAAC1293AE951009CE10E /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		B6B11D6C29101DA5006F0591 /* AccountEntity+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountEntity+Extensions.swift"; sourceTree = "<group>"; };
 		B6B11D6E2911704E006F0591 /* CoinIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinIconView.swift; sourceTree = "<group>"; };
 		B6B11D70291176B7006F0591 /* NetworkMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMapper.swift; sourceTree = "<group>"; };
@@ -557,8 +567,19 @@
 			isa = PBXGroup;
 			children = (
 				B69AAAB0293876EA009CE10E /* CoinView.swift */,
+				B69AAAC1293AE951009CE10E /* HistoryView.swift */,
+				B69AAAB9293AE814009CE10E /* HistoryPresenter.swift */,
+				B69AAAB22938C95A009CE10E /* HistoryViewModel.swift */,
 			);
 			path = CoinPage;
+			sourceTree = "<group>";
+		};
+		B69AAAB62939074A009CE10E /* Block */ = {
+			isa = PBXGroup;
+			children = (
+				B69AAAB729390754009CE10E /* GetBlockByNumberProvider.swift */,
+			);
+			path = Block;
 			sourceTree = "<group>";
 		};
 		B6B11D742912BF67006F0591 /* Component */ = {
@@ -734,6 +755,7 @@
 				B6B80EBF2930E20100995210 /* NonceRequest.swift */,
 				B6B80ED12931A9A800995210 /* SendTransactionRequest.swift */,
 				B69AAAA7293871A0009CE10E /* GetTransactionByHashRequest.swift */,
+				B69AAAB429390537009CE10E /* GetBlockNumberRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -741,6 +763,7 @@
 		B6C204CE29179E8A00B11E72 /* Provider */ = {
 			isa = PBXGroup;
 			children = (
+				B69AAAB62939074A009CE10E /* Block */,
 				B6B80ECA2930EB5E00995210 /* Transaction */,
 				B6B80EC72930EB3200995210 /* Token */,
 				B6B80E8D2928A12300995210 /* Balance */,
@@ -1185,6 +1208,7 @@
 				B6B80ECE2930EB8000995210 /* EstimateGasProvider.swift in Sources */,
 				B647F9D42903056900940C3B /* HomeView.swift in Sources */,
 				B6C204C32916510300B11E72 /* BalanceRequest.swift in Sources */,
+				B69AAAB32938C95A009CE10E /* HistoryViewModel.swift in Sources */,
 				B6C204BD2916468900B11E72 /* WalletViewModel.swift in Sources */,
 				B6B80E932928AFBC00995210 /* TokenInfoProvider.swift in Sources */,
 				B647F9E5290327C700940C3B /* WelcomeView.swift in Sources */,
@@ -1222,12 +1246,14 @@
 				B6B80EB6292E4EE300995210 /* DataType.swift in Sources */,
 				B6C204E92923204000B11E72 /* EthereumUnit.swift in Sources */,
 				B647F9E0290315B900940C3B /* DeviceSize.swift in Sources */,
+				B69AAAB529390537009CE10E /* GetBlockNumberRequest.swift in Sources */,
 				B6B80E982928C42E00995210 /* ImportTokenViewModel.swift in Sources */,
 				B69AAA9F293665D3009CE10E /* Navigator.swift in Sources */,
 				B647FA042906D23200940C3B /* KeychainManager.swift in Sources */,
 				B639AE17290CF5B1008F4C72 /* InitializeWalletViewModel.swift in Sources */,
 				B6C204D92917B7E900B11E72 /* ERC20Encoder.swift in Sources */,
 				B6C204A92915F35400B11E72 /* MainCoordinator.swift in Sources */,
+				B69AAAC2293AE951009CE10E /* HistoryView.swift in Sources */,
 				B647F9EF29033AA200940C3B /* TextField+Extensions.swift in Sources */,
 				B69AAA8E2934757B009CE10E /* SendAmountViewComponents.swift in Sources */,
 				B6C204A52915577100B11E72 /* WalletManager.swift in Sources */,
@@ -1259,7 +1285,9 @@
 				B6C204B429162AB300B11E72 /* MenuItem.swift in Sources */,
 				B6C204B229162A9C00B11E72 /* MenuSection.swift in Sources */,
 				B647F9FF29066FB100940C3B /* UIFont+Extensions.swift in Sources */,
+				B69AAAB829390754009CE10E /* GetBlockByNumberProvider.swift in Sources */,
 				B6F7610128FC275C006BEF79 /* WalletView.swift in Sources */,
+				B69AAABA293AE814009CE10E /* HistoryPresenter.swift in Sources */,
 				B6B11D6D29101DA5006F0591 /* AccountEntity+Extensions.swift in Sources */,
 				B69AAA9029347A1D009CE10E /* TransactionInfoProvider.swift in Sources */,
 				B639AE0E2909869D008F4C72 /* Color+Extension.swift in Sources */,
