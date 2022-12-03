@@ -23,13 +23,7 @@ struct SideMenuView: View {
 				}
 			
 			HStack {
-				MenuContentView(
-					onReceive: {
-						
-					}, onSend: {
-						
-					}, itemOnPress: tapItem
-				)
+				MenuContentView(itemOnPress: tapItem)
 				.width(MENU_WIDTH)
 				.height(DeviceDimension.HEIGHT)
 				.background(.white)

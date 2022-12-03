@@ -20,6 +20,17 @@ extension AccountEntity {
 		self.addToCoin(.createETH())
 	}
 }
+extension AccountEntity {
+	var totalFiatBalance: String {
+		let totalFiatBalance = (self.coin?.toArray(Coin.self) ?? [])
+			.map { ($0.fiatBalance ?? "0").toDouble()}
+			.reduce(0.0) { $0 + $1 }
+		let fiatFormatter = NumberFormatter()
+		fiatFormatter.numberStyle = .decimal
+		fiatFormatter.maximumFractionDigits = 4
+		return fiatFormatter.string(from: .init(value: totalFiatBalance)) ?? "0"
+	}
+}
 // MARK: - Mock data
 extension AccountEntity {
 	static var testEthAccountEntity: AccountEntity {

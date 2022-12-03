@@ -19,8 +19,8 @@ class WalletViewModel: ObservableObject {
 		AccountManager.getCurrent?.name
 	}
 	
-	var accountBalance: String? {
-		AccountManager.getCurrent?.fiatBalance
+	var accountBalance: String {
+		AccountManager.getCurrent?.totalFiatBalance ?? "0"
 	}
 	
 	var accountAddress: String? {
@@ -98,14 +98,5 @@ class WalletViewModel: ObservableObject {
 				print(">>> fetchExchangeRate.error=\(error.localizedDescription)")
 			}
 		}
-	}
-	
-	var totalFiatBalance: String {
-		let totalFiatBalance = coins
-			.map { $0.fiatBalance ?? "0" }
-			.reduce("0") {
-				NSDecimalNumber(value: $0.toDouble()+$1.toDouble()).stringValue
-			}
-		return totalFiatBalance
 	}
 }

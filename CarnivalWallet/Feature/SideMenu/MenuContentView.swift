@@ -11,9 +11,6 @@ struct MenuContentView: View {
 	var account: AccountEntity? {
 		AccountManager.getCurrent
 	}
-
-	var onReceive: () -> Void
-	var onSend: () -> Void
 	var itemOnPress: (_ item: MenuItem) -> Void
 	
 	var body: some View {
@@ -32,7 +29,7 @@ struct MenuContentView: View {
 				
 				AccountInfoView(
 					name: account?.name,
-					balance: account?.fiatBalance,
+					balance: account?.totalFiatBalance,
 					address: account?.address
 				)
 				.padding(.top, 12)
@@ -50,11 +47,7 @@ struct MenuContentView: View {
 struct MenuContentView_Previews: PreviewProvider {
 	static var previews: some View {
 		MenuContentView(
-			onReceive: {
-				
-			}, onSend: {
-				
-			}, itemOnPress: { item in
+		 itemOnPress: { item in
 				
 			}
 		)
