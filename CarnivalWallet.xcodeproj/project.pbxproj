@@ -69,6 +69,7 @@
 		B69AAAB829390754009CE10E /* GetBlockByNumberProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAAB729390754009CE10E /* GetBlockByNumberProvider.swift */; };
 		B69AAABA293AE814009CE10E /* HistoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAAB9293AE814009CE10E /* HistoryPresenter.swift */; };
 		B69AAAC2293AE951009CE10E /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAAC1293AE951009CE10E /* HistoryView.swift */; };
+		B69AAAC4293B23C8009CE10E /* Etherscan.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAAC3293B23C8009CE10E /* Etherscan.swift */; };
 		B6B11D6D29101DA5006F0591 /* AccountEntity+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B11D6C29101DA5006F0591 /* AccountEntity+Extensions.swift */; };
 		B6B11D6F2911704E006F0591 /* CoinIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B11D6E2911704E006F0591 /* CoinIconView.swift */; };
 		B6B11D71291176B7006F0591 /* NetworkMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B11D70291176B7006F0591 /* NetworkMapper.swift */; };
@@ -230,6 +231,7 @@
 		B69AAAB729390754009CE10E /* GetBlockByNumberProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBlockByNumberProvider.swift; sourceTree = "<group>"; };
 		B69AAAB9293AE814009CE10E /* HistoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPresenter.swift; sourceTree = "<group>"; };
 		B69AAAC1293AE951009CE10E /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		B69AAAC3293B23C8009CE10E /* Etherscan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Etherscan.swift; sourceTree = "<group>"; };
 		B6B11D6C29101DA5006F0591 /* AccountEntity+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountEntity+Extensions.swift"; sourceTree = "<group>"; };
 		B6B11D6E2911704E006F0591 /* CoinIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinIconView.swift; sourceTree = "<group>"; };
 		B6B11D70291176B7006F0591 /* NetworkMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMapper.swift; sourceTree = "<group>"; };
@@ -582,6 +584,14 @@
 			path = Block;
 			sourceTree = "<group>";
 		};
+		B69AAAC5293B23CD009CE10E /* Etherscan */ = {
+			isa = PBXGroup;
+			children = (
+				B69AAAC3293B23C8009CE10E /* Etherscan.swift */,
+			);
+			path = Etherscan;
+			sourceTree = "<group>";
+		};
 		B6B11D742912BF67006F0591 /* Component */ = {
 			isa = PBXGroup;
 			children = (
@@ -878,6 +888,7 @@
 				B6C204A32915576700B11E72 /* Wallet */,
 				B6F7610928FC27B5006BEF79 /* WalletConnect */,
 				B6F7610728FC27A8006BEF79 /* WalletView */,
+				B69AAAC5293B23CD009CE10E /* Etherscan */,
 			);
 			path = Feature;
 			sourceTree = "<group>";
@@ -1234,6 +1245,7 @@
 				B639AE13290CCB96008F4C72 /* BaseButton.swift in Sources */,
 				B647F9E9290327E800940C3B /* CreateWalletView.swift in Sources */,
 				B69AAA9629363E17009CE10E /* QRCodeGenerator.swift in Sources */,
+				B69AAAC4293B23C8009CE10E /* Etherscan.swift in Sources */,
 				B6B80EC22930E40D00995210 /* EstimateGasRequest.swift in Sources */,
 				B6C204C029164EDB00B11E72 /* EtherServiceRequest.swift in Sources */,
 				B6C204D62917AF1F00B11E72 /* TokenBalanceProvider.swift in Sources */,

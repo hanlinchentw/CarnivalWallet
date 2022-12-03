@@ -59,6 +59,7 @@ extension Int {
 }
 
 extension Double {
+	@available(*, deprecated, message: "possible overflow")
 	func toString() -> String {
 		return String(self)
 	}
@@ -91,6 +92,12 @@ extension String {
 extension String {
 	subscript(i: Int) -> String {
 		return String(self[index(startIndex, offsetBy: i)])
+	}
+}
+
+extension String {
+	func caseInsensitiveEqual(_ value: String) -> Bool {
+		return self.caseInsensitiveCompare(value) == .orderedSame
 	}
 }
 

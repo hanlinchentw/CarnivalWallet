@@ -10,6 +10,7 @@ import SwiftUI
 import WalletCore
 
 class SendAmountViewModel: ObservableObject {
+	let formatter = EtherNumberFormatter.full
 	@Published var sendAmount = ""
 	@Published var error: SendAmountError?
 	@Published var isSendButtonLoading: Bool = false
@@ -29,12 +30,15 @@ class SendAmountViewModel: ObservableObject {
 			self.isSendButtonLoading = false
 		}
 		do {
-			guard let amount = sendAmount.safeToDouble() else {
+			guard let amount = formatter.number(from: sendAmount, decimals: coin.decimals.toInt()) else {
 				self.error = SendAmountError.invalidAmount
 				return
 			}
+			let amountString = formatter.string(from: amount, decimals: coin.decimals.toInt())
+
 			guard let balance = coin.balance,
-						balance.toDouble() >= amount else {
+						let balanceBInt = formatter.number(from: balance, decimals: coin.decimals.toInt()),
+						balanceBInt >= amount else {
 				self.error = SendAmountError.balanceNotEnough
 				return
 			}
@@ -45,23 +49,24 @@ class SendAmountViewModel: ObservableObject {
 				contractAddress: coin.contractAddress,
 				from: from,
 				to: toAddress,
-				amount: amount.toString(),
+				amount: amountString,
 				decimals: coin.decimals.toInt()
 			)
 			let provider = TransactionInfoProvider(
 				from: from,
 				to: toAddress,
 				data: rawData.data,
-				amount: amount.toString(),
+				amount: amountString,
 				contractAddress: coin.contractAddress
 			)
 			let transactionInfo = try await provider.getTransactionInfo()
 			let fee = TransactionInfoProvider.calculateFee(gas: transactionInfo.gas, gasPrice: transactionInfo.gasPrice)
-			
-			let balanceNotEnoughForTotal = amount + fee.toDouble() >= balance.toDouble()
+			let feeBInt = formatter.number(from: fee)!
+
+			let balanceNotEnoughForTotal = amount + feeBInt >= balanceBInt
 
 			if balanceNotEnoughForTotal {
-				let newAmount = amount - fee.toDouble()
+				let newAmount = amount - feeBInt
 
 				if newAmount < 0 {
 					self.error = SendAmountError.balanceNotEnoughToPayFee(fee)
@@ -71,9 +76,9 @@ class SendAmountViewModel: ObservableObject {
 					contractAddress: coin.contractAddress,
 					from: from,
 					to: toAddress,
-					amount: newAmount.toString(),
+					amount: formatter.string(from: newAmount, decimals: coin.decimals.toInt()),
 					decimals: coin.decimals.toInt(),
-					fee: .init(gasPrice: transactionInfo.gasPrice, gas: transactionInfo.gas, symbol: Network.ethereum.rawValue)
+					fee: .init(gasPrice: transactionInfo.gasPrice, gas: transactionInfo.gas, symbol: Network.ethereum.rawValue, nonce: transactionInfo.nonce)
 				)
 				self.startTransaction(coin: coin,rawData: newRawData)
 			} else {

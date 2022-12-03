@@ -14,8 +14,8 @@ typealias SendTransactionResult = Result<String, Error>
 
 class TransactionViewModel {
 	@Published var coinIconData: Data?
-	@Published var nonce: String = ""
-	@Published var rawData: RawData
+	@Published var rawData:
+	RawData
 
 	@Published var sendResult: SendTransactionResult?
 
@@ -35,7 +35,7 @@ class TransactionViewModel {
 				let transactionInfo = try await TransactionInfoProvider(from: from, to: to, data: data, amount: rawData.amount, contractAddress: coin.contractAddress).getTransactionInfo()
 				
 				DispatchQueue.main.async {
-					let fee: Fee = .init(gasPrice: transactionInfo.gasPrice, gas: transactionInfo.gas, symbol: "ETH")
+					let fee: Fee = .init(gasPrice: transactionInfo.gasPrice, gas: transactionInfo.gas, symbol: "ETH", nonce: transactionInfo.nonce)
 					self.rawData.fee = fee
 					print(">>> \(#function) fee = \(fee)")
 				}
@@ -56,13 +56,16 @@ class TransactionViewModel {
 				guard let fee = rawData.fee else {
 					return
 				}
+				let nonce = BigInt(fee.nonce.drop0x, radix: 16)!.description.toHex()
+				let gas = BigInt(fee.gas.drop0x, radix: 16)!.description.toHex()
+				let gasPrice = BigInt(fee.gasPrice.drop0x, radix: 16)!.description.toHex()
 				let amount = rawData.amount.toHex(decimals: coin.decimals.toInt())
 
 				let input = EthereumSigningInput.with {
 					$0.chainID = Data(hexString: "01")!
-					$0.nonce = Data(hexString: self.nonce)!
-					$0.gasLimit = Data(hexString: fee.gas)!
-					$0.gasPrice = Data(hexString: fee.gasPrice)!
+					$0.nonce = Data(hexString: nonce)!
+					$0.gasLimit = Data(hexString: gas)!
+					$0.gasPrice = Data(hexString: gasPrice)!
 					$0.privateKey = privateKey
 					$0.toAddress = rawData.to
 					$0.transaction = EthereumTransaction.with {
@@ -82,13 +85,14 @@ class TransactionViewModel {
 				let signedTx = output.encoded.hexString.add0x
 				print(">>> \(#function) signedTx = \(signedTx)")
 				
-				let txHash = try await SendTransactionProvider(signedTx: signedTx).sendTransaction()
-				print(">>> \(#function) txId = \(txHash)")
 				
+				let txHash = "0x9f799a45941d8125dd516e1d78f18f19826a0fa566af1cc18da6b41a8de9d7da"
+//				try await SendTransactionProvider(signedTx: signedTx).sendTransaction()
+				print(">>> \(#function) txId = \(txHash)")
 
 				DispatchQueue.main.async {
 					self.sendResult = .success(txHash)
-					let history = History.init(txHash: txHash)
+					let _ = History.init(txHash: txHash)
 					try? NSManagedObjectContext.defaultContext.save()
 				}
 			} catch {

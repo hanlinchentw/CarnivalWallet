@@ -20,4 +20,5 @@ struct Fee {
 	var gasPrice: String
 	var gas: String
 	let symbol: String
+	var nonce: String
 }

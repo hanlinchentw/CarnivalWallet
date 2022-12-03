@@ -63,7 +63,7 @@ struct ImportTokenView: View {
 								TokenInfoRow(title: "Name", value: tokenInfo.name)
 								TokenInfoRow(title: "Symbol", value: tokenInfo.symbol)
 								TokenInfoRow(title: "Decimals", value: tokenInfo.decimals)
-								Link(destination: "https://etherscan.io/token/\(tokenInfo.contractAddress)".toURL) {
+								Link(destination: Etherscan.route.tokens(tokenInfo.contractAddress).url) {
 									HStack {
 										Text("View on etherscan")
 											.AvenirNextRegular(size: 16)

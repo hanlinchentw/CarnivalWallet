@@ -10,55 +10,60 @@ import SwiftUI
 struct CoinView: View {
 	var coin: Coin
 	@Environment(\.managedObjectContext) var viewContext
-//		@FetchRequest(sortDescriptors: []) var transactions: FetchedResults<History>
-	var transactions: Array<History> {
-		Array(repeating: History.testHistory, count: 30)
-	}
-
+	@FetchRequest(sortDescriptors: []) var transactions: FetchedResults<History>
+	
 	@EnvironmentObject var navigator: NavigatorImpl
 	@StateObject var vm = HistoryViewModel()
-	
+
 	var body: some View {
 		ZStack {
 			VStack {
-				VStack(spacing: 16) {
-					CoinIconView(network: coin.network, contractAddress: coin.contractAddress, size: 56)
-						.padding(.top, 32)
-					
-					Text(coin.balance, " ", coin.symbol)
-						.AvenirNextMedium(size: 32)
-						.minimumScaleFactor(0.5)
-						.lineLimit(0)
-						.padding(.horizontal, 32)
-					HStack(spacing: 32) {
-						BaseButton(
-							text: WalletCTAType.Receive.rawValue,
-							icon: WalletCTAType.Receive.icon,
-							height: 48,
-							style: .capsule,
-							onPress: {
-								navigator.navigateToRecieve(coin: coin)
-							}
-						)
-						.foregroundColor(.white)
+				ScrollView {
+					VStack(spacing: 16) {
+						CoinIconView(network: coin.network, contractAddress: coin.contractAddress, size: 56)
+							.padding(.top, 32)
 						
-						BaseButton(
-							text: WalletCTAType.Send.rawValue,
-							icon: WalletCTAType.Send.icon,
-							height: 48,
-							style: .capsule,
-							onPress: {
-								navigator.navigateToSend(coin: coin)
-							}
-						)
-						.foregroundColor(.white)
+						Text(coin.balance, " ", coin.symbol)
+							.AvenirNextMedium(size: 32)
+							.minimumScaleFactor(0.5)
+							.lineLimit(0)
+							.padding(.horizontal, 32)
+						HStack(spacing: 32) {
+							BaseButton(
+								text: WalletCTAType.Receive.rawValue,
+								icon: WalletCTAType.Receive.icon,
+								height: 48,
+								style: .capsule,
+								onPress: {
+									navigator.navigateToRecieve(coin: coin)
+								}
+							)
+							.foregroundColor(.white)
+							
+							BaseButton(
+								text: WalletCTAType.Send.rawValue,
+								icon: WalletCTAType.Send.icon,
+								height: 48,
+								style: .capsule,
+								onPress: {
+									navigator.navigateToSend(coin: coin)
+								}
+							)
+							.foregroundColor(.white)
+						}
+						.padding(.horizontal, 32)
+
+						Divider().padding(.top, 20)
 					}
-					.padding(.horizontal, 32)
 					
-					Divider().padding(.top, 20)
+					HistoryView(coin: coin, transactions: transactions)
+					
+					Spacer()
 				}
-				HistoryView(coin: coin, transactions: transactions)
-				Spacer()
+				.safeAreaInset(.bottom, inset: 32)
+				.refreshable {
+					await vm.fetchTransaction(skipConfirmed: false)
+				}
 			}
 			.toolbar(.hidden)
 			.header(title: coin.name ?? "Coin") {
@@ -69,7 +74,7 @@ struct CoinView: View {
 			.edgesIgnoringSafeArea(.bottom)
 		}
 		.task {
-			await vm.fetchTransaction()
+			await vm.fetchTransaction(skipConfirmed: true)
 		}
 	}
 }

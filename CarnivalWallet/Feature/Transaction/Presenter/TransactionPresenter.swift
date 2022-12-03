@@ -47,10 +47,7 @@ class TransactionPresenter {
 		guard let feeInfo = rawData.fee else {
 			return nil
 		}
-		let gasBigInt = BigInt(feeInfo.gas)!
-		let gasPriceBigInt = BigInt(feeInfo.gasPrice)!
-		let fee = gasBigInt * gasPriceBigInt
-		return EtherNumberFormatter.full.string(from: fee)
+		return TransactionInfoProvider.calculateFee(gas: feeInfo.gas, gasPrice: feeInfo.gasPrice)
 	}
 	
 	var feeSymbol: String? {
