@@ -10,14 +10,18 @@ import Foundation
 struct Etherscan {
 	
 	enum route {
-		case tokens(String)
+		
+		case token(String)
+		case tokens
 		case address(String)
 		case transaction(String)
 		
 		var url: URL {
 			switch self {
-			case .tokens(let contractAddress):
+			case .token(let contractAddress):
 				return "https://etherscan.io/token/\(contractAddress)".toURL
+			case .tokens:
+				return "https://etherscan.io/tokens".toURL
 			case .address(let address):
 				return "https://etherscan.io/address/\(address)".toURL
 			case .transaction(let txHash):

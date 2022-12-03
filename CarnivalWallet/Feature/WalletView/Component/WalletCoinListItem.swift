@@ -9,14 +9,7 @@ import SwiftUI
 
 struct WalletCoinListItem: View {
 	@ObservedObject var coin: Coin
-
-	var fiatBalance: String {
-		let exchangeRate = coin.exchangeRate?.toDouble() ?? 0.0
-		let balance = coin.balance?.toDouble() ?? 0.0
-		let fiatBalance = exchangeRate * balance
-		return fiatBalance.toString()
-	}
-
+	
 	var body: some View {
 		VStack {
 			HStack {
@@ -27,10 +20,10 @@ struct WalletCoinListItem: View {
 				)
 				VStack(alignment: .leading) {
 					HStack {
-						Text(coin.balance, coin.symbol)
+						Text(coin.balance, " ", coin.symbol)
 							.AvenirNextRegular(size: 16)
 					}
-					Text("$\(fiatBalance)")	
+					Text("$ ", (coin.fiatBalance ?? "0"))	
 						.AvenirNextRegular(size: 14)
 				}
 				.padding(.leading, 16)

@@ -20,7 +20,9 @@ struct WalletCoinList: View {
 	) var account: FetchedResults<AccountEntity>
 	
 	var currentAccountCoins: Array<Coin> {
-		return account.first?.coin?.toArray(Coin.self) ?? []
+		return account.first?.coin?.toArray(Coin.self)
+			.sorted(by: { $0.fiatBalance ?? "0" > $1.fiatBalance ?? "0" })
+		?? []
 	}
 
 	var body: some View {

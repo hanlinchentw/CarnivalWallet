@@ -63,7 +63,7 @@ struct ImportTokenView: View {
 								TokenInfoRow(title: "Name", value: tokenInfo.name)
 								TokenInfoRow(title: "Symbol", value: tokenInfo.symbol)
 								TokenInfoRow(title: "Decimals", value: tokenInfo.decimals)
-								Link(destination: Etherscan.route.tokens(tokenInfo.contractAddress).url) {
+								Link(destination: Etherscan.route.token(tokenInfo.contractAddress).url) {
 									HStack {
 										Text("View on etherscan")
 											.AvenirNextRegular(size: 16)
@@ -101,6 +101,10 @@ struct ImportTokenView: View {
 							)
 						}
 						.padding(.top, 16)
+					}
+					Link(destination: Etherscan.route.tokens.url) {
+						Text("View all ERC-20 Tokens")
+							.AvenirNextMedium(size: 16)
 					}
 
 				}

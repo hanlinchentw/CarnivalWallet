@@ -70,6 +70,9 @@
 		B69AAABA293AE814009CE10E /* HistoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAAB9293AE814009CE10E /* HistoryPresenter.swift */; };
 		B69AAAC2293AE951009CE10E /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAAC1293AE951009CE10E /* HistoryView.swift */; };
 		B69AAAC4293B23C8009CE10E /* Etherscan.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAAC3293B23C8009CE10E /* Etherscan.swift */; };
+		B69AAAC8293B2802009CE10E /* ExchangeRateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAAC7293B2802009CE10E /* ExchangeRateRequest.swift */; };
+		B69AAACA293B2D95009CE10E /* ExchangeRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAAC9293B2D95009CE10E /* ExchangeRate.swift */; };
+		B69AAACC293B2E6E009CE10E /* ExchangeRateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69AAACB293B2E6E009CE10E /* ExchangeRateProvider.swift */; };
 		B6B11D6D29101DA5006F0591 /* AccountEntity+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B11D6C29101DA5006F0591 /* AccountEntity+Extensions.swift */; };
 		B6B11D6F2911704E006F0591 /* CoinIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B11D6E2911704E006F0591 /* CoinIconView.swift */; };
 		B6B11D71291176B7006F0591 /* NetworkMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B11D70291176B7006F0591 /* NetworkMapper.swift */; };
@@ -232,6 +235,9 @@
 		B69AAAB9293AE814009CE10E /* HistoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPresenter.swift; sourceTree = "<group>"; };
 		B69AAAC1293AE951009CE10E /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		B69AAAC3293B23C8009CE10E /* Etherscan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Etherscan.swift; sourceTree = "<group>"; };
+		B69AAAC7293B2802009CE10E /* ExchangeRateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateRequest.swift; sourceTree = "<group>"; };
+		B69AAAC9293B2D95009CE10E /* ExchangeRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRate.swift; sourceTree = "<group>"; };
+		B69AAACB293B2E6E009CE10E /* ExchangeRateProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateProvider.swift; sourceTree = "<group>"; };
 		B6B11D6C29101DA5006F0591 /* AccountEntity+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountEntity+Extensions.swift"; sourceTree = "<group>"; };
 		B6B11D6E2911704E006F0591 /* CoinIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinIconView.swift; sourceTree = "<group>"; };
 		B6B11D70291176B7006F0591 /* NetworkMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMapper.swift; sourceTree = "<group>"; };
@@ -592,6 +598,16 @@
 			path = Etherscan;
 			sourceTree = "<group>";
 		};
+		B69AAAC6293B27E7009CE10E /* CoinMarketCap */ = {
+			isa = PBXGroup;
+			children = (
+				B69AAAC7293B2802009CE10E /* ExchangeRateRequest.swift */,
+				B69AAAC9293B2D95009CE10E /* ExchangeRate.swift */,
+				B69AAACB293B2E6E009CE10E /* ExchangeRateProvider.swift */,
+			);
+			path = CoinMarketCap;
+			sourceTree = "<group>";
+		};
 		B6B11D742912BF67006F0591 /* Component */ = {
 			isa = PBXGroup;
 			children = (
@@ -888,6 +904,7 @@
 				B6C204A32915576700B11E72 /* Wallet */,
 				B6F7610928FC27B5006BEF79 /* WalletConnect */,
 				B6F7610728FC27A8006BEF79 /* WalletView */,
+				B69AAAC6293B27E7009CE10E /* CoinMarketCap */,
 				B69AAAC5293B23CD009CE10E /* Etherscan */,
 			);
 			path = Feature;
@@ -1194,6 +1211,7 @@
 				B6B80EC62930E6FF00995210 /* GasPriceRequest.swift in Sources */,
 				B6F760C628FC256B006BEF79 /* AppDelegate.swift in Sources */,
 				B639AE30290D6A0F008F4C72 /* ValidatePhraseViewModel.swift in Sources */,
+				B69AAACA293B2D95009CE10E /* ExchangeRate.swift in Sources */,
 				B6B80ECC2930EB7100995210 /* NonceProvider.swift in Sources */,
 				B6B80EB8292E4F0600995210 /* TransactionViewModel.swift in Sources */,
 				B6B80E8229252D9D00995210 /* ScannerView.swift in Sources */,
@@ -1207,6 +1225,7 @@
 				B69AAA872933D7F7009CE10E /* SendViewComponents.swift in Sources */,
 				B69AAAAA29387528009CE10E /* GetTransactionByHashProvider.swift in Sources */,
 				B6F7610328FC2781006BEF79 /* BrowserView.swift in Sources */,
+				B69AAAC8293B2802009CE10E /* ExchangeRateRequest.swift in Sources */,
 				B6B11D7F2913DEC7006F0591 /* AccountViewModel.swift in Sources */,
 				B6B11D812913FD9C006F0591 /* AccountUtils.swift in Sources */,
 				B69AAAA8293871A0009CE10E /* GetTransactionByHashRequest.swift in Sources */,
@@ -1236,6 +1255,7 @@
 				B69AAA8A293470BF009CE10E /* SendAmountViewModel.swift in Sources */,
 				B69AAA9329363CD5009CE10E /* ReceiveView.swift in Sources */,
 				B6B80E962928AFCD00995210 /* TokenInfo.swift in Sources */,
+				B69AAACC293B2E6E009CE10E /* ExchangeRateProvider.swift in Sources */,
 				B69AAA822933D388009CE10E /* SendViewModel.swift in Sources */,
 				B6B80E8029252D2A00995210 /* ScannerViewController.swift in Sources */,
 				B647F9D9290310F900940C3B /* View+Extensions.swift in Sources */,

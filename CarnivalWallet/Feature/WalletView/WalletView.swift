@@ -46,6 +46,7 @@ struct WalletView: View {
 						address: vm.accountAddress,
 						name: vm.accountName
 					)
+
 					WalletFiatBalanceView(balance: vm.accountBalance ?? "0")
 					
 					HStack(spacing: 32) {
@@ -97,12 +98,15 @@ struct WalletView: View {
 			}
 			.refreshable {
 				vm.fetchBalance()
+				vm.fetchExchangeRate()
 			}
 			.safeAreaInset(.top, inset: 32)
 		}
 		.onAppear {
 			vm.fetchBalance()
+			vm.fetchExchangeRate()
 		}
+		
 		.coinSelector(isVisible: $coinSelectorVisible, coins: vm.coins) { coin in
 			Task {
 				coinSelectorVisible = false
