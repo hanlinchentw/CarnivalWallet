@@ -16,16 +16,20 @@ struct Etherscan {
 		case address(String)
 		case transaction(String)
 		
+		private var baseURL: String {
+			"https://etherscan.io"
+		}
+		
 		var url: URL {
 			switch self {
 			case .token(let contractAddress):
-				return "https://etherscan.io/token/\(contractAddress)".toURL
+				return "\(baseURL)/token/\(contractAddress)".toURL
 			case .tokens:
-				return "https://etherscan.io/tokens".toURL
+				return "\(baseURL)/tokens".toURL
 			case .address(let address):
-				return "https://etherscan.io/address/\(address)".toURL
+				return "\(baseURL)/address/\(address)".toURL
 			case .transaction(let txHash):
-				return "https://etherscan.io/tx/\(txHash)".toURL
+				return "\(baseURL)/tx/\(txHash)".toURL
 			}
 		}
 		

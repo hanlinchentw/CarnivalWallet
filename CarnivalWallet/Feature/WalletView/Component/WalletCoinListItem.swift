@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct WalletCoinListItem: View {
+	var isEditing: Bool
 	@ObservedObject var coin: Coin
 	
 	var body: some View {
@@ -23,14 +24,15 @@ struct WalletCoinListItem: View {
 						Text(coin.balance, " ", coin.symbol)
 							.AvenirNextRegular(size: 16)
 					}
-					Text("$ ", (coin.fiatBalance ?? "0"))	
+					Text("$ ", (coin.fiatBalance ?? "0"))
 						.AvenirNextRegular(size: 14)
 				}
 				.padding(.leading, 16)
 				Spacer()
-				Image(systemName: "chevron.right")
+				Image(systemName: isEditing ? "minus.circle.fill" : "chevron.right")
 					.resizable()
 					.scaledToFit()
+					.foregroundColor(isEditing ? Color.redNormal : Color.black)
 					.frame(width: 16, height: 16)
 			}
 			.padding(.horizontal, 16)
@@ -41,6 +43,6 @@ struct WalletCoinListItem: View {
 
 struct WalletCoinListItem_Previews: PreviewProvider {
 	static var previews: some View {
-		WalletCoinListItem(coin: .testETH)
+		WalletCoinListItem(isEditing: true, coin: .testETH)
 	}
 }

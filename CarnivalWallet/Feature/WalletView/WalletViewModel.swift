@@ -10,6 +10,7 @@ import CoreData
 import BigInt
 
 class WalletViewModel: ObservableObject {
+	@Published var isEditing = false
 	var coins: Array<Coin> {
 		AccountManager.current?.coin?.toArray(Coin.self) ?? []
 	}
@@ -25,7 +26,13 @@ class WalletViewModel: ObservableObject {
 	var accountAddress: String? {
 		AccountManager.current?.address
 	}
-	
+
+	func deleteCoin(_ coin: Coin) {
+		if isEditing {
+			coin.delete(in: .defaultContext)
+			try? NSManagedObjectContext.defaultContext.save()
+		}
+	}
 	func fetchBalance() {
 		guard let account = AccountManager.shared.currentAccount else { return }
 		var operations: [(any BalanceProvider, Coin)] = []

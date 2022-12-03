@@ -10,6 +10,7 @@ import BigInt
 import Defaults
 
 struct WalletCoinList: View {
+	var isEditing: Bool
 	var onPressItem: (Coin) -> Void
 	
 	@Environment(\.managedObjectContext) var viewContext
@@ -24,12 +25,12 @@ struct WalletCoinList: View {
 			.sorted(by: { $0.fiatBalance ?? "0" > $1.fiatBalance ?? "0" })
 		?? []
 	}
-
+	
 	var body: some View {
 		VStack(spacing: 12) {
 			ForEach(0 ..< currentAccountCoins.indices.count, id: \.self) { index in
 				let coin = currentAccountCoins[index]
-				WalletCoinListItem(coin: coin)
+				WalletCoinListItem(isEditing: isEditing, coin: coin)
 					.onTapGesture {
 						onPressItem(coin)
 					}
@@ -41,7 +42,7 @@ struct WalletCoinList: View {
 
 struct WalletCoinList_Previews: PreviewProvider {
 	static var previews: some View {
-		WalletCoinList(onPressItem: { _ in
+		WalletCoinList(isEditing: false, onPressItem: { _ in
 			
 		})
 	}

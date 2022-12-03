@@ -109,7 +109,6 @@ struct ImportTokenView: View {
 					}
 				}
 				.padding(.top, 32)
-				
 				Spacer()
 			}
 			.padding(.top, 32)

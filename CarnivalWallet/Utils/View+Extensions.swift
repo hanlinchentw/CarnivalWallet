@@ -171,40 +171,42 @@ extension View {
 															 onPressedRightItem: VoidClosure? = nil
 	) -> some View {
 		self
-			.padding(.top, SafeAreaUtils.top - 16)
+			.padding(.top, SafeAreaUtils.top - 20)
 			.width(DeviceDimension.WIDTH)
 			.overlay(
 				VStack {
-					ZStack {
-						HStack {
-							Button {
-								onPressedLeftItem()
-							} label: {
-								leftItem()
-							}
-							.size(16)
-							.foregroundColor(.black)
-							.padding(.leading, 16)
-							Spacer()
-							if let rightItem {
+					VStack {
+						ZStack {
+							HStack {
 								Button {
-									onPressedRightItem?()
+									onPressedLeftItem()
 								} label: {
-									rightItem()
+									leftItem()
 								}
-								.size(16)
+								.size(24)
 								.foregroundColor(.black)
-								.padding(.trailing, 16)
+								.padding(.leading, 16)
+								Spacer()
+								if let rightItem {
+									Button {
+										onPressedRightItem?()
+									} label: {
+										rightItem()
+									}
+									.size(24)
+									.foregroundColor(.black)
+									.padding(.trailing, 16)
+								}
 							}
+							Text(title)
+								.AvenirNextMedium(size: 20)
 						}
-						Text(title)
-							.AvenirNextMedium(size: 20)
+						Divider()
 					}
+					.background(Color.white)
 					
-					Divider()
 					Spacer()
 				}
 			)
-		
 	}
 }

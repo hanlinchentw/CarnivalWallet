@@ -80,11 +80,24 @@ struct HomeView: View {
 				.header(
 					title: title,
 					leftItem: {
-						Image(systemName: "line.3.horizontal")
+						Image("menu")
+							.resizable()
 					},
-					onPressedLeftItem: toggleMenu
+					onPressedLeftItem: toggleMenu,
+					rightItem: {
+						if selectedScreen == 0 {
+							return Image("edit")
+								.resizable()
+						}
+						return Image("")
+							.resizable()
+					}, onPressedRightItem: {
+						withAnimation {
+							walletVM.isEditing = !walletVM.isEditing
+						}
+					}
 				)
-				.padding(.top, SafeAreaUtils.top - 16)
+				.padding(.top, SafeAreaUtils.top	)
 				
 				SideMenuView(
 					visible: $sideBarVisible,

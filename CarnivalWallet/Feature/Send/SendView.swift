@@ -65,12 +65,12 @@ struct SendView: View {
 			} onPressedLeftItem: {
 				presentationMode.wrappedValue.dismiss()
 			}
-			.sheet(isPresented: $vm.qrScannerVisible) {
-				ScannerView(
-					onScan: vm.onScan,
-					onClose: vm.onCloseScanner
-				).ignoresSafeArea()
-			}
+		}
+		.sheet(isPresented: $vm.qrScannerVisible) {
+			ScannerView(
+				onScan: vm.onScan,
+				onClose: vm.onCloseScanner
+			).ignoresSafeArea()
 		}
 	}
 }

@@ -79,10 +79,17 @@ struct WalletView: View {
 					Divider()
 						.padding(.top, 16)
 					
-					WalletCoinList(onPressItem: { coin in
-						navigator.navigateToCoin(coin: coin)
-					})
-						.environment(\.managedObjectContext, .defaultContext)
+						WalletCoinList(
+							isEditing: vm.isEditing,
+							onPressItem: { coin in
+								if vm.isEditing {
+									vm.deleteCoin(coin)
+									return
+								}
+								navigator.navigateToCoin(coin: coin)
+								
+							}
+						).environment(\.managedObjectContext, .defaultContext)
 					
 					VStack(spacing: 6) {
 						Text("Don't see your token?")
@@ -106,7 +113,6 @@ struct WalletView: View {
 			vm.fetchBalance()
 			vm.fetchExchangeRate()
 		}
-		
 		.coinSelector(isVisible: $coinSelectorVisible, coins: vm.coins) { coin in
 			Task {
 				coinSelectorVisible = false
