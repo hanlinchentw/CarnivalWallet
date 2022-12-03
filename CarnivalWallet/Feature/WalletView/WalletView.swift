@@ -27,6 +27,7 @@ enum CoinSelectorState: Int {
 }
 
 struct WalletView: View {
+	@Environment(\.managedObjectContext) var viewContext
 	@EnvironmentObject var vm: WalletViewModel
 	@EnvironmentObject var navigator: NavigatorImpl
 	
@@ -47,7 +48,7 @@ struct WalletView: View {
 						name: vm.accountName
 					)
 
-					WalletFiatBalanceView(balance: vm.accountBalance ?? "0")
+					WalletFiatBalanceView(balance: vm.totalFiatBalance)
 					
 					HStack(spacing: 32) {
 						BaseButton(
@@ -87,7 +88,6 @@ struct WalletView: View {
 									return
 								}
 								navigator.navigateToCoin(coin: coin)
-								
 							}
 						).environment(\.managedObjectContext, .defaultContext)
 					

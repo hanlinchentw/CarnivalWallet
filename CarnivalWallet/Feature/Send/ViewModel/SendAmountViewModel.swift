@@ -16,7 +16,7 @@ class SendAmountViewModel: ObservableObject {
 	@Published var isSendButtonLoading: Bool = false
 	
 	var account: AccountEntity {
-		AccountManager.current ?? .testEthAccountEntity
+		AccountManager.getCurrent ?? .testEthAccountEntity
 	}
 
 	func onPressMaxButton(coin: Coin) {

@@ -11,7 +11,7 @@ import SwiftUI
 class ReceiveViewModel: ObservableObject {
 	
 	var account: AccountEntity? {
-		AccountManager.current ?? .testEthAccountEntity
+		AccountManager.getCurrent ?? .testEthAccountEntity
 	}
 	
 	func getQRCode(address: String) -> UIImage? {

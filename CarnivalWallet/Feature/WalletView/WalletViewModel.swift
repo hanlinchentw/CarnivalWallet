@@ -12,21 +12,21 @@ import BigInt
 class WalletViewModel: ObservableObject {
 	@Published var isEditing = false
 	var coins: Array<Coin> {
-		AccountManager.current?.coin?.toArray(Coin.self) ?? []
+		AccountManager.getCurrent?.coin?.toArray(Coin.self) ?? []
 	}
 	
 	var accountName: String? {
-		AccountManager.current?.name
+		AccountManager.getCurrent?.name
 	}
 	
 	var accountBalance: String? {
-		AccountManager.current?.fiatBalance
+		AccountManager.getCurrent?.fiatBalance
 	}
 	
 	var accountAddress: String? {
-		AccountManager.current?.address
+		AccountManager.getCurrent?.address
 	}
-
+	
 	func deleteCoin(_ coin: Coin) {
 		if isEditing {
 			coin.delete(in: .defaultContext)
@@ -34,7 +34,8 @@ class WalletViewModel: ObservableObject {
 		}
 	}
 	func fetchBalance() {
-		guard let account = AccountManager.shared.currentAccount else { return }
+		print("fetchBalance >>> account >>> \(AccountManager.getCurrent)")
+		guard let account = AccountManager.getCurrent else { return }
 		var operations: [(any BalanceProvider, Coin)] = []
 		
 		for coin in coins {
@@ -93,23 +94,18 @@ class WalletViewModel: ObservableObject {
 						try? NSManagedObjectContext.defaultContext.save()
 					}
 				}
-				refreshAccountFiatBalance()
 			} catch {
 				print(">>> fetchExchangeRate.error=\(error.localizedDescription)")
 			}
 		}
 	}
 	
-	func refreshAccountFiatBalance() {
+	var totalFiatBalance: String {
 		let totalFiatBalance = coins
 			.map { $0.fiatBalance ?? "0" }
 			.reduce("0") {
 				NSDecimalNumber(value: $0.toDouble()+$1.toDouble()).stringValue
 			}
-
-		DispatchQueue.main.async {
-			AccountManager.current?.fiatBalance = totalFiatBalance
-			try? NSManagedObjectContext.defaultContext.save()
-		}
+		return totalFiatBalance
 	}
 }

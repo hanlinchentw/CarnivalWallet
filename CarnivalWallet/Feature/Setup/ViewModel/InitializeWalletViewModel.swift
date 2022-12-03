@@ -52,11 +52,12 @@ final class InitializeWalletViewModelImpl: InitializeWalletViewModel {
 }
 
 extension InitializeWalletViewModelImpl {
-	func importWallet() async {
+	func importWallet() {
 		do {
 			try SecureManager.setGenericPassword(password: passwordText, useBioAuth: isBioAuthOn)
 			try WalletManager.initWallet(phrase: phrase, password: passwordText, useBioAuth: isBioAuthOn)
-			try AccountManager.shared.addAccount(password: passwordText)
+			let newAccount = try AccountManager.shared.addAccount(password: passwordText)
+			AccountManager.setCurrent(newAccount)
 		} catch {
 			self.error = error
 		}
@@ -67,7 +68,8 @@ extension InitializeWalletViewModelImpl {
 			try SecureManager.setGenericPassword(password: passwordText, useBioAuth: isBioAuthOn)
 			let wallet = try WalletManager.initWallet(password: passwordText, useBioAuth: isBioAuthOn)
 			self.phrase = try ObjectUtils.checkNotNil(wallet.key.decryptMnemonic(password: Data(passwordText.utf8)), message: "Mnemonic is nil.")
-			try AccountManager.shared.addAccount(password: passwordText)
+			let newAccount = try AccountManager.shared.addAccount(password: passwordText)
+			AccountManager.setCurrent(newAccount)
 		} catch {
 			self.error = error
 		}

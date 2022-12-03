@@ -19,23 +19,26 @@ class MainCoordinator: ObservableObject, Coordinator {
 	
 	func start() {
 		self.navigationController.navigationBar.isHidden = true
-		let homeView = HomeView()
-		let homeVC = UIHostingController(rootView: homeView)
-		navigationController.pushViewController(homeVC, animated: true)
 		if SecureManager.keystore.wallets.isEmpty {
-			setup()
+			let welcomeView = WelcomeView().environmentObject(self)
+			let welcomeVC = UIHostingController(rootView: welcomeView)
+			navigationController.pushViewController(welcomeVC, animated: true)
+		} else {
+			let homeView = HomeView().environmentObject(self).environment(\.managedObjectContext, .defaultContext)
+			let homeVC = UIHostingController(rootView: homeView)
+			navigationController.pushViewController(homeVC, animated: true)
 		}
 	}
 
-	func setup() {
-		let welcomeView = WelcomeView().environmentObject(self)
-		let welcomeVC = UIHostingController(rootView: welcomeView)
-		navigationController.pushViewController(welcomeVC, animated: true)
+	func finishSetup() {
+		let homeView = HomeView().environmentObject(self).environment(\.managedObjectContext, .defaultContext)
+		let homeVC = UIHostingController(rootView: homeView)
+		navigationController.setViewControllers([homeVC], animated: true)
 	}
 	
-	func finishSetup() {
-		let homeView = HomeView()
-		let homeVC = UIHostingController(rootView: homeView)
-		navigationController.pushViewController(homeVC, animated: true)
+	func logout() {
+		let welcomeView = WelcomeView().environmentObject(self)
+		let welcomeVC = UIHostingController(rootView: welcomeView)
+		navigationController.setViewControllers([welcomeVC], animated: true)
 	}
 }

@@ -20,18 +20,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		guard let scene = (scene as? UIWindowScene) else { return }
 		window = UIWindow(windowScene: scene)
 		window?.makeKeyAndVisible()
-
-//		if SecureManager.keystore.wallets.isEmpty {
-//			let nav = UINavigationController()
-//			let coordinator = SetupCoordinator(navigationController: nav)
-//			coordinator.start()
-//			window?.rootViewController = nav
-//		} else {
-//			let nav = UINavigationController()
-//			let coordinator = MainCoordinator(navigationController: nav)
-//			coordinator.start()
-//			window?.rootViewController = nav
-//		}
 		let nav = UINavigationController()
 		let coordinator = MainCoordinator(navigationController: nav)
 		coordinator.start()

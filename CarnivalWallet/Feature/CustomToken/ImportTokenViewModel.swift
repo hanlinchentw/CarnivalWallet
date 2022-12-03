@@ -32,7 +32,7 @@ class ImportTokenViewModel: ObservableObject {
 				self.error = ImportTokenError.aleardyExisted.rawValue
 				return
 			}
-			AccountManager.shared.currentAccount?.addToCoin(coin)
+			AccountManager.getCurrent?.addToCoin(coin)
 			try? NSManagedObjectContext.defaultContext.save()
 			self.dismiss.send()
 		}

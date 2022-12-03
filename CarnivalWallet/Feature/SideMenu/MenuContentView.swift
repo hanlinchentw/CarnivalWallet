@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct MenuContentView: View {
-	var currentAccount: AccountEntity? {
-		AccountManager.shared.currentAccount
+	var account: AccountEntity? {
+		AccountManager.getCurrent
 	}
 
 	var onReceive: () -> Void
@@ -31,48 +31,18 @@ struct MenuContentView: View {
 				
 				
 				AccountInfoView(
-					name: currentAccount?.name,
-					balance: currentAccount?.fiatBalance,
-					address: currentAccount?.address
+					name: account?.name,
+					balance: account?.fiatBalance,
+					address: account?.address
 				)
 				.padding(.top, 12)
 				.padding(.leading, 16)
-				
-				Divider()
-					.padding(.top, 12)
-				
-				TwoHorizontalButtons
-					.padding(.vertical, 6)
-					.padding(.horizontal, 32)
-				
+	
 				MenuListView(itemOnPress: itemOnPress)
 				
 				Spacer()
 			}
 			.padding(.top, 64)
-		}
-	}
-	
-	var TwoHorizontalButtons: some View {
-		HStack(spacing: 16) {
-			BaseButton(
-				text: WalletCTAType.Receive.rawValue,
-				icon: WalletCTAType.Receive.icon,
-				height: 40,
-				style: .outline,
-				onPress: {
-					
-				}
-			)
-			BaseButton(
-				text: WalletCTAType.Send.rawValue,
-				icon: WalletCTAType.Send.icon,
-				height: 40,
-				style: .outline,
-				onPress: {
-					
-				}
-			)
 		}
 	}
 }

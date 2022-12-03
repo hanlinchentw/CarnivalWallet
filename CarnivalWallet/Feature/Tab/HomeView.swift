@@ -26,12 +26,14 @@ enum Screen: Int, CaseIterable {
 }
 
 struct HomeView: View {
+	@Environment(\.managedObjectContext) var viewContext
+	@EnvironmentObject var mainCoordinator: MainCoordinator
 	@State var selectedScreen: Int = 0
 	@State private var sideBarVisible = false
 	@StateObject var walletVM = WalletViewModel()
 	
 	var coins: Array<Coin> {
-		AccountManager.current?.coin?.allObjects as? Array<Coin> ?? []
+		AccountManager.getCurrent?.coin?.allObjects as? Array<Coin> ?? []
 	}
 	
 	var title: String {
@@ -51,6 +53,7 @@ struct HomeView: View {
 				TabView(selection: $selectedScreen) {
 					WalletView()
 						.tag(0)
+						.environment(\.managedObjectContext, .defaultContext)
 						.environmentObject(walletVM)
 						.environmentObject(navigator)
 						.navigationDestination(for: RouteName.self) { route in
@@ -73,7 +76,6 @@ struct HomeView: View {
 								ImportTokenView()
 							}
 						}
-					
 					BrowserView().tag(1)
 					WalletConnectView().tag(2)
 				}
@@ -105,7 +107,6 @@ struct HomeView: View {
 					tapItem: tapItem
 				)
 			}
-			
 		}
 	}
 	
@@ -123,12 +124,17 @@ struct HomeView: View {
 			case .Wallet, .Browser, .WalletConnect:
 				selectedScreen = item.rawValue
 			case .Etherscan:
+				if let address = AccountManager.getCurrent?.address {
+					UIApplication.shared.open(Etherscan.route.address(address).url)
+				}
 				return
 			case .Logout:
 				try? SecureManager.keystore.wallets.forEach { wallet in
 					if let password = try SecureManager.getGenericPassowrd() {
 						try SecureManager.keystore.delete(wallet: wallet, password: password)
 						try SecureManager.reset()
+						try AccountManager.deleteAll()
+						mainCoordinator.logout()
 					}
 				}
 			}

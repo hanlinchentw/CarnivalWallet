@@ -12,26 +12,23 @@ import Defaults
 
 final class AccountManager: ObservableObject {
 	static let shared: AccountManager = .init()
-	@Published var currentAccount: AccountEntity? = nil
-	
-	init() {
-		observeAccountChange()
+	@Published private var currentAccount: AccountEntity? = nil
+
+	static var setCurrent: (AccountEntity) -> Void {
+		{
+			self.shared.currentAccount = $0
+		}
 	}
 	
-	static var current: AccountEntity? {
-		Self.shared.currentAccount
+	static var getCurrent: AccountEntity? {
+		if let account = Self.shared.currentAccount {
+			return account
+		}
+		return try? AccountEntity.find(for: ["index": "0"], in: .defaultContext).first as? AccountEntity
 	}
 	
 	static var coins: Array<Coin> {
-		Self.current?.coin?.toArray(Coin.self) ?? []
-	}
-
-	func observeAccountChange() {
-		Defaults.observe(.accountIndex) { [weak self] change in
-			guard let self = self else { return }
-			self.currentAccount = try? AccountEntity.find(for: ["index": (change.newValue).toString()], in: .defaultContext).first as? AccountEntity
-		}
-		.tieToLifetime(of: self)
+		Self.getCurrent?.coin?.toArray(Coin.self) ?? []
 	}
 
 	static var numOfAccount: Int {
@@ -39,10 +36,17 @@ final class AccountManager: ObservableObject {
 		return accounts?.count ?? 0
 	}
 	
-	func addAccount(password: String?) throws {
+	@discardableResult
+	func addAccount(password: String?) throws -> AccountEntity {
 		let address = try getAddressFromExtendedKey(password: password)
-		AccountEntity.init(index: Self.numOfAccount, name: "Account \(Self.numOfAccount+1)", address: address)
+		let account = AccountEntity.init(index: Self.numOfAccount, name: "Account \(Self.numOfAccount+1)", address: address)
 		try NSManagedObjectContext.defaultContext.save()
+		return account
+	}
+	
+	static func deleteAll() throws {
+		let all = try AccountEntity.allIn(.defaultContext)
+		all.forEach { $0.delete(in: .defaultContext) }
 	}
 	
 	func getAddressFromExtendedKey(password: String?) throws -> String {

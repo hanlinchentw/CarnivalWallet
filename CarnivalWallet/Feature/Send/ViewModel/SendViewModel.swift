@@ -20,7 +20,7 @@ class SendViewModel: ObservableObject {
 	@Published var toAddressInvalid: (any Error)?
 
 	var account: AccountEntity {
-		AccountManager.current ?? .testEthAccountEntity
+		AccountManager.getCurrent ?? .testEthAccountEntity
 	}
 	
 	var onPaste: (String) -> Void {

@@ -12,7 +12,7 @@ struct HistoryView: View {
 	var transactions: FetchedResults<History>
 
 	var account: AccountEntity {
-		AccountManager.current!
+		AccountManager.getCurrent!
 	}
 
 	var body: some View {

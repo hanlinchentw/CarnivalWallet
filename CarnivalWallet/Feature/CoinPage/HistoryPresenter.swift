@@ -10,7 +10,7 @@ import SwiftUI
 
 struct HistoryPresenter {
 	var account: AccountEntity {
-		AccountManager.current!
+		AccountManager.getCurrent!
 	}
 	
 	let coin: Coin
