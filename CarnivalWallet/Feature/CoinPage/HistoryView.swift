@@ -44,7 +44,10 @@ struct HistoryView: View {
 			}
 			
 			if let address = account.address {
-				Link("View all on etherscan", destination: Etherscan.route.address(address).url)
+				Link(destination: Etherscan.route.address(address).url) {
+					Text("View all on Etherscan")
+						.AvenirNextMedium(size: 16)
+				}
 			}
 		}
 		.padding(.top, 16)

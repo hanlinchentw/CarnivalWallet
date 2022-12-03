@@ -101,12 +101,12 @@ struct ImportTokenView: View {
 							)
 						}
 						.padding(.top, 16)
+					} else {
+						Link(destination: Etherscan.route.tokens.url) {
+							Text("View all ERC-20 Tokens")
+								.AvenirNextMedium(size: 16)
+						}
 					}
-					Link(destination: Etherscan.route.tokens.url) {
-						Text("View all ERC-20 Tokens")
-							.AvenirNextMedium(size: 16)
-					}
-
 				}
 				.padding(.top, 32)
 				
