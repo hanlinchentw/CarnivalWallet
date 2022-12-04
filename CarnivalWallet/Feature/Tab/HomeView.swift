@@ -10,17 +10,11 @@ import CoreData
 
 enum Screen: Int, CaseIterable {
 	case Wallet
-	case Browser
-	case WalletConnect
 	
 	var navigationTitle: String {
 		switch self {
 		case .Wallet:
 			return "Wallet"
-		case .Browser:
-			return "Browser"
-		case .WalletConnect:
-			return "WalletConnect"
 		}
 	}
 }
@@ -76,8 +70,6 @@ struct HomeView: View {
 								ImportTokenView()
 							}
 						}
-					BrowserView().tag(1)
-					WalletConnectView().tag(2)
 				}
 				.header(
 					title: title,
@@ -121,7 +113,7 @@ struct HomeView: View {
 	var tapItem: (_ item: MenuItem) -> Void {
 		{ item in
 			switch item {
-			case .Wallet, .Browser, .WalletConnect:
+			case .Wallet:
 				selectedScreen = item.rawValue
 			case .Etherscan:
 				if let address = AccountManager.getCurrent?.address {

@@ -9,8 +9,6 @@ import Foundation
 
 enum MenuItem: Int, CaseIterable, Identifiable {
 	case Wallet = 0
-	case Browser
-	case WalletConnect
 	case Etherscan
 	case Logout
 	
@@ -18,10 +16,6 @@ enum MenuItem: Int, CaseIterable, Identifiable {
 		switch self {
 		case .Wallet:
 			return "Wallet"
-		case .Browser:
-			return "Browser"
-		case .WalletConnect:
-			return "WalletConnect"
 		case .Etherscan:
 			return "View on Etherscan"
 		case .Logout:
@@ -33,10 +27,6 @@ enum MenuItem: Int, CaseIterable, Identifiable {
 		switch self {
 		case .Wallet:
 			return "wallet"
-		case .Browser:
-			return "network"
-		case .WalletConnect:
-			return "wc_logo_black"
 		case .Etherscan:
 			return "eye"
 		case .Logout:

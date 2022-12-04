@@ -11,12 +11,11 @@ enum MenuSection: Int, CaseIterable {
 	case feature = 0
 	case link
 	case setting
-	
-	
+
 	var items: Array<MenuItem> {
 		switch self {
 		case .feature:
-			return [.Wallet, .Browser, .WalletConnect]
+			return [.Wallet]
 		case .link:
 			return [.Etherscan]
 		case .setting:

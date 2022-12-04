@@ -146,8 +146,6 @@
 		B6F760E728FC256C006BEF79 /* CarnivalWalletUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F760E628FC256C006BEF79 /* CarnivalWalletUITests.swift */; };
 		B6F760E928FC256C006BEF79 /* CarnivalWalletUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F760E828FC256C006BEF79 /* CarnivalWalletUITestsLaunchTests.swift */; };
 		B6F7610128FC275C006BEF79 /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F7610028FC275C006BEF79 /* WalletView.swift */; };
-		B6F7610328FC2781006BEF79 /* BrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F7610228FC2781006BEF79 /* BrowserView.swift */; };
-		B6F7610528FC278E006BEF79 /* WalletConnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F7610428FC278E006BEF79 /* WalletConnectView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -315,8 +313,6 @@
 		B6F760E628FC256C006BEF79 /* CarnivalWalletUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarnivalWalletUITests.swift; sourceTree = "<group>"; };
 		B6F760E828FC256C006BEF79 /* CarnivalWalletUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarnivalWalletUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B6F7610028FC275C006BEF79 /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
-		B6F7610228FC2781006BEF79 /* BrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserView.swift; sourceTree = "<group>"; };
-		B6F7610428FC278E006BEF79 /* WalletConnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectView.swift; sourceTree = "<group>"; };
 		D5A7A1EAFF8415A0222AE361 /* Pods_CarnivalWallet_CarnivalWalletUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CarnivalWallet_CarnivalWalletUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1A453C7A633783EB56D7E83 /* Pods-CarnivalWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarnivalWallet.release.xcconfig"; path = "Target Support Files/Pods-CarnivalWallet/Pods-CarnivalWallet.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -883,7 +879,6 @@
 			isa = PBXGroup;
 			children = (
 				B6B11D7D2913DEBE006F0591 /* Account */,
-				B6F7610828FC27AA006BEF79 /* Browser */,
 				B69AAAAD293876CB009CE10E /* CoinPage */,
 				B639AE33290D77FD008F4C72 /* Coordinator */,
 				B639AE3929101ABB008F4C72 /* Coredata */,
@@ -902,7 +897,6 @@
 				B6B80EA9292BCD8000995210 /* Transaction */,
 				B639AE022906E045008F4C72 /* UserDefault */,
 				B6C204A32915576700B11E72 /* Wallet */,
-				B6F7610928FC27B5006BEF79 /* WalletConnect */,
 				B6F7610728FC27A8006BEF79 /* WalletView */,
 				B69AAAC6293B27E7009CE10E /* CoinMarketCap */,
 				B69AAAC5293B23CD009CE10E /* Etherscan */,
@@ -920,22 +914,6 @@
 				B69AAAA029366839009CE10E /* WalletNavigator.swift */,
 			);
 			path = WalletView;
-			sourceTree = "<group>";
-		};
-		B6F7610828FC27AA006BEF79 /* Browser */ = {
-			isa = PBXGroup;
-			children = (
-				B6F7610228FC2781006BEF79 /* BrowserView.swift */,
-			);
-			path = Browser;
-			sourceTree = "<group>";
-		};
-		B6F7610928FC27B5006BEF79 /* WalletConnect */ = {
-			isa = PBXGroup;
-			children = (
-				B6F7610428FC278E006BEF79 /* WalletConnectView.swift */,
-			);
-			path = WalletConnect;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -957,8 +935,6 @@
 			dependencies = (
 			);
 			name = CarnivalWallet;
-			packageProductDependencies = (
-			);
 			productName = CarnivalWallet;
 			productReference = B6F760C228FC256B006BEF79 /* CarnivalWallet.app */;
 			productType = "com.apple.product-type.application";
@@ -1034,8 +1010,6 @@
 				Base,
 			);
 			mainGroup = B6F760B928FC256B006BEF79;
-			packageReferences = (
-			);
 			productRefGroup = B6F760C328FC256B006BEF79 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1203,7 +1177,6 @@
 				B647F9D02902FE9500940C3B /* AttributedString+Extensions.swift in Sources */,
 				B647F9DE2903125500940C3B /* SideMenuView.swift in Sources */,
 				B69AAA9D2936635C009CE10E /* HomeNavigator.swift in Sources */,
-				B6F7610528FC278E006BEF79 /* WalletConnectView.swift in Sources */,
 				B6B6ED45292326AA0093902A /* ImportTokenView.swift in Sources */,
 				B6B80EDB2932183A00995210 /* ERC20Decoder.swift in Sources */,
 				B6C204EE2923243800B11E72 /* WalletCoinListItemViewModel.swift in Sources */,
@@ -1224,7 +1197,6 @@
 				B6B80EBA292E53F900995210 /* TransactionView.swift in Sources */,
 				B69AAA872933D7F7009CE10E /* SendViewComponents.swift in Sources */,
 				B69AAAAA29387528009CE10E /* GetTransactionByHashProvider.swift in Sources */,
-				B6F7610328FC2781006BEF79 /* BrowserView.swift in Sources */,
 				B69AAAC8293B2802009CE10E /* ExchangeRateRequest.swift in Sources */,
 				B6B11D7F2913DEC7006F0591 /* AccountViewModel.swift in Sources */,
 				B6B11D812913FD9C006F0591 /* AccountUtils.swift in Sources */,
