@@ -23,7 +23,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Carnival Wallet is a Ethereum wallet. User can import or create ethereum wallet and check ethereum balance and transaction history in this application. Also, Carnival wallet can send transaction to the node and confirm on the blockchain.
+Carnival Wallet is an Ethereum wallet. Users can import or create an Ethereum wallet and check their balance and transaction history in-app. Also, Carnival Wallet can send transactions to the node and confirm on the blockchain.
 
 
 ## Built With
